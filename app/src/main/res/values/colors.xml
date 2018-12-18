@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+
+    <color name="login_car_bg">#ece9e9</color>
+    <color name="white">#ffff</color>
+    <color name="blue">#227bff</color>
+    <color name="gray">#a1a1a1</color>
     <color name="colorPrimary">#F8F8F8</color>
     <color name="colorPrimaryDark">#F8F8F8</color>
     <color name="colorAccent">#28B8A1</color>
