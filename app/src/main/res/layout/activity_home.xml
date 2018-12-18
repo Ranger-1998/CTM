@@ -10,8 +10,8 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:background="@color/colorPrimary"
-        app:itemTextColor="#808080"
-        app:itemIconTint="#808080"
+        app:itemTextColor="@color/bnve_color"
+        app:itemIconTint="@color/bnve_color"
         app:elevation="5dp"
         app:menu="@menu/menu_navigation_home">
 
@@ -36,7 +36,8 @@
         android:layout_marginBottom="12dp"
         android:src="@drawable/ic_add_black_24dp"
         android:tint="#ffffff"
-        app:backgroundTint="#808080"
+        app:backgroundTint="@color/gray"
+        app:rippleColor="@color/colorAccent"
         app:borderWidth="0dp"
         app:fabSize="normal"
         app:elevation="6dp" />
