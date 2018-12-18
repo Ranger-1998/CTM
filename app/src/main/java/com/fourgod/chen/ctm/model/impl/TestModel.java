@@ -2,6 +2,7 @@ package com.fourgod.chen.ctm.model.impl;
 
 import android.os.Handler;
 import android.support.annotation.NonNull;
+import android.util.Log;
 
 import com.fourgod.chen.ctm.entity.NewsBean;
 import com.fourgod.chen.ctm.event.NewsEvent;

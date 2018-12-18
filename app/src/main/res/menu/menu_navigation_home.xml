@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/menu_res"
+        android:checked="true"
+        android:icon="@drawable/ic_shopping_basket_black_24dp"
+        android:title="找资源" />
+
+    <item
+        android:id="@+id/menu_req"
+        android:checked="false"
+        android:icon="@drawable/ic_work_black_24dp"
+        android:title="需求" />
+
+    <item
+        android:id="@+id/menu_add"
+        android:checked="false"
+
+        android:title="" />
+
+    <item
+        android:id="@+id/menu_chat"
+        android:checked="false"
+        android:icon="@drawable/ic_chat_black_24dp"
+        android:title="聊天" />
+
+    <item
+        android:id="@+id/menu_me"
+        android:checked="false"
+        android:icon="@drawable/ic_person_black_24dp"
+        android:title="我" />
+</menu>
