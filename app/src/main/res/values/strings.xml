@@ -30,6 +30,18 @@
     <string name="bnv_chat">聊天</string>
     <string name="bnv_person">我</string>
 
+    <string name="person_res">我的资源</string>
+    <string name="person_req">我的资源</string>
+    <string name="person_collect">我的资源</string>
+    <string name="person_about_me">关于我</string>
+    <string name="person_edit">编辑</string>
+    <string name="person_me">我的</string>
+
+    <string name="del">删除</string>
+    <string name="solve">解决了</string>
+
+
+
     <string name="res_search_hint">输入你要查找的内容</string>
 
     <string name="text">原标题：庆祝改革开放40周年大会在京隆重举行 习近平发表重要讲话

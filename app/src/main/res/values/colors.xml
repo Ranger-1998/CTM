@@ -48,6 +48,7 @@
     <color name="fuchsia">#ff00ff</color><!--紫红色 -->
     <color name="magenta">#ff00ff</color><!--红紫色 -->
     <color name="red">#ff0000</color><!--红色 -->
+    <color name="red_del">#EC4A50</color> <!-- 用于表示删除的红色 -->
     <color name="oldlace">#fdf5e6</color><!--老花色 -->
     <color name="lightgoldenrodyellow">#fafad2</color><!--亮金黄色 -->
     <color name="linen">#faf0e6</color><!--亚麻色 -->

@@ -21,6 +21,7 @@ import android.widget.TextView;
 
 import com.flyco.tablayout.SlidingTabLayout;
 import com.fourgod.chen.ctm.R;
+import com.fourgod.chen.ctm.model.impl.MyResAndReqModel;
 import com.fourgod.chen.ctm.presenter.impl.PersonPresenter;
 import com.fourgod.chen.ctm.utils.DimenUtils;
 
@@ -66,35 +67,29 @@ public class PersonFragment extends BaseFragment<PersonPresenter> {
         barName = mRoot.findViewById(R.id.tv_name_bar);
         maskView = mRoot.findViewById(R.id.view_mask);
 
-        BaseFragment resFragment = new TestFragment1();
+        BaseFragment resFragment = new MyResAndReqFragment();
         Bundle bundle = new Bundle();
-        bundle.putString("title", "资源");
+        bundle.putInt("type",MyResAndReqModel.TYPE_RESOURCE);
         resFragment.setArguments(bundle);
 
-        BaseFragment reqFragment = new TestFragment1();
+        BaseFragment reqFragment = new MyResAndReqFragment();
         bundle = new Bundle();
-        bundle.putString("title", "需求");
+        bundle.putInt("type",MyResAndReqModel.TYPE_REQUIREMENT);
         reqFragment.setArguments(bundle);
 
         BaseFragment chatFragment = new TestFragment1();
-        bundle = new Bundle();
-        bundle.putString("title", "收藏");
-        chatFragment.setArguments(bundle);
 
         BaseFragment personFragment = new TestFragment1();
-        bundle = new Bundle();
-        bundle.putString("title", "关于");
-        personFragment.setArguments(bundle);
 
         fragments.add(resFragment);
         fragments.add(reqFragment);
         fragments.add(chatFragment);
         fragments.add(personFragment);
         List<String> titles = new ArrayList<>();
-        titles.add("我的资源");
-        titles.add("我的需求");
-        titles.add("我的收藏");
-        titles.add("关于我");
+        titles.add(getString(R.string.person_res));
+        titles.add(getString(R.string.person_req));
+        titles.add(getString(R.string.person_collect));
+        titles.add(getString(R.string.person_about_me));
         adapter = new TabLayoutAdapter(getChildFragmentManager(),fragments,titles);
         viewPager.setAdapter(adapter);
         tabLayout.setViewPager(viewPager);
@@ -118,14 +113,13 @@ public class PersonFragment extends BaseFragment<PersonPresenter> {
         });
 
         final float initHeight = DimenUtils.dip2px(getActivity(),260);
-        final float toolbarHeight = DimenUtils.dip2px(getActivity(),70+15);
+        final float toolbarHeight = DimenUtils.dip2px(getActivity(),70);
         appBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
             @Override
             public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
                 float scale = 1.0f - (-verticalOffset) / (initHeight - toolbarHeight);
-                Log.d("Lao", "onOffsetChanged: "+scale);
-                if(scale<0.08){
-                    scale = 0;
+                if(scale<0.1){
+                    //scale = 0;
                     barName.setVisibility(View.VISIBLE);
                 }else{
                     barName.setVisibility(View.GONE);
