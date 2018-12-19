@@ -77,14 +77,17 @@ public class PersonFragment extends BaseFragment<PersonPresenter> {
         bundle.putInt("type",MyResAndReqModel.TYPE_REQUIREMENT);
         reqFragment.setArguments(bundle);
 
-        BaseFragment chatFragment = new TestFragment1();
+        BaseFragment chatFragment = new MyResAndReqFragment();
+        bundle = new Bundle();
+        bundle.putInt("type",MyResAndReqModel.TYPE_REQUIREMENT);
+        chatFragment.setArguments(bundle);
 
-        BaseFragment personFragment = new TestFragment1();
+        BaseFragment aboutMeFragment = new AboutMeFragment();
 
         fragments.add(resFragment);
         fragments.add(reqFragment);
         fragments.add(chatFragment);
-        fragments.add(personFragment);
+        fragments.add(aboutMeFragment);
         List<String> titles = new ArrayList<>();
         titles.add(getString(R.string.person_res));
         titles.add(getString(R.string.person_req));
