@@ -20,6 +20,7 @@
         android:id="@+id/tv_title"
         android:text="任天堂港版SWITCH,9.9成新"
         android:textColor="@color/black"
+        android:alpha="0.8"
         android:textSize="16sp"
         android:layout_alignTop="@id/img_pic"
         android:layout_toLeftOf="@id/img_pic"
@@ -34,7 +35,7 @@
         android:id="@+id/tv_content"
         android:text="今年4月份买的上手不超过10小时，塞尔达实体卡，今年4月份买的上手不超过10小时，塞尔达实体卡，今年4月份买的上手不超过10小时，塞尔达实体卡，今年4月份买的上手不超过10小时，塞尔达实体卡，今年4月份买的上手不超过10小时，塞尔达实体卡，今年4月份买的上手不超过10小时，塞尔达实体卡，"
         android:textColor="@color/gray"
-        android:textSize="10sp"
+        android:textSize="11sp"
         android:layout_toLeftOf="@id/img_pic"
         android:layout_alignBottom="@id/img_pic"
         android:layout_below="@id/tv_title"
@@ -50,7 +51,7 @@
         android:id="@+id/view_line"
         android:layout_below="@id/tv_content"
         android:layout_marginTop="8dp"
-        android:background="@color/colorGray"
+        android:background="@color/login_car_bg"
         android:layout_width="match_parent"
         android:layout_height="1dp" />
 

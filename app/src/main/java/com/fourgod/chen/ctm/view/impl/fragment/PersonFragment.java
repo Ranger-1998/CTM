@@ -113,7 +113,7 @@ public class PersonFragment extends BaseFragment<PersonPresenter> {
         });
 
         final float initHeight = DimenUtils.dip2px(getActivity(),260);
-        final float toolbarHeight = DimenUtils.dip2px(getActivity(),70);
+        final float toolbarHeight = DimenUtils.dip2px(getActivity(),95);
         appBarLayout.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
             @Override
             public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {

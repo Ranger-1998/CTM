@@ -5,7 +5,7 @@
     android:layout_height="120dp"
     android:background="@color/colorPrimary"
     android:layout_marginTop="3dp"
-    android:paddingTop="2dp"
+    android:paddingTop="4dp"
     android:paddingLeft="8dp"
     android:paddingRight="8dp">
 
@@ -40,7 +40,7 @@
         android:layout_toLeftOf="@id/item_pic"
         android:layout_alignBottom="@id/item_pic"
         android:layout_below="@id/tv_title"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="4dp"
         android:layout_alignParentLeft="true"
         android:layout_marginRight="16dp"
         android:layout_width="wrap_content"
@@ -54,6 +54,8 @@
         android:id="@+id/item_user_inf"
         android:paddingTop="8dp"
         android:paddingBottom="8dp"
+        android:paddingRight="4dp"
+        android:paddingLeft="4dp"
         android:orientation="horizontal"
         android:layout_below="@id/item_content"
         android:gravity="center_vertical"
@@ -85,13 +87,5 @@
             android:text="110 点击"
             />
     </LinearLayout>
-
-    <View
-        android:id="@+id/item_line"
-        android:layout_below="@id/item_user_inf"
-        android:layout_marginTop="8dp"
-        android:background="@color/colorGray"
-        android:layout_width="match_parent"
-        android:layout_height="1dp" />
 
 </RelativeLayout>

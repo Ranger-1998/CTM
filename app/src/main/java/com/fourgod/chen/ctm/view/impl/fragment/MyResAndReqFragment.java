@@ -66,11 +66,11 @@ public class MyResAndReqFragment extends BaseFragment<MyResAndReqPresenter> {
     }
 
     public void initData(List<MyInfBean> data){
-        Log.d(TAG, "initData: " + data.size());
         myInfList.clear();
         myInfList.addAll(data);
         if(rlvAdapter == null){
             rlvAdapter = new MyResAndReqRlvAdapter(R.layout.item_my_res_and_req,myInfList);
+            recyclerView.setAdapter(rlvAdapter);
         }
         rlvAdapter.notifyDataSetChanged();
     }
