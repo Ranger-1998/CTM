@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="120dp"
+    android:background="@color/colorPrimary"
+    android:layout_marginTop="3dp"
+    android:paddingTop="2dp"
+    android:paddingLeft="8dp"
+    android:paddingRight="8dp">
+
+    <ImageView
+        android:id="@+id/item_pic"
+        android:src="@drawable/portrait"
+        android:layout_alignParentRight="true"
+        android:scaleType="fitEnd"
+        android:layout_width="110dp"
+        android:layout_height="74dp" />
+
+    <TextView
+        android:id="@+id/item_title"
+        android:text="任天堂港版SWITCH,9.9成新"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:layout_alignTop="@id/item_pic"
+        android:layout_toLeftOf="@id/item_pic"
+        android:layout_alignParentLeft="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="10dp"
+        android:maxLines="1"
+        android:alpha="0.8"
+        android:ellipsize="end"/>
+
+    <TextView
+        android:id="@+id/item_content"
+        android:text="今年4月份买的上手不超过10小时，塞尔达实体卡，今年4月份买的上手不超过10小时，塞尔达实体卡，今年4月份买的上手不超过10小时，塞尔达实体卡，今年4月份买的上手不超过10小时，塞尔达实体卡，今年4月份买的上手不超过10小时，塞尔达实体卡，今年4月份买的上手不超过10小时，塞尔达实体卡，"
+        android:textColor="@color/gray"
+        android:textSize="10sp"
+        android:layout_toLeftOf="@id/item_pic"
+        android:layout_alignBottom="@id/item_pic"
+        android:layout_below="@id/tv_title"
+        android:layout_marginTop="5dp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginRight="16dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:maxLines="3"
+        android:ellipsize="end"/>
+
+
+
+    <LinearLayout
+        android:id="@+id/item_user_inf"
+        android:paddingTop="8dp"
+        android:paddingBottom="8dp"
+        android:orientation="horizontal"
+        android:layout_below="@id/item_content"
+        android:gravity="center_vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:src="@drawable/portrait"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:text="xxz"
+            android:textSize="12sp"
+            android:gravity="center"/>
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="8:50"
+            android:textSize="12sp"
+            android:gravity="center"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:text="110 点击"
+            />
+    </LinearLayout>
+
+    <View
+        android:id="@+id/item_line"
+        android:layout_below="@id/item_user_inf"
+        android:layout_marginTop="8dp"
+        android:background="@color/colorGray"
+        android:layout_width="match_parent"
+        android:layout_height="1dp" />
+
+</RelativeLayout>

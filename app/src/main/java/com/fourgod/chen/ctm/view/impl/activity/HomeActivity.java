@@ -54,13 +54,13 @@ public class HomeActivity extends AppCompatActivity {
     private void initData() {
         BaseFragment resFragment = new ResourcesFragment();
         Bundle bundle = new Bundle();
-        bundle.putString("title", "资源");
+        bundle.putString("type", "0");
         //resFragment.setArguments(bundle);
 
-        BaseFragment reqFragment = new TestFragment1();
+        BaseFragment reqFragment = new ResourcesFragment();
         bundle = new Bundle();
-        bundle.putString("title", "需求");
-        reqFragment.setArguments(bundle);
+        bundle.putString("type", "1");
+        //reqFragment.setArguments(bundle);
 
         BaseFragment chatFragment = new TestFragment1();
         bundle = new Bundle();
