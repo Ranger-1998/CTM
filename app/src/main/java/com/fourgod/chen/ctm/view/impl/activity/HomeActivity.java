@@ -15,6 +15,7 @@ import android.view.MenuItem;
 import com.fourgod.chen.ctm.R;
 import com.fourgod.chen.ctm.presenter.impl.BasePresenter;
 import com.fourgod.chen.ctm.view.impl.fragment.BaseFragment;
+import com.fourgod.chen.ctm.view.impl.fragment.PersonFragment;
 import com.fourgod.chen.ctm.view.impl.fragment.TestFragment1;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 
@@ -65,15 +66,13 @@ public class HomeActivity extends AppCompatActivity {
         bundle.putString("title", "聊天");
         chatFragment.setArguments(bundle);
 
-        BaseFragment meFragment = new TestFragment1();
-        bundle = new Bundle();
-        bundle.putString("title", "我");
-        meFragment.setArguments(bundle);
+        BaseFragment personFragment = new PersonFragment();
+        personFragment.setArguments(bundle);
 
         fragments.add(resFragment);
         fragments.add(reqFragment);
         fragments.add(chatFragment);
-        fragments.add(meFragment);
+        fragments.add(personFragment);
 
         viewPagerAdapter = new HomeViewPagerAdapter(getSupportFragmentManager(), fragments);
         viewPager.setAdapter(viewPagerAdapter);
@@ -95,14 +94,12 @@ public class HomeActivity extends AppCompatActivity {
                     case R.id.menu_chat:
                         id = 2;
                         break;
-                    case R.id.menu_me:
+                    case R.id.menu_person:
                         id = 3;
                         break;
-                    case R.id.menu_add:
-                        //添加
+                    case R.id.menu_empty:
                         return false;
                 }
-                Log.d("Lao", id + "," + prePosition);
                 if(id != prePosition){
                     prePosition = id;
                     viewPager.setCurrentItem(id,false);

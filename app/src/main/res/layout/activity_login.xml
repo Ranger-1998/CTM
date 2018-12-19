@@ -10,7 +10,7 @@
         android:gravity="center|bottom"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="2">
+        android:layout_weight="2.8">
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/login_portrait"
             android:layout_width="100dp"
@@ -104,7 +104,7 @@
         <Button
             android:id="@+id/login_login"
             android:layout_width="150dp"
-            android:layout_height="40dp"
+            android:layout_height="45dp"
             android:background="@drawable/login_bt_shape"
             android:textSize="13sp"
             android:text="@string/login_login"

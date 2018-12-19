@@ -35,8 +35,8 @@ public class TestFragment1 extends BaseFragment<TestPresenter> implements IBaseV
         if (mRoot == null) {
             mRoot = inflater.inflate(R.layout.fragment1, container, false);
             tv = mRoot.findViewById(R.id.f_tv);
-            presenter.testModel();
-            tv.setText(title);
+            //presenter.testModel();
+            //tv.setText(title);
         }
         return mRoot;
     }
@@ -49,6 +49,6 @@ public class TestFragment1 extends BaseFragment<TestPresenter> implements IBaseV
 
     public void test(NewsBean bean) {
         List<NewsBean.ResultBean.DataBean> l = bean.getResult().getData();
-        tv.setText(title + "\n" + l.get(0).getTitle());
+        //tv.setText(title + "\n" + l.get(0).getTitle());
     }
 }
