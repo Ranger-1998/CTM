@@ -36,7 +36,7 @@
         android:id="@+id/item_content"
         android:text="今年4月份买的上手不超过10小时，塞尔达实体卡，今年4月份买的上手不超过10小时，塞尔达实体卡，今年4月份买的上手不超过10小时，塞尔达实体卡，今年4月份买的上手不超过10小时，塞尔达实体卡，今年4月份买的上手不超过10小时，塞尔达实体卡，今年4月份买的上手不超过10小时，塞尔达实体卡，"
         android:textColor="@color/gray"
-        android:textSize="10sp"
+        android:textSize="11sp"
         android:layout_toLeftOf="@id/item_pic"
         android:layout_alignBottom="@id/item_pic"
         android:layout_below="@id/tv_title"
@@ -61,8 +61,8 @@
         android:layout_height="match_parent">
 
         <de.hdodenhof.circleimageview.CircleImageView
-            android:layout_width="25dp"
-            android:layout_height="25dp"
+            android:layout_width="22dp"
+            android:layout_height="22dp"
             android:src="@drawable/portrait"/>
         <TextView
             android:layout_width="wrap_content"

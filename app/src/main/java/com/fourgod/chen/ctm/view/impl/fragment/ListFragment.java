@@ -84,7 +84,7 @@ public class ListFragment extends BaseFragment<ListPresenter> implements IBaseVi
         List<Integer> images=new ArrayList<>();
         images.add(R.mipmap.person_bg);
         images.add(R.mipmap.person_bg);
-        mBanner.setLayoutParams(new RecyclerView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,500));
+        mBanner.setLayoutParams(new RecyclerView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,400));
         mBanner.setImages(images);
         mAdapter.setHeaderView(mBanner);
         mRecyclerView.setAdapter(mAdapter);
