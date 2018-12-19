@@ -1,6 +1,7 @@
 package com.fourgod.chen.ctm.view.impl.fragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Paint;
 import android.os.Bundle;
@@ -24,6 +25,7 @@ import com.fourgod.chen.ctm.R;
 import com.fourgod.chen.ctm.model.impl.MyResAndReqModel;
 import com.fourgod.chen.ctm.presenter.impl.PersonPresenter;
 import com.fourgod.chen.ctm.utils.DimenUtils;
+import com.fourgod.chen.ctm.view.impl.activity.EditUserInfActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -42,7 +44,7 @@ public class PersonFragment extends BaseFragment<PersonPresenter> {
     private RelativeLayout rlContainer;
     private TextView barName;
     private View maskView;
-
+    private TextView mEdit;
     @Override
     protected PersonPresenter getPresenter() {
         return new PersonPresenter(this);
@@ -66,7 +68,7 @@ public class PersonFragment extends BaseFragment<PersonPresenter> {
         rlContainer = mRoot.findViewById(R.id.rl_container);
         barName = mRoot.findViewById(R.id.tv_name_bar);
         maskView = mRoot.findViewById(R.id.view_mask);
-
+        mEdit = mRoot.findViewById(R.id.tv_edit);
         BaseFragment resFragment = new MyResAndReqFragment();
         Bundle bundle = new Bundle();
         bundle.putInt("type",MyResAndReqModel.TYPE_RESOURCE);
@@ -129,6 +131,13 @@ public class PersonFragment extends BaseFragment<PersonPresenter> {
                 }
                 maskView.setAlpha(0.5f*(1-scale));
                 rlContainer.setAlpha(scale);
+            }
+        });
+
+        mEdit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(PersonFragment.this.getContext(), EditUserInfActivity.class));
             }
         });
     }

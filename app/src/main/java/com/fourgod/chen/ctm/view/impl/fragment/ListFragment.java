@@ -16,7 +16,6 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.fourgod.chen.ctm.R;
 import com.fourgod.chen.ctm.entity.InfBean;
-import com.fourgod.chen.ctm.presenter.impl.BasePresenter;
 import com.fourgod.chen.ctm.presenter.impl.ListPresenter;
 import com.fourgod.chen.ctm.view.i.IBaseView;
 import com.youth.banner.Banner;

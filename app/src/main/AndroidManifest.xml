@@ -39,6 +39,7 @@
 
 
         <activity android:name=".view.impl.activity.SearchActivity"/>
+        <activity android:name=".view.impl.activity.EditUserInfActivity"/>
 
         <activity android:name=".view.impl.activity.InfDetailActivity" />
     </application>
