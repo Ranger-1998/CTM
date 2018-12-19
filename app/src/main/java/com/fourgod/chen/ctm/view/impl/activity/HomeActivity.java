@@ -16,6 +16,7 @@ import com.fourgod.chen.ctm.R;
 import com.fourgod.chen.ctm.presenter.impl.BasePresenter;
 import com.fourgod.chen.ctm.view.impl.fragment.BaseFragment;
 import com.fourgod.chen.ctm.view.impl.fragment.PersonFragment;
+import com.fourgod.chen.ctm.view.impl.fragment.ResourcesFragment;
 import com.fourgod.chen.ctm.view.impl.fragment.TestFragment1;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 
@@ -51,10 +52,10 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     private void initData() {
-        BaseFragment resFragment = new TestFragment1();
+        BaseFragment resFragment = new ResourcesFragment();
         Bundle bundle = new Bundle();
         bundle.putString("title", "资源");
-        resFragment.setArguments(bundle);
+        //resFragment.setArguments(bundle);
 
         BaseFragment reqFragment = new TestFragment1();
         bundle = new Bundle();

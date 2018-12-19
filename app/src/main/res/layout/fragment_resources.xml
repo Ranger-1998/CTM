@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+<android.support.v7.widget.CardView
+    app:cardCornerRadius="5dp"
+    app:cardBackgroundColor="@color/lightgray"
+    android:layout_margin="8dp"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <LinearLayout
+        android:id="@+id/resources_search"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:src="@drawable/ic_resources_search"/>
+        <EditText
+            android:id="@+id/resources_key"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:hint="@string/res_search_hint"
+            android:textSize="12sp"
+            android:layout_marginLeft="3dp"
+            android:background="@null"/>
+    </LinearLayout>
+</android.support.v7.widget.CardView>
+<com.flyco.tablayout.SlidingTabLayout
+    android:id="@+id/resources_tab"
+    app:tl_textSelectColor="@color/colorAccent"
+    app:tl_textUnselectColor="@color/black"
+    app:tl_textsize="12sp"
+    app:tl_indicator_color="@color/colorAccent"
+    app:tl_indicator_width="25dp"
+    android:layout_width="match_parent"
+    android:layout_height="35dp">
+</com.flyco.tablayout.SlidingTabLayout>
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/resources_vp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </android.support.v4.view.ViewPager>
+</LinearLayout>

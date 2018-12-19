@@ -11,16 +11,17 @@ import android.widget.TextView;
 
 import com.fourgod.chen.ctm.R;
 import com.fourgod.chen.ctm.presenter.impl.BasePresenter;
+import com.fourgod.chen.ctm.presenter.impl.LoginPresenter;
 
 /**
  * Created by Tolean on 2018/12/18.
  */
 
-public class LoginActivity extends BaseActivity {
+public class LoginActivity extends BaseActivity<LoginPresenter> {
     TextView mTvRegister;
     @Override
-    protected BasePresenter getPresenter() {
-        return null;
+    protected LoginPresenter getPresenter() {
+        return new LoginPresenter(this);
     }
 
     @Override

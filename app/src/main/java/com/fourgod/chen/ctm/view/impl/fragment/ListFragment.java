@@ -3,28 +3,24 @@ package com.fourgod.chen.ctm.view.impl.fragment;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import com.fourgod.chen.ctm.R;
-import com.fourgod.chen.ctm.entity.NewsBean;
-import com.fourgod.chen.ctm.presenter.impl.TestPresenter;
+import com.fourgod.chen.ctm.presenter.impl.BasePresenter;
+import com.fourgod.chen.ctm.presenter.impl.ListPresenter;
 import com.fourgod.chen.ctm.view.i.IBaseView;
 
-import java.util.List;
+/**
+ * Created by Tolean on 2018/12/19.
+ */
 
-public class TestFragment1 extends BaseFragment<TestPresenter> implements IBaseView {
-
+public class ListFragment extends BaseFragment<ListPresenter> implements IBaseView{
     private View mRoot;
-    private TextView tv;
-    private String title;
-
     @Override
-    protected TestPresenter getPresenter() {
-        return new TestPresenter(this);
+    protected ListPresenter getPresenter() {
+        return new ListPresenter(this);
     }
 
     @Nullable
@@ -33,10 +29,8 @@ public class TestFragment1 extends BaseFragment<TestPresenter> implements IBaseV
                              @Nullable Bundle savedInstanceState) {
         super.onCreateView(inflater,container,savedInstanceState);
         if (mRoot == null) {
-            mRoot = inflater.inflate(R.layout.fragment1, container, false);
-            tv = mRoot.findViewById(R.id.f_tv);
-            //presenter.testModel();
-            //tv.setText(title);
+            mRoot = inflater.inflate(R.layout.fragment_list, container, false);
+            initView();
         }
         return mRoot;
     }
@@ -44,11 +38,9 @@ public class TestFragment1 extends BaseFragment<TestPresenter> implements IBaseV
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //title = getArguments().getString("title");
-    }
 
-    public void test(NewsBean bean) {
-        List<NewsBean.ResultBean.DataBean> l = bean.getResult().getData();
-        //tv.setText(title + "\n" + l.get(0).getTitle());
+    }
+    private void initView(){
+
     }
 }
