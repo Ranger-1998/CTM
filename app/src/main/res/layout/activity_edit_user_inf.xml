@@ -2,6 +2,7 @@
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
+    android:gravity="center_horizontal"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <LinearLayout
@@ -10,13 +11,18 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <ImageView
+            android:id="@+id/edit_user_back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="8dp"
+
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginVertical="10dp"
             android:src="@drawable/ic_back"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:textSize="15sp"
             android:text="@string/edit_user_inf_title"/>
     </LinearLayout>
     <ImageView
@@ -156,7 +162,7 @@
             android:text="@string/edit_user_inf_hometown"/>
         <TextView
             android:id="@+id/edit_user_hometown"
-            android:layout_width="100dp"
+            android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
             android:layout_alignParentRight="true"
@@ -185,13 +191,28 @@
             android:textColor="@color/black"
             android:textSize="18sp"
             android:text="@string/edit_user_inf_signal"/>
-
+        <EditText
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:textSize="14sp"
+            android:gravity="right"
+            android:hint="@string/edit_user_inf_signal_hint"/>
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="0.5dp"
             android:layout_alignParentBottom="true"
             android:background="@color/gray"/>
     </RelativeLayout>
+    <Button
+        android:layout_width="100dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="40dp"
+        android:text="保存"
+        android:textColor="@color/white"
+        android:background="@drawable/login_bt_shape"/>
     <View
         android:layout_width="match_parent"
         android:layout_height="0dp"

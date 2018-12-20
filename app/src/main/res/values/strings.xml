@@ -47,13 +47,17 @@
     <string name="edit_user_inf_birth">生日</string>
     <string name="edit_user_inf_hometown">家乡</string>
     <string name="edit_user_inf_signal">签名</string>
+    <string name="edit_user_inf_signal_hint">有个性,没签名.</string>
     <string name="detail">详情</string>
 
     <string name="person_info">个人信息</string>
     <string name="person_auth">认证信息</string>
     <string name="person_contact">联系方式</string>
 
-
+    <string name="set_title">设置</string>
+    <string name="set_help">帮助与反馈</string>
+    <string name="set_about">关于来找我</string>
+    <string name="set_logout">切换账号</string>
 
     <string name="res_search_hint">输入你要查找的内容</string>
 

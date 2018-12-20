@@ -17,6 +17,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -26,6 +28,7 @@ import com.fourgod.chen.ctm.model.impl.MyResAndReqModel;
 import com.fourgod.chen.ctm.presenter.impl.PersonPresenter;
 import com.fourgod.chen.ctm.utils.DimenUtils;
 import com.fourgod.chen.ctm.view.impl.activity.EditUserInfActivity;
+import com.fourgod.chen.ctm.view.impl.activity.SetActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,6 +38,7 @@ import java.util.List;
  */
 
 public class PersonFragment extends BaseFragment<PersonPresenter> {
+    private ImageView mSetting;
     private View mRoot;
     private AppBarLayout appBarLayout;
     private SlidingTabLayout tabLayout;
@@ -44,7 +48,7 @@ public class PersonFragment extends BaseFragment<PersonPresenter> {
     private RelativeLayout rlContainer;
     private TextView barName;
     private View maskView;
-    private TextView mEdit;
+    private LinearLayout mEdit;
     @Override
     protected PersonPresenter getPresenter() {
         return new PersonPresenter(this);
@@ -69,6 +73,7 @@ public class PersonFragment extends BaseFragment<PersonPresenter> {
         barName = mRoot.findViewById(R.id.tv_name_bar);
         maskView = mRoot.findViewById(R.id.view_mask);
         mEdit = mRoot.findViewById(R.id.tv_edit);
+        mSetting = mRoot.findViewById(R.id.img_setting);
         BaseFragment resFragment = new MyResAndReqFragment();
         Bundle bundle = new Bundle();
         bundle.putInt("type",MyResAndReqModel.TYPE_RESOURCE);
@@ -133,7 +138,12 @@ public class PersonFragment extends BaseFragment<PersonPresenter> {
                 rlContainer.setAlpha(scale);
             }
         });
-
+        mSetting.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(PersonFragment.this.getContext(), SetActivity.class));
+            }
+        });
         mEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
