@@ -119,4 +119,21 @@
 　　中央党政军群各部门和北京市主要负责同志，各民主党派中央、全国工商联负责人和无党派人士代表，老党员、老干部代表，改革开放杰出贡献受表彰人员及亲属代表，港澳同胞、台湾同胞、海外侨胞及归侨、侨眷代表，首都各界群众代表，解放军和武警部队官兵代表，各国驻华使节、各国际组织驻华代表和在华工作的外国专家代表等约3000人参加大会。
 
 12月18日，庆祝改革开放40周年大会在北京人民大会堂隆重举行。中共中央总书记、国家主席、中央军委主席习近平在大会上发表重要讲话。这是习近平在主席台向全场致意。 新华社记者 鞠鹏 摄　　12月18日，庆祝改革开放40周年大会在北京人民大会堂隆重举行。中共中央总书记、国家主席、中央军委主席习近平在大会上发表重要讲话。这是习近平在主席台向全场致意。 新华社记者 鞠鹏 摄</string>
+    <string name="choose_cate">请选择信息类型</string>
+    <string name="resource">资源</string>
+    <string name="need">需求</string>
+
+    <string name="cancle">取消</string>
+    <string name="title">请选择时间</string>
+    <string name="commit">确定</string>
+    <string name="year">年</string>
+    <string name="month">月</string>
+    <string name="day">日</string>
+    <string name="hour">时</string>
+    <string name="minute">分</string>
+
+    <string name="select_date">选择日期</string>
+    <string name="current_date">当前日期</string>
+    <string name="select_time">选择时间</string>
+    <string name="current_time">当前时间</string>
 </resources>

@@ -17,40 +17,43 @@
         android:layout_width="110dp"
         android:layout_height="74dp" />
 
-    <TextView
-        android:id="@+id/tv_title"
-        android:text="任天堂港版SWITCH,9.9成新"
-        android:textColor="@color/black"
-        android:alpha="0.8"
-        android:textSize="16sp"
-        android:layout_alignTop="@id/img_pic"
-        android:layout_toLeftOf="@id/img_pic"
-        android:layout_alignParentLeft="true"
+    <LinearLayout
+        android:id="@+id/ll_content"
+        android:orientation="vertical"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginRight="10dp"
-        android:maxLines="1"
-        android:ellipsize="end"/>
+        android:layout_height="74dp"
+        android:layout_alignParentLeft="true"
+        android:layout_toLeftOf="@id/img_pic"
+        android:layout_marginRight="10dp">
 
-    <TextView
-        android:id="@+id/tv_content"
-        android:text="今年4月份买的上手不超过10小时，塞尔达实体卡，今年4月份买的上手不超过10小时，塞尔达实体卡，今年4月份买的上手不超过10小时，塞尔达实体卡，今年4月份买的上手不超过10小时，塞尔达实体卡，今年4月份买的上手不超过10小时，塞尔达实体卡，今年4月份买的上手不超过10小时，塞尔达实体卡，"
-        android:textColor="@color/gray"
-        android:textSize="11sp"
-        android:layout_toLeftOf="@id/img_pic"
-        android:layout_alignBottom="@id/img_pic"
-        android:layout_below="@id/tv_title"
-        android:layout_marginTop="5dp"
-        android:layout_alignParentLeft="true"
-        android:layout_marginRight="16dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:maxLines="3"
-        android:ellipsize="end"/>
+        <TextView
+            android:id="@+id/tv_title"
+            android:text="任天堂港版SWITCH,9.9成新"
+            android:textColor="@color/black"
+            android:alpha="0.8"
+            android:textSize="16sp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:ellipsize="end"/>
+
+        <TextView
+            android:id="@+id/tv_content"
+            android:text="今年4月份买的上手不超过10小时，塞尔达实体卡，今年4月份买的上手不超过10小时，塞尔达实体卡，今年4月份买的上手不超过10小时，塞尔达实体卡，今年4月份买的上手不超过10小时，塞尔达实体卡，今年4月份买的上手不超过10小时，塞尔达实体卡，今年4月份买的上手不超过10小时，塞尔达实体卡，"
+            android:textColor="@color/gray"
+            android:textSize="11sp"
+            android:layout_marginTop="4dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxLines="3"
+            android:ellipsize="end"/>
+    </LinearLayout>
+
+
 
     <View
         android:id="@+id/view_line"
-        android:layout_below="@id/tv_content"
+        android:layout_below="@id/ll_content"
         android:layout_marginTop="8dp"
         android:background="@color/login_car_bg"
         android:layout_width="match_parent"

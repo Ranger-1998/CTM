@@ -2,7 +2,9 @@ package com.fourgod.chen.ctm.presenter.impl;
 
 import android.os.Handler;
 import android.os.Message;
+import android.support.v4.util.ArrayMap;
 
+import com.fourgod.chen.ctm.entity.InfoListBean;
 import com.fourgod.chen.ctm.model.impl.ListModel;
 import com.fourgod.chen.ctm.view.impl.fragment.ListFragment;
 
@@ -22,6 +24,11 @@ public class ListPresenter extends BasePresenter<ListFragment,ListModel> {
 
     @Override
     protected void eventReceive(Message msg) {
+        InfoListBean bean = (InfoListBean)(msg.obj);
+        view.showInfoList(bean);
+    }
 
+    public void getInfoList(ArrayMap<String, String> param) {
+        model.getInfoList(param);
     }
 }

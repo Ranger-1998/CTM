@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomNavigationView;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -11,6 +12,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.fourgod.chen.ctm.R;
 import com.fourgod.chen.ctm.presenter.impl.BasePresenter;
@@ -18,6 +20,7 @@ import com.fourgod.chen.ctm.view.impl.fragment.BaseFragment;
 import com.fourgod.chen.ctm.view.impl.fragment.PersonFragment;
 import com.fourgod.chen.ctm.view.impl.fragment.ResourcesFragment;
 import com.fourgod.chen.ctm.view.impl.fragment.TestFragment1;
+import com.fourgod.chen.ctm.view.widget.MoreWindow;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 
 import java.util.ArrayList;
@@ -32,6 +35,8 @@ public class HomeActivity extends AppCompatActivity {
     private ViewPager viewPager;
     private List<Fragment> fragments = new ArrayList<>();
     private HomeViewPagerAdapter viewPagerAdapter;
+    private MoreWindow moreWindow;
+    private FloatingActionButton floatingActionButton;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -43,6 +48,14 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     private void initView() {
+        floatingActionButton = findViewById(R.id.fab);
+
+        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showMoreWindow();
+            }
+        });
         bnve = findViewById(R.id.bnve);
         viewPager = findViewById(R.id.vp);
 
@@ -108,6 +121,15 @@ public class HomeActivity extends AppCompatActivity {
                 return true;
             }
         });
+    }
+
+    private void showMoreWindow() {
+        if (null == moreWindow) {
+            moreWindow = new MoreWindow(this);
+            moreWindow.init(findViewById(R.id.rel_home));
+        }
+
+        moreWindow.showMoreWindow(findViewById(R.id.rel_home));
     }
 
     class HomeViewPagerAdapter extends FragmentPagerAdapter{

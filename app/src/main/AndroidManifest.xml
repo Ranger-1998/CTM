@@ -43,6 +43,7 @@
         <activity android:name=".view.impl.activity.EditUserInfActivity"/>
         <activity android:name=".view.impl.activity.SetActivity"/>
         <activity android:name=".view.impl.activity.InfDetailActivity" />
+        <activity android:name=".view.impl.activity.PublishActivity"/>
     </application>
 
 </manifest>
