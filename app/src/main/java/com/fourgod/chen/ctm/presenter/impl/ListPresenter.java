@@ -25,7 +25,10 @@ public class ListPresenter extends BasePresenter<ListFragment,ListModel> {
     @Override
     protected void eventReceive(Message msg) {
         InfoListBean bean = (InfoListBean)(msg.obj);
-        view.showInfoList(bean);
+        if(bean.getData().getPageNum()==1)
+            view.showInfoList(bean);
+        else
+            view.addInfmations(bean);
     }
 
     public void getInfoList(ArrayMap<String, String> param) {

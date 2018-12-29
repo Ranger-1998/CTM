@@ -19,11 +19,16 @@ import com.bumptech.glide.Glide;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.fourgod.chen.ctm.R;
+import com.fourgod.chen.ctm.entity.CategoryListBean;
 import com.fourgod.chen.ctm.entity.InfBean;
 import com.fourgod.chen.ctm.entity.InfoListBean;
 import com.fourgod.chen.ctm.presenter.impl.ListPresenter;
 import com.fourgod.chen.ctm.utils.DimenUtils;
 import com.fourgod.chen.ctm.view.i.IBaseView;
+import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
+import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
 import com.youth.banner.Banner;
 import com.youth.banner.loader.ImageLoader;
 
@@ -41,6 +46,19 @@ public class ListFragment extends BaseFragment<ListPresenter> implements IBaseVi
     private List<InfoListBean.DataBean.ListBean> mBeans;
     private List<String> mImgUrls;
     private BaseQuickAdapter mAdapter;
+    private SmartRefreshLayout mRefreshLayout;
+    private ArrayMap<String, String> mParams;
+    private int CurrentPageNum;
+    public CategoryListBean.DataBean.ListBean getBean() {
+        return mCategory;
+    }
+
+    public ListFragment setBean(CategoryListBean.DataBean.ListBean bean) {
+        mCategory = bean;
+        return this;
+    }
+
+    private CategoryListBean.DataBean.ListBean mCategory;
     @Override
     protected ListPresenter getPresenter() {
         return new ListPresenter(this);
@@ -60,13 +78,38 @@ public class ListFragment extends BaseFragment<ListPresenter> implements IBaseVi
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ArrayMap<String, String> p = new ArrayMap<>();
-        presenter.getInfoList(p);
+        CurrentPageNum=1;
+        mParams = new ArrayMap<>();
+        mParams.put("categoryId",String.valueOf(mCategory.getId()));
+        mParams.put("pageNum",String.valueOf(CurrentPageNum++));
+        presenter.getInfoList(mParams);
     }
 
     private void initView(){
         mRecyclerView = mRoot.findViewById(R.id.list_RecView);
+        mRefreshLayout=mRoot.findViewById(R.id.list_refreshLayout);
         mRecyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
+        mRefreshLayout.setOnRefreshListener(new OnRefreshListener() {
+            @Override
+            public void onRefresh(RefreshLayout refreshlayout) {
+                CurrentPageNum=1;
+                mRefreshLayout.setEnableLoadMore(true);
+                mParams.put("pageNum",String.valueOf(CurrentPageNum++));
+                presenter.getInfoList(mParams);
+                refreshlayout.finishRefresh();
+            }
+        });
+        //加载更多
+        mRefreshLayout.setOnLoadMoreListener(new OnLoadMoreListener() {
+            @Override
+            public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
+                mParams.put("pageNum",String.valueOf(CurrentPageNum++));
+                presenter.getInfoList(mParams);
+                mAdapter.notifyDataSetChanged();
+                refreshLayout.finishLoadMore();
+            }
+        });
+
         mAdapter=new BaseQuickAdapter<InfoListBean.DataBean.ListBean, BaseViewHolder>
                 (R.layout.list_item,mBeans) {
             @Override
@@ -111,5 +154,11 @@ public class ListFragment extends BaseFragment<ListPresenter> implements IBaseVi
     public void showInfoList(InfoListBean bean) {
         mBeans = bean.getData().getList();
         initView();
+    }
+    public void addInfmations(InfoListBean bean){
+        mBeans.addAll(bean.getData().getList());
+        if(bean.getData().getPageNum()==bean.getData().getPages()){
+            mRefreshLayout.setEnableLoadMore(false);
+        }
     }
 }

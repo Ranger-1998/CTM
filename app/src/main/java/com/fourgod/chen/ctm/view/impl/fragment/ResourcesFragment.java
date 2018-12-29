@@ -6,6 +6,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.util.ArrayMap;
 import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +15,7 @@ import android.widget.Adapter;
 
 import com.flyco.tablayout.SlidingTabLayout;
 import com.fourgod.chen.ctm.R;
+import com.fourgod.chen.ctm.entity.CategoryListBean;
 import com.fourgod.chen.ctm.presenter.impl.BasePresenter;
 import com.fourgod.chen.ctm.presenter.impl.ResourcesPresenter;
 import com.fourgod.chen.ctm.view.i.IBaseView;
@@ -31,6 +33,7 @@ public class ResourcesFragment extends BaseFragment<ResourcesPresenter> implemen
     private ViewPager mViewPager;
     private List<String> mTitles;
     private List<Fragment> mFragments;
+    private List<CategoryListBean.DataBean.ListBean> mBeans;
     @Override
     protected ResourcesPresenter getPresenter() {
         return new ResourcesPresenter(this);
@@ -43,7 +46,9 @@ public class ResourcesFragment extends BaseFragment<ResourcesPresenter> implemen
         super.onCreateView(inflater,container,savedInstanceState);
         if (mRoot == null) {
             mRoot = inflater.inflate(R.layout.fragment_resources, container, false);
-            initView();
+            ArrayMap<String, String> p = new ArrayMap<>();
+            p.put("type",ResourcesFragment.this.getArguments().getString("type"));
+            presenter.getCategoryList(p);
         }
         return mRoot;
     }
@@ -57,17 +62,20 @@ public class ResourcesFragment extends BaseFragment<ResourcesPresenter> implemen
         mSlidingTabLayout = mRoot.findViewById(R.id.resources_tab);
         mViewPager = mRoot.findViewById(R.id.resources_vp);
         mViewPager.setOffscreenPageLimit(2);
-        String[] Titles={"电子产品","书籍","生活用品","专业人才","廉价劳动力","二手电脑"};
         mFragments=new ArrayList<>();
         mTitles=new ArrayList<>();
-        for(int i=0;i<6;i++){
-            mFragments.add(new ListFragment());
-            mTitles.add(Titles[i]);
+        for(int i=0;i<mBeans.size();i++){
+            mFragments.add(new ListFragment().setBean(mBeans.get(i)));
+            mTitles.add(mBeans.get(i).getName());
         }
         TabLayoutAdapter adapter =new TabLayoutAdapter(getChildFragmentManager(),mFragments,mTitles);
         mViewPager.setAdapter(adapter);
         mSlidingTabLayout.setViewPager(mViewPager);
         //mSlidingTabLayout.setViewPager(mViewPager,mTitles,this.getActivity(),mFragments);
+    }
+    public void setCategorys(CategoryListBean bean){
+        mBeans=bean.getData().getList();
+        initView();
     }
 }
 

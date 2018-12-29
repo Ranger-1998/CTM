@@ -14,7 +14,7 @@ import okhttp3.Request;
  * on 2018/12/17.
  */
 public class NetworkInterface {
-    private static final String SERVER_HOST = "http://192.168.1.101:8085";
+    private static final String SERVER_HOST = "http://192.168.43.196:8085";
 
     public static void getNews(String type, Callback callback) {
         Request request = new Request.Builder().url(SERVER_HOST + type).get().build();
@@ -25,6 +25,12 @@ public class NetworkInterface {
 
     public static void getInfoList(ArrayMap<String, String> param, Callback callback) {
         JsonRequest request = new JsonRequest(SERVER_HOST + "/information/list",
+                param, callback);
+        request.putRequest();
+    }
+
+    public static void getCategoryList(ArrayMap<String, String> param, Callback callback){
+        JsonRequest request = new JsonRequest(SERVER_HOST + "/category/list",
                 param, callback);
         request.putRequest();
     }
