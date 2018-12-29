@@ -4,8 +4,8 @@ import android.animation.ObjectAnimator;
 import android.animation.PropertyValuesHolder;
 import android.app.Dialog;
 import android.content.Context;
-import android.icu.text.SimpleDateFormat;
-import android.icu.util.Calendar;
+//import android.icu.text.SimpleDateFormat;
+//import android.icu.util.Calendar;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.util.DisplayMetrics;
@@ -18,7 +18,9 @@ import android.widget.TextView;
 import com.fourgod.chen.ctm.R;
 
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Locale;
 
 public class CustomDatePicker {
