@@ -48,6 +48,7 @@ public class SplashActivity extends BaseActivity<SplashPresenter> {
                             HomeActivity.class);
                     SplashActivity.this.startActivity(intent);
                 }
+                SplashActivity.this.finish();
             }
 
             @Override

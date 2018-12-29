@@ -11,6 +11,8 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,8 +27,10 @@ import com.fourgod.chen.ctm.presenter.impl.LoginPresenter;
  */
 
 public class LoginActivity extends BaseActivity<LoginPresenter> {
+    TextView loginText;
+    LinearLayout loggingLinearLayout;
     TextView mTvRegister;
-    Button loginButton;
+    RelativeLayout loginButton;
     EditText passwordEdit;
     EditText userNameEdit;
     @Override
@@ -42,12 +46,16 @@ public class LoginActivity extends BaseActivity<LoginPresenter> {
     }
 
     private void bindView() {
+        loginText = findViewById(R.id.tv_login);
+        loggingLinearLayout = findViewById(R.id.ll_logging);
         userNameEdit = findViewById(R.id.login_account);
         passwordEdit = findViewById(R.id.password);
         loginButton = findViewById(R.id.login_login);
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                loginText.setVisibility(View.GONE);
+                loggingLinearLayout.setVisibility(View.VISIBLE);
                 login();
             }
         });
@@ -76,6 +84,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter> {
 
     public void loginReturn(LoginBean bean) {
         if (bean.getCode() == 0) {
+            loginText.setText("登录成功");
             SharedPreferences preferences = getSharedPreferences("token",
                     Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = preferences.edit();
@@ -90,5 +99,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter> {
             Toast.makeText(LoginActivity.this, bean.getMessage(),
                     Toast.LENGTH_SHORT).show();
         }
+        loggingLinearLayout.setVisibility(View.GONE);
+        loginText.setVisibility(View.VISIBLE);
     }
 }
