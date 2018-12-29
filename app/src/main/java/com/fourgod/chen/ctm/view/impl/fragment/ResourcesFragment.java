@@ -1,5 +1,6 @@
 package com.fourgod.chen.ctm.view.impl.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -7,16 +8,20 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Adapter;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 
 import com.flyco.tablayout.SlidingTabLayout;
 import com.fourgod.chen.ctm.R;
 import com.fourgod.chen.ctm.presenter.impl.BasePresenter;
 import com.fourgod.chen.ctm.presenter.impl.ResourcesPresenter;
 import com.fourgod.chen.ctm.view.i.IBaseView;
+import com.fourgod.chen.ctm.view.impl.activity.SearchActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,6 +34,7 @@ public class ResourcesFragment extends BaseFragment<ResourcesPresenter> implemen
     private View mRoot;
     private SlidingTabLayout mSlidingTabLayout;
     private ViewPager mViewPager;
+    private LinearLayout searchEdit;
     private List<String> mTitles;
     private List<Fragment> mFragments;
     @Override
@@ -54,6 +60,16 @@ public class ResourcesFragment extends BaseFragment<ResourcesPresenter> implemen
 
     }
     private void initView(){
+        searchEdit = mRoot.findViewById(R.id.resources_search);
+        searchEdit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), SearchActivity.class);
+                if (getActivity() != null) {
+                    getActivity().startActivity(intent);
+                }
+            }
+        });
         mSlidingTabLayout = mRoot.findViewById(R.id.resources_tab);
         mViewPager = mRoot.findViewById(R.id.resources_vp);
         mViewPager.setOffscreenPageLimit(2);

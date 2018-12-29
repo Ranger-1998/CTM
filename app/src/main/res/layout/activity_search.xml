@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <RelativeLayout
         android:id="@+id/search_bar"
         android:background="@drawable/shape_search"
@@ -32,6 +32,7 @@
             android:layout_marginRight="10dp"
             android:background="@null"
             android:hint="自行车"
+            android:textSize="15sp"
             android:layout_toEndOf="@id/search_back"
             android:layout_toStartOf="@id/ll_cate" />
 
@@ -86,6 +87,7 @@
 
     <com.zhy.view.flowlayout.TagFlowLayout
         android:id="@+id/fl_hot"
+        app:max_select="-1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"

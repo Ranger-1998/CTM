@@ -95,6 +95,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter> {
             Intent intent = new Intent(LoginActivity.this,
                     HomeActivity.class);
             LoginActivity.this.startActivity(intent);
+            LoginActivity.this.finish();
         } else {
             Toast.makeText(LoginActivity.this, bean.getMessage(),
                     Toast.LENGTH_SHORT).show();
