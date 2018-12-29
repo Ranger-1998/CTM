@@ -25,18 +25,21 @@ public class JsonRequest {
     private String mUrl;                                //请求地址
     private ArrayMap<String, String> mRequestParam;     //请求参数
     private RequestBody body;
-    private String head;
+    private String token;
     private Request request;
+
     private Callback callback;
+
+    private NetworkManager networkManager;
 
     public JsonRequest(String url, ArrayMap<String, String> requestParam, Callback callback) {
         this.mUrl = url;
         this.mRequestParam = requestParam;
         body = RequestBody.create(JSON, new Gson().toJson(mRequestParam));
-        head = "a7a37c25-f6b8-4ed2-afcf-081ce79f0f1f";
+        networkManager = NetworkManager.getInstance();
+        token = networkManager.getToken();
         this.callback = callback;
     }
-
     /**
      * 创建一个请求
      * 可以给请求添加tag,便于取消含有该tag的请求
@@ -45,7 +48,7 @@ public class JsonRequest {
      */
     public void postRequest() {
         //将map转换为json字串
-         request = new Request.Builder().header("token", head).url(mUrl)
+         request = new Request.Builder().header("token", token).url(mUrl)
                 .post(body).tag("tag").build();
         sendRequest();
     }
@@ -57,7 +60,7 @@ public class JsonRequest {
      * @return request
      */
     public void putRequest() {
-        request = new Request.Builder().header("token", head).url(mUrl)
+        request = new Request.Builder().header("token", token).url(mUrl)
                 .put(body).tag("tag").build();
         sendRequest();
     }
@@ -69,7 +72,7 @@ public class JsonRequest {
      * @return request
      */
     public void deleteRequest() {
-        request = new Request.Builder().header("token", head).url(mUrl)
+        request = new Request.Builder().header("token", token).url(mUrl)
                 .delete(body).tag("tag").build();
         sendRequest();
     }
