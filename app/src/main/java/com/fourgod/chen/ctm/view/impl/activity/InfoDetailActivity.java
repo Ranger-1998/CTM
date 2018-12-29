@@ -5,17 +5,17 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.Toolbar;
 
 import com.fourgod.chen.ctm.R;
-import com.fourgod.chen.ctm.presenter.impl.InfDetailPresenter;
+import com.fourgod.chen.ctm.presenter.impl.InfoDetailPresenter;
 
 /**
  * Created by laobo on 2018/12/19.
  */
 
-public class InfDetailActivity extends BaseActivity<InfDetailPresenter> {
+public class InfoDetailActivity extends BaseActivity<InfoDetailPresenter> {
     private Toolbar toolBar;
     @Override
-    protected InfDetailPresenter getPresenter() {
-        return new InfDetailPresenter(this);
+    protected InfoDetailPresenter getPresenter() {
+        return new InfoDetailPresenter(this);
     }
 
     @Override

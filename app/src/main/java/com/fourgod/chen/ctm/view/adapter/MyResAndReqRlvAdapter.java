@@ -1,4 +1,4 @@
-package com.fourgod.chen.ctm.adapter;
+package com.fourgod.chen.ctm.view.adapter;
 
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;

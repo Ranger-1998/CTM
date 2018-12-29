@@ -28,4 +28,9 @@ public class NetworkInterface {
                 param, callback);
         request.putRequest();
     }
+
+    public static void login(ArrayMap<String, String> param, Callback callback) {
+        JsonRequest request = new JsonRequest(SERVER_HOST + "/login", param, callback);
+        request.postRequest();
+    }
 }
