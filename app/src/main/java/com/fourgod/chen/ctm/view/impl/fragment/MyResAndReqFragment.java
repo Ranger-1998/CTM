@@ -5,13 +5,12 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.fourgod.chen.ctm.R;
-import com.fourgod.chen.ctm.adapter.MyResAndReqRlvAdapter;
+import com.fourgod.chen.ctm.view.adapter.MyResAndReqRlvAdapter;
 import com.fourgod.chen.ctm.entity.MyInfBean;
 import com.fourgod.chen.ctm.model.impl.MyResAndReqModel;
 import com.fourgod.chen.ctm.presenter.impl.MyResAndReqPresenter;

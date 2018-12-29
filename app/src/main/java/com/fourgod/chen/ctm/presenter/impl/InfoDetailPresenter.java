@@ -4,14 +4,14 @@ import android.os.Handler;
 import android.os.Message;
 
 import com.fourgod.chen.ctm.model.impl.InfDetailModel;
-import com.fourgod.chen.ctm.view.impl.activity.InfDetailActivity;
+import com.fourgod.chen.ctm.view.impl.activity.InfoDetailActivity;
 
 /**
  * Created by laobo on 2018/12/19.
  */
 
-public class InfDetailPresenter extends BasePresenter<InfDetailActivity,InfDetailModel>{
-    public InfDetailPresenter(InfDetailActivity view) {
+public class InfoDetailPresenter extends BasePresenter<InfoDetailActivity,InfDetailModel>{
+    public InfoDetailPresenter(InfoDetailActivity view) {
         super(view);
     }
 

@@ -2,7 +2,9 @@ package com.fourgod.chen.ctm.presenter.impl;
 
 import android.os.Handler;
 import android.os.Message;
+import android.support.v4.util.ArrayMap;
 
+import com.fourgod.chen.ctm.entity.LoginBean;
 import com.fourgod.chen.ctm.model.impl.LoginModel;
 import com.fourgod.chen.ctm.view.impl.activity.LoginActivity;
 
@@ -22,6 +24,11 @@ public class LoginPresenter extends BasePresenter<LoginActivity,LoginModel> {
 
     @Override
     protected void eventReceive(Message msg) {
+        LoginBean bean = (LoginBean)(msg.obj);
+        view.loginReturn(bean);
+    }
 
+    public void login(ArrayMap<String, String> param) {
+        model.login(param);
     }
 }
