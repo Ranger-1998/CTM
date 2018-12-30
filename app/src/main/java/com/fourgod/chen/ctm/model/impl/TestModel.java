@@ -3,7 +3,6 @@ package com.fourgod.chen.ctm.model.impl;
 import android.os.Handler;
 import android.support.annotation.NonNull;
 
-import com.fourgod.chen.ctm.event.NewsBean;
 import com.fourgod.chen.ctm.network.NetworkInterface;
 import com.google.gson.Gson;
 
@@ -29,11 +28,11 @@ public class TestModel extends BaseModel {
             public void onResponse(@NonNull Call call, Response response) throws IOException {
                 Gson gson = new Gson();
                 if (response.body() != null) {
-                    com.fourgod.chen.ctm.entity.NewsBean newsBean = gson.fromJson(response.body().string(), com.fourgod.chen.ctm.entity.NewsBean.class);
-                    NewsBean event = new NewsBean();
-                    event.setNewsBean(newsBean);
-                    event.setWhat(1);
-                    postEvent(event);
+//                    com.fourgod.chen.ctm.entity.NewsBean newsBean = gson.fromJson(response.body().string(), com.fourgod.chen.ctm.entity.NewsBean.class);
+//                    NewsBean event = new NewsBean();
+//                    event.setNewsBean(newsBean);
+//                    event.setWhat(1);
+//                    postEvent(event);
                 }
             }
         };

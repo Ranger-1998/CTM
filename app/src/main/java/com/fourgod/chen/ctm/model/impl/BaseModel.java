@@ -1,6 +1,6 @@
 package com.fourgod.chen.ctm.model.impl;
 
-import com.fourgod.chen.ctm.event.BaseBean;
+import com.fourgod.chen.ctm.entity.BaseBean;
 import com.fourgod.chen.ctm.model.i.IBaseModel;
 
 import android.os.Handler;

@@ -1,12 +1,11 @@
 package com.fourgod.chen.ctm.entity;
 
-import com.fourgod.chen.ctm.event.BaseEvent;
 
 /**
  * Created by laobo on 2018/12/29.
  */
 
-public class UserInfoBean extends BaseEvent {
+public class UserInfoBean extends BaseBean {
 
     /**
      * code : 0

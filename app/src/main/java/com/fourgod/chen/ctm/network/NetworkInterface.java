@@ -57,4 +57,10 @@ public class NetworkInterface {
                 param, callback);
         request.putRequest();
     }
+
+    public static void doSearch(ArrayMap<String, String> param, Callback callback) {
+        JsonRequest request = new JsonRequest(SERVER_HOST + "/hotSearch/doSearch",
+                param, callback);
+        request.putRequest();
+    }
 }

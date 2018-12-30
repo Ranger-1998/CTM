@@ -1,4 +1,4 @@
-package com.fourgod.chen.ctm.event;
+package com.fourgod.chen.ctm.entity;
 
 import java.util.Observable;
 
