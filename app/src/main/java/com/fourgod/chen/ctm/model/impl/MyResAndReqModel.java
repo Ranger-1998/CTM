@@ -1,6 +1,18 @@
 package com.fourgod.chen.ctm.model.impl;
 
 import android.os.Handler;
+import android.support.annotation.NonNull;
+import android.support.v4.util.ArrayMap;
+
+import com.fourgod.chen.ctm.entity.InfoAllListBean;
+import com.fourgod.chen.ctm.network.NetworkInterface;
+import com.google.gson.Gson;
+
+import java.io.IOException;
+
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.Response;
 
 /**
  * Created by laobo on 2018/12/19.
@@ -8,19 +20,41 @@ import android.os.Handler;
 
 public class MyResAndReqModel extends BaseModel {
     //资源
-    public static final int TYPE_RESOURCE = 0;
+    public static final String TYPE_RESOURCE = "1";
 
     //需求
-    public static final int TYPE_REQUIREMENT = 0;
+    public static final String TYPE_REQUIREMENT = "0";
 
 
-    private int mType;
+    private String mType;
     public MyResAndReqModel(Handler handler) {
         super(handler);
     }
 
-    public void setType(int type){
+    public void setType(String type){
         this.mType = type;
     }
+    public String getType(){
+        return this.mType;
+    }
 
+    public void getMyInfoList(ArrayMap<String, String> param) {
+        Callback callback = new Callback() {
+            @Override
+            public void onFailure(@NonNull Call call, @NonNull IOException e) {
+
+            }
+
+            @Override
+            public void onResponse(@NonNull Call call, Response response) throws IOException {
+                Gson gson = new Gson();
+                if (response.body() != null) {
+                    InfoAllListBean bean = gson.fromJson(response.body().string(), InfoAllListBean.class);
+                    bean.setWhat(0);
+                    postEvent(bean);
+                }
+            }
+        };
+        NetworkInterface.getMyInfoList(param, callback);
+    }
 }

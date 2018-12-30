@@ -16,7 +16,7 @@ public class NetworkManager {
     }
 
     private NetworkManager(){
-        setToken("a7a37c25-f6b8-4ed2-afcf-081ce79f0f1f");
+
     }
 
 

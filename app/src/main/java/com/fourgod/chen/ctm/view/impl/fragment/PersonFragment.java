@@ -22,8 +22,10 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.flyco.tablayout.SlidingTabLayout;
 import com.fourgod.chen.ctm.R;
+import com.fourgod.chen.ctm.entity.UserInfoBean;
 import com.fourgod.chen.ctm.model.impl.MyResAndReqModel;
 import com.fourgod.chen.ctm.presenter.impl.PersonPresenter;
 import com.fourgod.chen.ctm.utils.DimenUtils;
@@ -33,12 +35,15 @@ import com.fourgod.chen.ctm.view.impl.activity.SetActivity;
 import java.util.ArrayList;
 import java.util.List;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 /**
  * Created by laobo on 2018/12/18.
  */
 
 public class PersonFragment extends BaseFragment<PersonPresenter> {
     private ImageView mSetting;
+    private CircleImageView picImg;
     private View mRoot;
     private AppBarLayout appBarLayout;
     private SlidingTabLayout tabLayout;
@@ -47,8 +52,10 @@ public class PersonFragment extends BaseFragment<PersonPresenter> {
     private ArrayList<Fragment> fragments = new ArrayList<>();
     private RelativeLayout rlContainer;
     private TextView barName;
+    private TextView nameTv;
     private View maskView;
     private LinearLayout mEdit;
+    private UserInfoBean.DataBean myInfo;
     @Override
     protected PersonPresenter getPresenter() {
         return new PersonPresenter(this);
@@ -61,6 +68,7 @@ public class PersonFragment extends BaseFragment<PersonPresenter> {
         if (mRoot == null) {
             mRoot = inflater.inflate(R.layout.fragment_person, container, false);
             initView();
+            presenter.loadMyInfo();
         }
         return mRoot;
     }
@@ -74,19 +82,21 @@ public class PersonFragment extends BaseFragment<PersonPresenter> {
         maskView = mRoot.findViewById(R.id.view_mask);
         mEdit = mRoot.findViewById(R.id.tv_edit);
         mSetting = mRoot.findViewById(R.id.img_setting);
+        nameTv = mRoot.findViewById(R.id.tv_name);
+        picImg = mRoot.findViewById(R.id.img_head);
         BaseFragment resFragment = new MyResAndReqFragment();
         Bundle bundle = new Bundle();
-        bundle.putInt("type",MyResAndReqModel.TYPE_RESOURCE);
+        bundle.putString("type",MyResAndReqModel.TYPE_RESOURCE);
         resFragment.setArguments(bundle);
 
         BaseFragment reqFragment = new MyResAndReqFragment();
         bundle = new Bundle();
-        bundle.putInt("type",MyResAndReqModel.TYPE_REQUIREMENT);
+        bundle.putString("type",MyResAndReqModel.TYPE_REQUIREMENT);
         reqFragment.setArguments(bundle);
 
         BaseFragment chatFragment = new MyResAndReqFragment();
         bundle = new Bundle();
-        bundle.putInt("type",MyResAndReqModel.TYPE_REQUIREMENT);
+        bundle.putString("type",MyResAndReqModel.TYPE_REQUIREMENT);
         chatFragment.setArguments(bundle);
 
         BaseFragment aboutMeFragment = new AboutMeFragment();
@@ -150,6 +160,14 @@ public class PersonFragment extends BaseFragment<PersonPresenter> {
                 startActivity(new Intent(PersonFragment.this.getContext(), EditUserInfActivity.class));
             }
         });
+    }
+
+    public void showMyInfo(UserInfoBean userInfoBean){
+        myInfo = userInfoBean.getData();
+        barName.setText(myInfo.getNickname());
+        nameTv.setText(myInfo.getNickname());
+        Glide.with(getActivity()).load(myInfo.getHeadImgUrl())
+                .into(picImg);
     }
 
     class TabLayoutAdapter extends FragmentPagerAdapter{

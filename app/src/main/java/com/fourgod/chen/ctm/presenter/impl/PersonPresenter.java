@@ -3,6 +3,7 @@ package com.fourgod.chen.ctm.presenter.impl;
 import android.os.Handler;
 import android.os.Message;
 
+import com.fourgod.chen.ctm.entity.UserInfoBean;
 import com.fourgod.chen.ctm.model.impl.PersonModel;
 import com.fourgod.chen.ctm.view.impl.fragment.PersonFragment;
 
@@ -22,6 +23,12 @@ public class PersonPresenter extends BasePresenter<PersonFragment,PersonModel> {
 
     @Override
     protected void eventReceive(Message msg) {
+        if(msg.what == 0){
+            view.showMyInfo((UserInfoBean)msg.obj);
+        }
+    }
 
+    public void loadMyInfo(){
+        model.loadMyInfo();
     }
 }

@@ -39,6 +39,7 @@
 
     <string name="del">删除</string>
     <string name="solve">解决了</string>
+    <string name="solved">已解决</string>
 
     <string name="edit_user_inf_title">我的资料</string>
     <string name="edit_user_inf_portrait">头像</string>

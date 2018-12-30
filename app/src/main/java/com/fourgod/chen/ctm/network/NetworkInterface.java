@@ -39,4 +39,16 @@ public class NetworkInterface {
         JsonRequest request = new JsonRequest(SERVER_HOST + "/login", param, callback);
         request.postRequest();
     }
+
+    public static void getMyInfoList(ArrayMap<String, String> param, Callback callback) {
+        JsonRequest request = new JsonRequest(SERVER_HOST + "/information/getMyInfo",
+                param, callback);
+        request.putRequest();
+    }
+
+    public static void getUserInfo(ArrayMap<String, String> param, Callback callback) {
+        JsonRequest request = new JsonRequest(SERVER_HOST + "/user/get",
+                param, callback);
+        request.putRequest();
+    }
 }

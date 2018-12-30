@@ -10,10 +10,10 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.fourgod.chen.ctm.R;
-import com.fourgod.chen.ctm.view.adapter.MyResAndReqRlvAdapter;
-import com.fourgod.chen.ctm.entity.MyInfBean;
+import com.fourgod.chen.ctm.entity.InfoAllListBean;
 import com.fourgod.chen.ctm.model.impl.MyResAndReqModel;
 import com.fourgod.chen.ctm.presenter.impl.MyResAndReqPresenter;
+import com.fourgod.chen.ctm.view.adapter.MyResAndReqRlvAdapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +27,7 @@ public class MyResAndReqFragment extends BaseFragment<MyResAndReqPresenter> {
     private View mRoot;
     private RecyclerView recyclerView;
     private MyResAndReqRlvAdapter rlvAdapter;
-    private List<MyInfBean> myInfList = new ArrayList<>();
+    private List<InfoAllListBean.DataBean> myInfList = new ArrayList<>();
 
     @Override
     protected MyResAndReqPresenter getPresenter() {
@@ -51,7 +51,7 @@ public class MyResAndReqFragment extends BaseFragment<MyResAndReqPresenter> {
         //设置fragment类型，需求或资源
         Bundle bundle = getArguments();
         if(bundle != null){
-            presenter.setType(bundle.getInt("type", MyResAndReqModel.TYPE_RESOURCE));
+            presenter.setType(bundle.getString("type", MyResAndReqModel.TYPE_RESOURCE));
         }else{
             presenter.setType(MyResAndReqModel.TYPE_RESOURCE);
         }
@@ -64,18 +64,18 @@ public class MyResAndReqFragment extends BaseFragment<MyResAndReqPresenter> {
         presenter.loadData();
     }
 
-    public void initData(List<MyInfBean> data){
+    public void initData(List<InfoAllListBean.DataBean> data){
         myInfList.clear();
         myInfList.addAll(data);
         if(rlvAdapter == null){
-            rlvAdapter = new MyResAndReqRlvAdapter(R.layout.item_my_res_and_req,myInfList);
+            rlvAdapter = new MyResAndReqRlvAdapter(R.layout.item_my_res_and_req,myInfList,getActivity());
             recyclerView.setAdapter(rlvAdapter);
         }
         rlvAdapter.notifyDataSetChanged();
     }
 
-    public void addData(List<MyInfBean> data){
-        myInfList.addAll(data);
-        rlvAdapter.notifyDataSetChanged();
-    }
+//    public void addData(List<InfoListBean.DataBean.ListBean> data){
+//        myInfList.addAll(data);
+//        rlvAdapter.notifyDataSetChanged();
+//    }
 }
