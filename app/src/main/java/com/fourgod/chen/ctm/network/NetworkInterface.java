@@ -40,6 +40,12 @@ public class NetworkInterface {
         request.postRequest();
     }
 
+    public static void getHotList(ArrayMap<String, String> param, Callback callback) {
+        JsonRequest request = new JsonRequest(SERVER_HOST + "/hotSearch/list",
+                param, callback);
+        request.putRequest();
+    }
+
     public static void getMyInfoList(ArrayMap<String, String> param, Callback callback) {
         JsonRequest request = new JsonRequest(SERVER_HOST + "/information/getMyInfo",
                 param, callback);
