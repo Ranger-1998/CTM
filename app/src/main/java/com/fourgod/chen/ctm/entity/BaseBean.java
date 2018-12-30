@@ -1,4 +1,4 @@
-package com.fourgod.chen.ctm.event;
+package com.fourgod.chen.ctm.entity;
 
 import java.util.Observable;
 
@@ -13,7 +13,7 @@ import java.util.Observable;
  * on 2018/12/17.
  */
 
-public class BaseEvent extends Observable {
+public class BaseBean extends Observable {
 
     private int mWhat;  //事件的标识
 

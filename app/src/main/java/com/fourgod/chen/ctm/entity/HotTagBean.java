@@ -2,16 +2,12 @@ package com.fourgod.chen.ctm.entity;
 
 import java.util.List;
 
-/**
- * Created by Tolean on 2018/12/29.
- */
-
-public class CategoryListBean extends BaseBean {
+public class HotTagBean extends BaseBean {
 
     /**
      * code : 0
      * message : OK
-     * data : {"pageNum":1,"pageSize":9,"size":9,"orderBy":null,"startRow":0,"endRow":8,"total":9,"pages":1,"list":[{"id":10,"name":"设计开发","type":"0"},{"id":9,"name":"兼职","type":"0"},{"id":8,"name":"跑腿","type":"0"},{"id":7,"name":"寻物","type":"0"},{"id":6,"name":"找人","type":"0"},{"id":4,"name":"专业人才","type":"1"},{"id":3,"name":"生活用品","type":"1"},{"id":2,"name":"书籍","type":"1"},{"id":1,"name":"电子产品","type":"1"}],"firstPage":1,"prePage":0,"nextPage":0,"lastPage":1,"isFirstPage":true,"isLastPage":true,"hasPreviousPage":false,"hasNextPage":false,"navigatePages":8,"navigatepageNums":[1]}
+     * data : {"pageNum":1,"pageSize":3,"size":3,"orderBy":null,"startRow":0,"endRow":2,"total":3,"pages":1,"list":[{"id":2,"hotWord":"手机","frequency":2},{"id":1,"hotWord":"自行车","frequency":1},{"id":3,"hotWord":"摩托车","frequency":0}],"firstPage":1,"prePage":0,"nextPage":0,"lastPage":1,"isFirstPage":true,"isLastPage":true,"hasPreviousPage":false,"hasNextPage":false,"navigatePages":8,"navigatepageNums":[1]}
      */
 
     private int code;
@@ -45,14 +41,14 @@ public class CategoryListBean extends BaseBean {
     public static class DataBean {
         /**
          * pageNum : 1
-         * pageSize : 9
-         * size : 9
+         * pageSize : 3
+         * size : 3
          * orderBy : null
          * startRow : 0
-         * endRow : 8
-         * total : 9
+         * endRow : 2
+         * total : 3
          * pages : 1
-         * list : [{"id":10,"name":"设计开发","type":"0"},{"id":9,"name":"兼职","type":"0"},{"id":8,"name":"跑腿","type":"0"},{"id":7,"name":"寻物","type":"0"},{"id":6,"name":"找人","type":"0"},{"id":4,"name":"专业人才","type":"1"},{"id":3,"name":"生活用品","type":"1"},{"id":2,"name":"书籍","type":"1"},{"id":1,"name":"电子产品","type":"1"}]
+         * list : [{"id":2,"hotWord":"手机","frequency":2},{"id":1,"hotWord":"自行车","frequency":1},{"id":3,"hotWord":"摩托车","frequency":0}]
          * firstPage : 1
          * prePage : 0
          * nextPage : 0
@@ -239,14 +235,14 @@ public class CategoryListBean extends BaseBean {
 
         public static class ListBean {
             /**
-             * id : 10
-             * name : 设计开发
-             * type : 0
+             * id : 2
+             * hotWord : 手机
+             * frequency : 2
              */
 
             private int id;
-            private String name;
-            private String type;
+            private String hotWord;
+            private int frequency;
 
             public int getId() {
                 return id;
@@ -256,20 +252,20 @@ public class CategoryListBean extends BaseBean {
                 this.id = id;
             }
 
-            public String getName() {
-                return name;
+            public String getHotWord() {
+                return hotWord;
             }
 
-            public void setName(String name) {
-                this.name = name;
+            public void setHotWord(String hotWord) {
+                this.hotWord = hotWord;
             }
 
-            public String getType() {
-                return type;
+            public int getFrequency() {
+                return frequency;
             }
 
-            public void setType(String type) {
-                this.type = type;
+            public void setFrequency(int frequency) {
+                this.frequency = frequency;
             }
         }
     }

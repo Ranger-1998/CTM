@@ -1,8 +1,6 @@
 package com.fourgod.chen.ctm.entity;
 
-import com.fourgod.chen.ctm.event.BaseEvent;
-
-public class LoginBean extends BaseEvent {
+public class LoginBean extends BaseBean {
 
     /**
      * code : 0

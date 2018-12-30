@@ -1,10 +1,8 @@
 package com.fourgod.chen.ctm.entity;
 
-import com.fourgod.chen.ctm.event.BaseEvent;
-
 import java.util.List;
 
-public class InfoListBean extends BaseEvent {
+public class InfoListBean extends BaseBean {
 
     /**
      * code : 0

@@ -9,8 +9,6 @@ import okhttp3.Callback;
 import okhttp3.Response;
 
 import com.fourgod.chen.ctm.entity.InfoListBean;
-import com.fourgod.chen.ctm.entity.NewsBean;
-import com.fourgod.chen.ctm.event.NewsEvent;
 import com.fourgod.chen.ctm.network.NetworkInterface;
 import com.google.gson.Gson;
 

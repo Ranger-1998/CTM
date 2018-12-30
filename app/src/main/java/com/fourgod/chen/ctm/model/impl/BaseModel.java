@@ -1,8 +1,7 @@
 package com.fourgod.chen.ctm.model.impl;
 
-import com.fourgod.chen.ctm.event.BaseEvent;
+import com.fourgod.chen.ctm.entity.BaseBean;
 import com.fourgod.chen.ctm.model.i.IBaseModel;
-import com.fourgod.chen.ctm.network.NetworkInterface;
 
 import android.os.Handler;
 import android.os.Message;
@@ -27,7 +26,7 @@ public class BaseModel implements IBaseModel {
      *
      * @param event 这个对象包含了message所需的what和obj
      */
-    synchronized void postEvent(BaseEvent event) {
+    synchronized void postEvent(BaseBean event) {
         if (handler != null) {
             Message message = handler.obtainMessage();
             message.what = event.getWhat();
