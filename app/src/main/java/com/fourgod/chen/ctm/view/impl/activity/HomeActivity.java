@@ -17,11 +17,13 @@ import android.view.View;
 import com.fourgod.chen.ctm.R;
 import com.fourgod.chen.ctm.presenter.impl.BasePresenter;
 import com.fourgod.chen.ctm.view.impl.fragment.BaseFragment;
+import com.fourgod.chen.ctm.view.impl.fragment.ChartFragment;
 import com.fourgod.chen.ctm.view.impl.fragment.PersonFragment;
 import com.fourgod.chen.ctm.view.impl.fragment.ResourcesFragment;
 import com.fourgod.chen.ctm.view.impl.fragment.TestFragment1;
 import com.fourgod.chen.ctm.view.widget.MoreWindow;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
+import com.netease.nim.uikit.business.recent.RecentContactsFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -75,10 +77,8 @@ public class HomeActivity extends AppCompatActivity {
         bundle.putString("type", "0");
         reqFragment.setArguments(bundle);
 
-        BaseFragment chatFragment = new TestFragment1();
-        bundle = new Bundle();
-        bundle.putString("title", "聊天");
-        chatFragment.setArguments(bundle);
+        ChartFragment chatFragment = new ChartFragment();
+//        RecentContactsFragment chatFragment = new RecentContactsFragment();
 
         BaseFragment personFragment = new PersonFragment();
         personFragment.setArguments(bundle);

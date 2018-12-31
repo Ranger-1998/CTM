@@ -13,6 +13,7 @@ import com.fourgod.chen.ctm.R;
 import com.fourgod.chen.ctm.entity.NewsBean;
 import com.fourgod.chen.ctm.presenter.impl.TestPresenter;
 import com.fourgod.chen.ctm.view.i.IBaseView;
+import com.netease.nim.uikit.business.recent.RecentContactsFragment;
 
 import java.util.List;
 
@@ -34,7 +35,6 @@ public class TestFragment1 extends BaseFragment<TestPresenter> implements IBaseV
         super.onCreateView(inflater,container,savedInstanceState);
         if (mRoot == null) {
             mRoot = inflater.inflate(R.layout.fragment1, container, false);
-            tv = mRoot.findViewById(R.id.f_tv);
             //presenter.testModel();
             //tv.setText(title);
         }

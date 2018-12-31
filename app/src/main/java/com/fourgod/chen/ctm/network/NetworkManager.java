@@ -21,6 +21,9 @@ public class NetworkManager {
 
 
     public String getToken() {
+        if(token == null){
+            token = "";
+        }
         return token;
     }
 

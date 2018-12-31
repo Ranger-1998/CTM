@@ -14,7 +14,7 @@ import okhttp3.Request;
  * on 2018/12/17.
  */
 public class NetworkInterface {
-    private static final String SERVER_HOST = "http://192.168.43.66:8085";
+    private static final String SERVER_HOST = "http://192.168.43.196:8085";
 
     public static void getNews(String type, Callback callback) {
         Request request = new Request.Builder().url(SERVER_HOST + type).get().build();

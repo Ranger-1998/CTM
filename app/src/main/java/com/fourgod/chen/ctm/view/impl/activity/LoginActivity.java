@@ -6,6 +6,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.util.ArrayMap;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -21,6 +22,11 @@ import com.fourgod.chen.ctm.entity.LoginBean;
 import com.fourgod.chen.ctm.network.NetworkManager;
 import com.fourgod.chen.ctm.presenter.impl.BasePresenter;
 import com.fourgod.chen.ctm.presenter.impl.LoginPresenter;
+import com.netease.nimlib.sdk.NIMClient;
+import com.netease.nimlib.sdk.NIMSDK;
+import com.netease.nimlib.sdk.RequestCallback;
+import com.netease.nimlib.sdk.auth.AuthService;
+import com.netease.nimlib.sdk.auth.LoginInfo;
 
 /**
  * Created by Tolean on 2018/12/18.
@@ -74,6 +80,8 @@ public class LoginActivity extends BaseActivity<LoginPresenter> {
         if (password.equals("") || userName.equals("")) {
             Toast.makeText(LoginActivity.this, "请输入用户名和密码",
                     Toast.LENGTH_SHORT).show();
+            loggingLinearLayout.setVisibility(View.GONE);
+            loginText.setVisibility(View.VISIBLE);
         } else {
             ArrayMap<String, String> param = new ArrayMap<>();
             param.put("password", password);
@@ -83,12 +91,14 @@ public class LoginActivity extends BaseActivity<LoginPresenter> {
     }
 
     public void loginReturn(LoginBean bean) {
-        if (bean.getCode() == 0) {
+        if (bean.getCode() != -1) {
+            doIMLogin(bean);
             loginText.setText("登录成功");
             SharedPreferences preferences = getSharedPreferences("token",
                     Context.MODE_PRIVATE);
             SharedPreferences.Editor editor = preferences.edit();
             editor.putString("token", bean.getData().getToken());
+            editor.putString("accid",String.valueOf(bean.getCode()));
             editor.apply();
 
             NetworkManager.getInstance().setToken(bean.getData().getToken());
@@ -102,5 +112,26 @@ public class LoginActivity extends BaseActivity<LoginPresenter> {
         }
         loggingLinearLayout.setVisibility(View.GONE);
         loginText.setVisibility(View.VISIBLE);
+    }
+
+    private void doIMLogin(LoginBean bean) {
+        LoginInfo info = new LoginInfo(String.valueOf(bean.getCode()),bean.getData().getToken());
+        RequestCallback<LoginInfo> callback =
+                new RequestCallback<LoginInfo>() {
+                    @Override
+                    public void onSuccess(LoginInfo param) {
+                    }
+
+                    @Override
+                    public void onFailed(int code) {
+                    }
+
+                    @Override
+                    public void onException(Throwable exception) {
+                    }
+                    // 可以在此保存LoginInfo到本地，下次启动APP做自动登录用
+                };
+        NIMClient.getService(AuthService.class).login(info)
+                .setCallback(callback);
     }
 }
