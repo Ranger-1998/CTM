@@ -4,15 +4,16 @@ import java.util.List;
 
 public class SearchBean extends BaseBean {
 
+
     /**
      * code : 0
-     * data : {"endRow":0,"firstPage":0,"hasNextPage":true,"hasPreviousPage":true,"isFirstPage":true,"isLastPage":true,"lastPage":0,"list":[{"categoryId":0,"content":"string","createTime":{"date":0,"day":0,"hours":0,"minutes":0,"month":0,"nanos":0,"seconds":0,"time":0,"timezoneOffset":0,"year":0},"endTime":"2018-12-30","id":0,"picture":"string","status":"string","title":"string","type":"string","updateTime":{"date":0,"day":0,"hours":0,"minutes":0,"month":0,"nanos":0,"seconds":0,"time":0,"timezoneOffset":0,"year":0},"userHeadUrl":"string","userId":0,"userNickName":"string"}],"navigatePages":0,"navigatepageNums":[0],"nextPage":0,"orderBy":"string","pageNum":0,"pageSize":0,"pages":0,"prePage":0,"size":0,"startRow":0,"total":0}
-     * message : string
+     * message : OK
+     * data : {"pageNum":1,"pageSize":10,"size":10,"orderBy":null,"startRow":1,"endRow":10,"total":13,"pages":2,"list":[{"id":3,"title":"摩托车","content":"82年的摩托车","picture":"https://nmbimg.fastmirror.org/thumb/2018-09-26/5bab612f4f646.png","status":"0","type":"1","categoryId":3,"userId":1,"userNickName":"admin","userHeadUrl":"https://free.modao.cc/uploads3/images/1975/19758300/raw_1525486953.jpeg","createTime":"2018-12-20 08:06:46","updateTime":"2018-12-29 03:57:51"},{"id":20,"title":"摩托车","content":"82年的摩托车","picture":"https://nmbimg.fastmirror.org/thumb/2018-09-26/5bab612f4f646.png","status":"0","type":"1","categoryId":3,"userId":1,"userNickName":"admin","userHeadUrl":"https://free.modao.cc/uploads3/images/1975/19758300/raw_1525486953.jpeg","createTime":"2018-12-20 08:06:46","updateTime":"2018-12-29 03:57:51"},{"id":28,"title":"摩托车","content":"82年的摩托车","picture":"https://nmbimg.fastmirror.org/thumb/2018-09-26/5bab612f4f646.png","status":"0","type":"1","categoryId":3,"userId":1,"userNickName":"admin","userHeadUrl":"https://free.modao.cc/uploads3/images/1975/19758300/raw_1525486953.jpeg","createTime":"2018-12-20 08:06:46","updateTime":"2018-12-29 03:57:51"},{"id":36,"title":"摩托车","content":"82年的摩托车","picture":"https://nmbimg.fastmirror.org/thumb/2018-09-26/5bab612f4f646.png","status":"0","type":"1","categoryId":3,"userId":1,"userNickName":"admin","userHeadUrl":"https://free.modao.cc/uploads3/images/1975/19758300/raw_1525486953.jpeg","createTime":"2018-12-20 08:06:46","updateTime":"2018-12-29 03:57:51"},{"id":44,"title":"摩托车","content":"82年的摩托车","picture":"https://nmbimg.fastmirror.org/thumb/2018-09-26/5bab612f4f646.png","status":"0","type":"1","categoryId":3,"userId":1,"userNickName":"admin","userHeadUrl":"https://free.modao.cc/uploads3/images/1975/19758300/raw_1525486953.jpeg","createTime":"2018-12-20 08:06:46","updateTime":"2018-12-29 03:57:51"},{"id":52,"title":"摩托车","content":"82年的摩托车","picture":"https://nmbimg.fastmirror.org/thumb/2018-09-26/5bab612f4f646.png","status":"0","type":"1","categoryId":3,"userId":1,"userNickName":"admin","userHeadUrl":"https://free.modao.cc/uploads3/images/1975/19758300/raw_1525486953.jpeg","createTime":"2018-12-20 08:06:46","updateTime":"2018-12-29 03:57:51"},{"id":60,"title":"摩托车","content":"82年的摩托车","picture":"https://nmbimg.fastmirror.org/thumb/2018-09-26/5bab612f4f646.png","status":"0","type":"1","categoryId":3,"userId":1,"userNickName":"admin","userHeadUrl":"https://free.modao.cc/uploads3/images/1975/19758300/raw_1525486953.jpeg","createTime":"2018-12-20 08:06:46","updateTime":"2018-12-29 03:57:51"},{"id":68,"title":"摩托车","content":"82年的摩托车","picture":"https://nmbimg.fastmirror.org/thumb/2018-09-26/5bab612f4f646.png","status":"0","type":"1","categoryId":3,"userId":1,"userNickName":"admin","userHeadUrl":"https://free.modao.cc/uploads3/images/1975/19758300/raw_1525486953.jpeg","createTime":"2018-12-20 08:06:46","updateTime":"2018-12-29 03:57:51"},{"id":76,"title":"摩托车","content":"82年的摩托车","picture":"https://nmbimg.fastmirror.org/thumb/2018-09-26/5bab612f4f646.png","status":"0","type":"1","categoryId":3,"userId":1,"userNickName":"admin","userHeadUrl":"https://free.modao.cc/uploads3/images/1975/19758300/raw_1525486953.jpeg","createTime":"2018-12-20 08:06:46","updateTime":"2018-12-29 03:57:51"},{"id":84,"title":"摩托车","content":"82年的摩托车","picture":"https://nmbimg.fastmirror.org/thumb/2018-09-26/5bab612f4f646.png","status":"0","type":"1","categoryId":3,"userId":1,"userNickName":"admin","userHeadUrl":"https://free.modao.cc/uploads3/images/1975/19758300/raw_1525486953.jpeg","createTime":"2018-12-20 08:06:46","updateTime":"2018-12-29 03:57:51"}],"firstPage":1,"prePage":0,"nextPage":2,"lastPage":2,"isFirstPage":true,"isLastPage":false,"hasPreviousPage":false,"hasNextPage":true,"navigatePages":8,"navigatepageNums":[1,2]}
      */
 
     private int code;
-    private DataBean data;
     private String message;
+    private DataBean data;
 
     public int getCode() {
         return code;
@@ -20,14 +21,6 @@ public class SearchBean extends BaseBean {
 
     public void setCode(int code) {
         this.code = code;
-    }
-
-    public DataBean getData() {
-        return data;
-    }
-
-    public void setData(DataBean data) {
-        this.data = data;
     }
 
     public String getMessage() {
@@ -38,48 +31,96 @@ public class SearchBean extends BaseBean {
         this.message = message;
     }
 
+    public DataBean getData() {
+        return data;
+    }
+
+    public void setData(DataBean data) {
+        this.data = data;
+    }
+
     public static class DataBean {
         /**
-         * endRow : 0
-         * firstPage : 0
-         * hasNextPage : true
-         * hasPreviousPage : true
-         * isFirstPage : true
-         * isLastPage : true
-         * lastPage : 0
-         * list : [{"categoryId":0,"content":"string","createTime":{"date":0,"day":0,"hours":0,"minutes":0,"month":0,"nanos":0,"seconds":0,"time":0,"timezoneOffset":0,"year":0},"endTime":"2018-12-30","id":0,"picture":"string","status":"string","title":"string","type":"string","updateTime":{"date":0,"day":0,"hours":0,"minutes":0,"month":0,"nanos":0,"seconds":0,"time":0,"timezoneOffset":0,"year":0},"userHeadUrl":"string","userId":0,"userNickName":"string"}]
-         * navigatePages : 0
-         * navigatepageNums : [0]
-         * nextPage : 0
-         * orderBy : string
-         * pageNum : 0
-         * pageSize : 0
-         * pages : 0
+         * pageNum : 1
+         * pageSize : 10
+         * size : 10
+         * orderBy : null
+         * startRow : 1
+         * endRow : 10
+         * total : 13
+         * pages : 2
+         * list : [{"id":3,"title":"摩托车","content":"82年的摩托车","picture":"https://nmbimg.fastmirror.org/thumb/2018-09-26/5bab612f4f646.png","status":"0","type":"1","categoryId":3,"userId":1,"userNickName":"admin","userHeadUrl":"https://free.modao.cc/uploads3/images/1975/19758300/raw_1525486953.jpeg","createTime":"2018-12-20 08:06:46","updateTime":"2018-12-29 03:57:51"},{"id":20,"title":"摩托车","content":"82年的摩托车","picture":"https://nmbimg.fastmirror.org/thumb/2018-09-26/5bab612f4f646.png","status":"0","type":"1","categoryId":3,"userId":1,"userNickName":"admin","userHeadUrl":"https://free.modao.cc/uploads3/images/1975/19758300/raw_1525486953.jpeg","createTime":"2018-12-20 08:06:46","updateTime":"2018-12-29 03:57:51"},{"id":28,"title":"摩托车","content":"82年的摩托车","picture":"https://nmbimg.fastmirror.org/thumb/2018-09-26/5bab612f4f646.png","status":"0","type":"1","categoryId":3,"userId":1,"userNickName":"admin","userHeadUrl":"https://free.modao.cc/uploads3/images/1975/19758300/raw_1525486953.jpeg","createTime":"2018-12-20 08:06:46","updateTime":"2018-12-29 03:57:51"},{"id":36,"title":"摩托车","content":"82年的摩托车","picture":"https://nmbimg.fastmirror.org/thumb/2018-09-26/5bab612f4f646.png","status":"0","type":"1","categoryId":3,"userId":1,"userNickName":"admin","userHeadUrl":"https://free.modao.cc/uploads3/images/1975/19758300/raw_1525486953.jpeg","createTime":"2018-12-20 08:06:46","updateTime":"2018-12-29 03:57:51"},{"id":44,"title":"摩托车","content":"82年的摩托车","picture":"https://nmbimg.fastmirror.org/thumb/2018-09-26/5bab612f4f646.png","status":"0","type":"1","categoryId":3,"userId":1,"userNickName":"admin","userHeadUrl":"https://free.modao.cc/uploads3/images/1975/19758300/raw_1525486953.jpeg","createTime":"2018-12-20 08:06:46","updateTime":"2018-12-29 03:57:51"},{"id":52,"title":"摩托车","content":"82年的摩托车","picture":"https://nmbimg.fastmirror.org/thumb/2018-09-26/5bab612f4f646.png","status":"0","type":"1","categoryId":3,"userId":1,"userNickName":"admin","userHeadUrl":"https://free.modao.cc/uploads3/images/1975/19758300/raw_1525486953.jpeg","createTime":"2018-12-20 08:06:46","updateTime":"2018-12-29 03:57:51"},{"id":60,"title":"摩托车","content":"82年的摩托车","picture":"https://nmbimg.fastmirror.org/thumb/2018-09-26/5bab612f4f646.png","status":"0","type":"1","categoryId":3,"userId":1,"userNickName":"admin","userHeadUrl":"https://free.modao.cc/uploads3/images/1975/19758300/raw_1525486953.jpeg","createTime":"2018-12-20 08:06:46","updateTime":"2018-12-29 03:57:51"},{"id":68,"title":"摩托车","content":"82年的摩托车","picture":"https://nmbimg.fastmirror.org/thumb/2018-09-26/5bab612f4f646.png","status":"0","type":"1","categoryId":3,"userId":1,"userNickName":"admin","userHeadUrl":"https://free.modao.cc/uploads3/images/1975/19758300/raw_1525486953.jpeg","createTime":"2018-12-20 08:06:46","updateTime":"2018-12-29 03:57:51"},{"id":76,"title":"摩托车","content":"82年的摩托车","picture":"https://nmbimg.fastmirror.org/thumb/2018-09-26/5bab612f4f646.png","status":"0","type":"1","categoryId":3,"userId":1,"userNickName":"admin","userHeadUrl":"https://free.modao.cc/uploads3/images/1975/19758300/raw_1525486953.jpeg","createTime":"2018-12-20 08:06:46","updateTime":"2018-12-29 03:57:51"},{"id":84,"title":"摩托车","content":"82年的摩托车","picture":"https://nmbimg.fastmirror.org/thumb/2018-09-26/5bab612f4f646.png","status":"0","type":"1","categoryId":3,"userId":1,"userNickName":"admin","userHeadUrl":"https://free.modao.cc/uploads3/images/1975/19758300/raw_1525486953.jpeg","createTime":"2018-12-20 08:06:46","updateTime":"2018-12-29 03:57:51"}]
+         * firstPage : 1
          * prePage : 0
-         * size : 0
-         * startRow : 0
-         * total : 0
+         * nextPage : 2
+         * lastPage : 2
+         * isFirstPage : true
+         * isLastPage : false
+         * hasPreviousPage : false
+         * hasNextPage : true
+         * navigatePages : 8
+         * navigatepageNums : [1,2]
          */
 
-        private int endRow;
-        private int firstPage;
-        private boolean hasNextPage;
-        private boolean hasPreviousPage;
-        private boolean isFirstPage;
-        private boolean isLastPage;
-        private int lastPage;
-        private int navigatePages;
-        private int nextPage;
-        private String orderBy;
         private int pageNum;
         private int pageSize;
-        private int pages;
-        private int prePage;
         private int size;
+        private Object orderBy;
         private int startRow;
+        private int endRow;
         private int total;
+        private int pages;
+        private int firstPage;
+        private int prePage;
+        private int nextPage;
+        private int lastPage;
+        private boolean isFirstPage;
+        private boolean isLastPage;
+        private boolean hasPreviousPage;
+        private boolean hasNextPage;
+        private int navigatePages;
         private List<ListBean> list;
         private List<Integer> navigatepageNums;
+
+        public int getPageNum() {
+            return pageNum;
+        }
+
+        public void setPageNum(int pageNum) {
+            this.pageNum = pageNum;
+        }
+
+        public int getPageSize() {
+            return pageSize;
+        }
+
+        public void setPageSize(int pageSize) {
+            this.pageSize = pageSize;
+        }
+
+        public int getSize() {
+            return size;
+        }
+
+        public void setSize(int size) {
+            this.size = size;
+        }
+
+        public Object getOrderBy() {
+            return orderBy;
+        }
+
+        public void setOrderBy(Object orderBy) {
+            this.orderBy = orderBy;
+        }
+
+        public int getStartRow() {
+            return startRow;
+        }
+
+        public void setStartRow(int startRow) {
+            this.startRow = startRow;
+        }
 
         public int getEndRow() {
             return endRow;
@@ -87,6 +128,22 @@ public class SearchBean extends BaseBean {
 
         public void setEndRow(int endRow) {
             this.endRow = endRow;
+        }
+
+        public int getTotal() {
+            return total;
+        }
+
+        public void setTotal(int total) {
+            this.total = total;
+        }
+
+        public int getPages() {
+            return pages;
+        }
+
+        public void setPages(int pages) {
+            this.pages = pages;
         }
 
         public int getFirstPage() {
@@ -97,20 +154,28 @@ public class SearchBean extends BaseBean {
             this.firstPage = firstPage;
         }
 
-        public boolean isHasNextPage() {
-            return hasNextPage;
+        public int getPrePage() {
+            return prePage;
         }
 
-        public void setHasNextPage(boolean hasNextPage) {
-            this.hasNextPage = hasNextPage;
+        public void setPrePage(int prePage) {
+            this.prePage = prePage;
         }
 
-        public boolean isHasPreviousPage() {
-            return hasPreviousPage;
+        public int getNextPage() {
+            return nextPage;
         }
 
-        public void setHasPreviousPage(boolean hasPreviousPage) {
-            this.hasPreviousPage = hasPreviousPage;
+        public void setNextPage(int nextPage) {
+            this.nextPage = nextPage;
+        }
+
+        public int getLastPage() {
+            return lastPage;
+        }
+
+        public void setLastPage(int lastPage) {
+            this.lastPage = lastPage;
         }
 
         public boolean isIsFirstPage() {
@@ -129,12 +194,20 @@ public class SearchBean extends BaseBean {
             this.isLastPage = isLastPage;
         }
 
-        public int getLastPage() {
-            return lastPage;
+        public boolean isHasPreviousPage() {
+            return hasPreviousPage;
         }
 
-        public void setLastPage(int lastPage) {
-            this.lastPage = lastPage;
+        public void setHasPreviousPage(boolean hasPreviousPage) {
+            this.hasPreviousPage = hasPreviousPage;
+        }
+
+        public boolean isHasNextPage() {
+            return hasNextPage;
+        }
+
+        public void setHasNextPage(boolean hasNextPage) {
+            this.hasNextPage = hasNextPage;
         }
 
         public int getNavigatePages() {
@@ -143,78 +216,6 @@ public class SearchBean extends BaseBean {
 
         public void setNavigatePages(int navigatePages) {
             this.navigatePages = navigatePages;
-        }
-
-        public int getNextPage() {
-            return nextPage;
-        }
-
-        public void setNextPage(int nextPage) {
-            this.nextPage = nextPage;
-        }
-
-        public String getOrderBy() {
-            return orderBy;
-        }
-
-        public void setOrderBy(String orderBy) {
-            this.orderBy = orderBy;
-        }
-
-        public int getPageNum() {
-            return pageNum;
-        }
-
-        public void setPageNum(int pageNum) {
-            this.pageNum = pageNum;
-        }
-
-        public int getPageSize() {
-            return pageSize;
-        }
-
-        public void setPageSize(int pageSize) {
-            this.pageSize = pageSize;
-        }
-
-        public int getPages() {
-            return pages;
-        }
-
-        public void setPages(int pages) {
-            this.pages = pages;
-        }
-
-        public int getPrePage() {
-            return prePage;
-        }
-
-        public void setPrePage(int prePage) {
-            this.prePage = prePage;
-        }
-
-        public int getSize() {
-            return size;
-        }
-
-        public void setSize(int size) {
-            this.size = size;
-        }
-
-        public int getStartRow() {
-            return startRow;
-        }
-
-        public void setStartRow(int startRow) {
-            this.startRow = startRow;
-        }
-
-        public int getTotal() {
-            return total;
-        }
-
-        public void setTotal(int total) {
-            this.total = total;
         }
 
         public List<ListBean> getList() {
@@ -235,41 +236,47 @@ public class SearchBean extends BaseBean {
 
         public static class ListBean {
             /**
-             * categoryId : 0
-             * content : string
-             * createTime : {"date":0,"day":0,"hours":0,"minutes":0,"month":0,"nanos":0,"seconds":0,"time":0,"timezoneOffset":0,"year":0}
-             * endTime : 2018-12-30
-             * id : 0
-             * picture : string
-             * status : string
-             * title : string
-             * type : string
-             * updateTime : {"date":0,"day":0,"hours":0,"minutes":0,"month":0,"nanos":0,"seconds":0,"time":0,"timezoneOffset":0,"year":0}
-             * userHeadUrl : string
-             * userId : 0
-             * userNickName : string
+             * id : 3
+             * title : 摩托车
+             * content : 82年的摩托车
+             * picture : https://nmbimg.fastmirror.org/thumb/2018-09-26/5bab612f4f646.png
+             * status : 0
+             * type : 1
+             * categoryId : 3
+             * userId : 1
+             * userNickName : admin
+             * userHeadUrl : https://free.modao.cc/uploads3/images/1975/19758300/raw_1525486953.jpeg
+             * createTime : 2018-12-20 08:06:46
+             * updateTime : 2018-12-29 03:57:51
              */
 
-            private int categoryId;
-            private String content;
-            private CreateTimeBean createTime;
-            private String endTime;
             private int id;
+            private String title;
+            private String content;
             private String picture;
             private String status;
-            private String title;
             private String type;
-            private UpdateTimeBean updateTime;
-            private String userHeadUrl;
+            private int categoryId;
             private int userId;
             private String userNickName;
+            private String userHeadUrl;
+            private String createTime;
+            private String updateTime;
 
-            public int getCategoryId() {
-                return categoryId;
+            public int getId() {
+                return id;
             }
 
-            public void setCategoryId(int categoryId) {
-                this.categoryId = categoryId;
+            public void setId(int id) {
+                this.id = id;
+            }
+
+            public String getTitle() {
+                return title;
+            }
+
+            public void setTitle(String title) {
+                this.title = title;
             }
 
             public String getContent() {
@@ -278,30 +285,6 @@ public class SearchBean extends BaseBean {
 
             public void setContent(String content) {
                 this.content = content;
-            }
-
-            public CreateTimeBean getCreateTime() {
-                return createTime;
-            }
-
-            public void setCreateTime(CreateTimeBean createTime) {
-                this.createTime = createTime;
-            }
-
-            public String getEndTime() {
-                return endTime;
-            }
-
-            public void setEndTime(String endTime) {
-                this.endTime = endTime;
-            }
-
-            public int getId() {
-                return id;
-            }
-
-            public void setId(int id) {
-                this.id = id;
             }
 
             public String getPicture() {
@@ -320,14 +303,6 @@ public class SearchBean extends BaseBean {
                 this.status = status;
             }
 
-            public String getTitle() {
-                return title;
-            }
-
-            public void setTitle(String title) {
-                this.title = title;
-            }
-
             public String getType() {
                 return type;
             }
@@ -336,20 +311,12 @@ public class SearchBean extends BaseBean {
                 this.type = type;
             }
 
-            public UpdateTimeBean getUpdateTime() {
-                return updateTime;
+            public int getCategoryId() {
+                return categoryId;
             }
 
-            public void setUpdateTime(UpdateTimeBean updateTime) {
-                this.updateTime = updateTime;
-            }
-
-            public String getUserHeadUrl() {
-                return userHeadUrl;
-            }
-
-            public void setUserHeadUrl(String userHeadUrl) {
-                this.userHeadUrl = userHeadUrl;
+            public void setCategoryId(int categoryId) {
+                this.categoryId = categoryId;
             }
 
             public int getUserId() {
@@ -368,216 +335,28 @@ public class SearchBean extends BaseBean {
                 this.userNickName = userNickName;
             }
 
-            public static class CreateTimeBean {
-                /**
-                 * date : 0
-                 * day : 0
-                 * hours : 0
-                 * minutes : 0
-                 * month : 0
-                 * nanos : 0
-                 * seconds : 0
-                 * time : 0
-                 * timezoneOffset : 0
-                 * year : 0
-                 */
-
-                private int date;
-                private int day;
-                private int hours;
-                private int minutes;
-                private int month;
-                private int nanos;
-                private int seconds;
-                private int time;
-                private int timezoneOffset;
-                private int year;
-
-                public int getDate() {
-                    return date;
-                }
-
-                public void setDate(int date) {
-                    this.date = date;
-                }
-
-                public int getDay() {
-                    return day;
-                }
-
-                public void setDay(int day) {
-                    this.day = day;
-                }
-
-                public int getHours() {
-                    return hours;
-                }
-
-                public void setHours(int hours) {
-                    this.hours = hours;
-                }
-
-                public int getMinutes() {
-                    return minutes;
-                }
-
-                public void setMinutes(int minutes) {
-                    this.minutes = minutes;
-                }
-
-                public int getMonth() {
-                    return month;
-                }
-
-                public void setMonth(int month) {
-                    this.month = month;
-                }
-
-                public int getNanos() {
-                    return nanos;
-                }
-
-                public void setNanos(int nanos) {
-                    this.nanos = nanos;
-                }
-
-                public int getSeconds() {
-                    return seconds;
-                }
-
-                public void setSeconds(int seconds) {
-                    this.seconds = seconds;
-                }
-
-                public int getTime() {
-                    return time;
-                }
-
-                public void setTime(int time) {
-                    this.time = time;
-                }
-
-                public int getTimezoneOffset() {
-                    return timezoneOffset;
-                }
-
-                public void setTimezoneOffset(int timezoneOffset) {
-                    this.timezoneOffset = timezoneOffset;
-                }
-
-                public int getYear() {
-                    return year;
-                }
-
-                public void setYear(int year) {
-                    this.year = year;
-                }
+            public String getUserHeadUrl() {
+                return userHeadUrl;
             }
 
-            public static class UpdateTimeBean {
-                /**
-                 * date : 0
-                 * day : 0
-                 * hours : 0
-                 * minutes : 0
-                 * month : 0
-                 * nanos : 0
-                 * seconds : 0
-                 * time : 0
-                 * timezoneOffset : 0
-                 * year : 0
-                 */
+            public void setUserHeadUrl(String userHeadUrl) {
+                this.userHeadUrl = userHeadUrl;
+            }
 
-                private int date;
-                private int day;
-                private int hours;
-                private int minutes;
-                private int month;
-                private int nanos;
-                private int seconds;
-                private int time;
-                private int timezoneOffset;
-                private int year;
+            public String getCreateTime() {
+                return createTime;
+            }
 
-                public int getDate() {
-                    return date;
-                }
+            public void setCreateTime(String createTime) {
+                this.createTime = createTime;
+            }
 
-                public void setDate(int date) {
-                    this.date = date;
-                }
+            public String getUpdateTime() {
+                return updateTime;
+            }
 
-                public int getDay() {
-                    return day;
-                }
-
-                public void setDay(int day) {
-                    this.day = day;
-                }
-
-                public int getHours() {
-                    return hours;
-                }
-
-                public void setHours(int hours) {
-                    this.hours = hours;
-                }
-
-                public int getMinutes() {
-                    return minutes;
-                }
-
-                public void setMinutes(int minutes) {
-                    this.minutes = minutes;
-                }
-
-                public int getMonth() {
-                    return month;
-                }
-
-                public void setMonth(int month) {
-                    this.month = month;
-                }
-
-                public int getNanos() {
-                    return nanos;
-                }
-
-                public void setNanos(int nanos) {
-                    this.nanos = nanos;
-                }
-
-                public int getSeconds() {
-                    return seconds;
-                }
-
-                public void setSeconds(int seconds) {
-                    this.seconds = seconds;
-                }
-
-                public int getTime() {
-                    return time;
-                }
-
-                public void setTime(int time) {
-                    this.time = time;
-                }
-
-                public int getTimezoneOffset() {
-                    return timezoneOffset;
-                }
-
-                public void setTimezoneOffset(int timezoneOffset) {
-                    this.timezoneOffset = timezoneOffset;
-                }
-
-                public int getYear() {
-                    return year;
-                }
-
-                public void setYear(int year) {
-                    this.year = year;
-                }
+            public void setUpdateTime(String updateTime) {
+                this.updateTime = updateTime;
             }
         }
     }

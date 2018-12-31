@@ -8,9 +8,7 @@
         android:background="@drawable/shape_search"
         android:layout_width="match_parent"
         android:layout_height="36dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="10dp">
+        android:layout_margin="@dimen/dp_10">
 
         <ImageView
             android:id="@+id/search_back"
@@ -73,48 +71,93 @@
         </LinearLayout>
     </RelativeLayout>
 
-    <TextView
-        android:id="@+id/tv_hot"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/hot"
-        android:textSize="16sp"
+    <RelativeLayout
+        android:id="@+id/rl_search"
         android:layout_below="@id/search_bar"
-        android:layout_marginLeft="10dp"
-        android:layout_marginTop="14dp"
-        android:textColor="#000"
-        android:layout_marginStart="10dp" />
-
-    <com.zhy.view.flowlayout.TagFlowLayout
-        android:id="@+id/fl_hot"
-        app:max_select="-1"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_below="@id/tv_hot"
-        android:layout_marginTop="10dp">
+        android:layout_height="match_parent">
 
-    </com.zhy.view.flowlayout.TagFlowLayout>
+        <TextView
+            android:id="@+id/tv_hot"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/hot"
+            android:textSize="16sp"
+            android:layout_marginLeft="10dp"
+            android:textColor="#000"
+            android:layout_marginStart="10dp" />
 
-    <TextView
-        android:id="@+id/tv_history"
-        android:text="@string/history"
-        android:textSize="16sp"
-        android:layout_marginTop="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginBottom="5dp"
-        android:textColor="#000"
-        android:layout_below="@id/fl_hot"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp" />
+        <com.zhy.view.flowlayout.TagFlowLayout
+            android:id="@+id/fl_hot"
+            app:max_select="-1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_below="@id/tv_hot"
+            android:layout_marginTop="10dp">
 
-    <ListView
-        android:id="@+id/lv_history"
-        android:layout_below="@id/tv_history"
+        </com.zhy.view.flowlayout.TagFlowLayout>
+
+        <LinearLayout
+            android:id="@+id/tv_history"
+            android:orientation="vertical"
+            android:layout_below="@id/fl_hot"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:text="@string/history"
+                android:textSize="16sp"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginBottom="8dp"
+                android:textColor="#000"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp" />
+            <View
+                android:layout_width="match_parent"
+                android:background="@color/black"
+                android:layout_height="1dp"
+                android:alpha="0.1"/>
+        </LinearLayout>
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/lv_history"
+            android:divider="@null"
+            android:layout_below="@id/tv_history"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        </android.support.v7.widget.RecyclerView>
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:visibility="gone"
+        android:orientation="vertical"
+        android:id="@+id/ll_search"
+        android:layout_below="@id/search_bar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
+        <com.flyco.tablayout.SlidingTabLayout
+            android:id="@+id/search_tab"
+            app:tl_textSelectColor="@color/colorAccent"
+            app:tl_textUnselectColor="@color/black"
+            app:tl_textsize="12sp"
+            app:tl_indicator_color="@color/colorAccent"
+            app:tl_indicator_width="25dp"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            app:tl_indicator_width_equal_title="true"
+            app:tl_tab_space_equal="true">
+        </com.flyco.tablayout.SlidingTabLayout>
 
-    </ListView>
+        <android.support.v4.view.ViewPager
+            android:id="@+id/vp_search"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        </android.support.v4.view.ViewPager>
+    </LinearLayout>
 </RelativeLayout>

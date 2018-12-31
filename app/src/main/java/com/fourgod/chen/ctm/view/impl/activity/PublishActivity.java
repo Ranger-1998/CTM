@@ -16,6 +16,7 @@ import com.fourgod.chen.ctm.presenter.impl.PublishPresenter;
 import com.fourgod.chen.ctm.view.widget.CustomDatePicker;
 
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
@@ -45,14 +46,22 @@ public class PublishActivity extends BaseActivity<PublishPresenter> {
     private void bindView() {
         chooseTime = findViewById(R.id.choose_time);
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm", Locale.CHINA);
+
         Date nowTime = new Date();
-        String now = sdf.format(new Date());
+        Calendar rightNow = Calendar.getInstance();
+        rightNow.setTime(nowTime);
+        rightNow.add(Calendar.YEAR,3);//日期加3年
+        Date endTime = rightNow.getTime();
+
+        final String now = sdf.format(nowTime);
+        String end = sdf.format(endTime);
+
         datePicker = new CustomDatePicker(this, new CustomDatePicker.ResultHandler() {
             @Override
             public void handle(String time) {
                 chooseTime.setText(time.split(" ")[0]);
             }
-        }, "2010-01-01 00:00", now);
+        }, now, end);
         datePicker.showSpecificTime(false);
         datePicker.setIsLoop(false);
         close = findViewById(R.id.iv_cancel);
@@ -65,7 +74,7 @@ public class PublishActivity extends BaseActivity<PublishPresenter> {
             public void onClick(View v) {
                 String time;
                 if (chooseTime.getText().equals("选择失效时间")){
-                    time = "2018-12-20";
+                    time = now;
                 } else {
                     time = chooseTime.getText().toString();
                 }
