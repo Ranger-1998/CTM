@@ -65,7 +65,6 @@ public class MyResAndReqFragment extends BaseFragment<MyResAndReqPresenter> {
     private void initView() {
         recyclerView = mRoot.findViewById(R.id.rlv);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-
         presenter.loadData();
     }
 

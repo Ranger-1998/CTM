@@ -5,6 +5,7 @@ import android.support.annotation.NonNull;
 import android.support.v4.util.ArrayMap;
 
 import com.fourgod.chen.ctm.entity.InfoAllListBean;
+import com.fourgod.chen.ctm.entity.ResolvedBean;
 import com.fourgod.chen.ctm.network.NetworkInterface;
 import com.google.gson.Gson;
 
@@ -77,5 +78,27 @@ public class MyResAndReqModel extends BaseModel {
             }
         };
         NetworkInterface.getMyCollections(p,callback);
+    }
+
+    public void resolve(String id){
+        ArrayMap<String,String> p = new ArrayMap<>();
+        p.put("id",id);
+        Callback callback = new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                Gson gson = new Gson();
+                if (response.body() != null) {
+                    ResolvedBean bean = gson.fromJson(response.body().string(), ResolvedBean.class);
+                    bean.setWhat(1);
+                    postEvent(bean);
+                }
+            }
+        };
+        NetworkInterface.resolved(p,callback);
     }
 }

@@ -6,6 +6,7 @@ import android.support.v4.util.ArrayMap;
 
 import com.fourgod.chen.ctm.entity.InfoAllListBean;
 import com.fourgod.chen.ctm.entity.InfoListBean;
+import com.fourgod.chen.ctm.entity.ResolvedBean;
 import com.fourgod.chen.ctm.model.impl.MyResAndReqModel;
 import com.fourgod.chen.ctm.view.impl.fragment.MyResAndReqFragment;
 
@@ -28,6 +29,9 @@ public class MyResAndReqPresenter extends BasePresenter<MyResAndReqFragment,MyRe
         if(msg.what == 0) {
             InfoAllListBean bean = (InfoAllListBean) (msg.obj);
             view.initData(bean.getData());
+        }else if(msg.what == 1){
+            ResolvedBean bean = (ResolvedBean) (msg.obj);
+
         }
     }
 
