@@ -40,6 +40,7 @@
     <string name="del">删除</string>
     <string name="solve">解决了</string>
     <string name="solved">已解决</string>
+    <string name="addFriend">添加好友</string>
 
     <string name="edit_user_inf_title">我的资料</string>
     <string name="edit_user_inf_portrait">头像</string>
@@ -50,6 +51,7 @@
     <string name="edit_user_inf_signal">签名</string>
     <string name="edit_user_inf_signal_hint">有个性,没签名.</string>
     <string name="detail">详情</string>
+
 
     <string name="person_info">个人信息</string>
     <string name="person_auth">认证信息</string>

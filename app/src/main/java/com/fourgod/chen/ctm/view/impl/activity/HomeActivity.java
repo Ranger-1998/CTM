@@ -1,5 +1,7 @@
 package com.fourgod.chen.ctm.view.impl.activity;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -15,6 +17,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.fourgod.chen.ctm.R;
+import com.fourgod.chen.ctm.entity.LoginBean;
 import com.fourgod.chen.ctm.presenter.impl.BasePresenter;
 import com.fourgod.chen.ctm.view.impl.fragment.BaseFragment;
 import com.fourgod.chen.ctm.view.impl.fragment.ChartFragment;
@@ -24,6 +27,10 @@ import com.fourgod.chen.ctm.view.impl.fragment.TestFragment1;
 import com.fourgod.chen.ctm.view.widget.MoreWindow;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
 import com.netease.nim.uikit.business.recent.RecentContactsFragment;
+import com.netease.nimlib.sdk.NIMClient;
+import com.netease.nimlib.sdk.RequestCallback;
+import com.netease.nimlib.sdk.auth.AuthService;
+import com.netease.nimlib.sdk.auth.LoginInfo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -47,6 +54,32 @@ public class HomeActivity extends BaseActivity {
         initView();
         initData();
         initEvent();
+        //doIMLogin();
+    }
+    private void doIMLogin() {
+        SharedPreferences preferences = getSharedPreferences("token",
+                Context.MODE_PRIVATE);
+        String token = preferences.getString("token", "");
+        String accid = preferences.getString("accid", "");
+        LoginInfo info = new LoginInfo(accid,token);
+        RequestCallback<LoginInfo> callback =
+                new RequestCallback<LoginInfo>() {
+                    @Override
+                    public void onSuccess(LoginInfo param) {
+
+                    }
+
+                    @Override
+                    public void onFailed(int code) {
+                    }
+
+                    @Override
+                    public void onException(Throwable exception) {
+                    }
+                    // 可以在此保存LoginInfo到本地，下次启动APP做自动登录用
+                };
+        NIMClient.getService(AuthService.class).login(info)
+                .setCallback(callback);
     }
 
     @Override
