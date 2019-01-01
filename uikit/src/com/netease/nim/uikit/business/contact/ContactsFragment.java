@@ -98,7 +98,7 @@ public class ContactsFragment extends TFragment {
         registerObserver(true);
         registerOnlineStateChangeListener(true);
         // 加载本地数据
-        reload(true);
+        reload(false);
     }
 
     @Override

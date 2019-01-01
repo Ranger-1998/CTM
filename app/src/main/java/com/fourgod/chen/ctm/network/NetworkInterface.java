@@ -130,4 +130,10 @@ public class NetworkInterface {
                 callback);
         request.putRequest();
     }
+
+    public static void resolved(ArrayMap<String, String> param, Callback callback) {
+        JsonRequest request = new JsonRequest(SERVER_HOST + "/information/setResolved", param,
+                callback);
+        request.putRequest();
+    }
 }
