@@ -15,11 +15,15 @@ public class ProgressDialog extends Dialog {
 
     private TextView textView;
     private ProgressBar progressBar;
+    private String message = "上传";
 
     public ProgressDialog(@NonNull Context context) {
         super(context);
     }
 
+    public void setMessage(String message) {
+        this.message = message;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,15 +34,16 @@ public class ProgressDialog extends Dialog {
 
     private void initView() {
         textView = findViewById(R.id.tv_progress);
+        textView.setText("正在" + message);
         progressBar = findViewById(R.id.dialog_progress);
     }
 
     public void setState(boolean isSuccess) {
         progressBar.setVisibility(View.GONE);
         if (isSuccess) {
-            textView.setText("上传成功");
+            textView.setText(message + "成功");
         } else {
-            textView.setText("上传失败");
+            textView.setText(message + "上传失败");
         }
     }
 
