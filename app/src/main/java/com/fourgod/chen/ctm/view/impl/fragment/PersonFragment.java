@@ -98,7 +98,7 @@ public class PersonFragment extends BaseFragment<PersonPresenter> {
 
         BaseFragment chatFragment = new MyResAndReqFragment();
         bundle = new Bundle();
-        bundle.putString("type",MyResAndReqModel.TYPE_REQUIREMENT);
+        bundle.putString("type",MyResAndReqModel.TYPE_COLLECTION);
         chatFragment.setArguments(bundle);
 
         BaseFragment aboutMeFragment = new AboutMeFragment();
