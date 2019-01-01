@@ -35,6 +35,10 @@ public class MyResAndReqPresenter extends BasePresenter<MyResAndReqFragment,MyRe
         model.setType(type);
     }
 
+    public String getType(){
+        return model.getType();
+    }
+
     public void loadData(){
         if(model.getType()==model.TYPE_COLLECTION){
             ArrayMap<String,String> param = new ArrayMap<>();

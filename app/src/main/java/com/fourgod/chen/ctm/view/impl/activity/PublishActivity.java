@@ -27,6 +27,7 @@ import com.bumptech.glide.Glide;
 import com.fourgod.chen.ctm.R;
 import com.fourgod.chen.ctm.entity.CategoryListBean;
 import com.fourgod.chen.ctm.entity.ImageResultBean;
+import com.fourgod.chen.ctm.entity.InfoAllListBean;
 import com.fourgod.chen.ctm.entity.PushBean;
 import com.fourgod.chen.ctm.presenter.impl.PublishPresenter;
 import com.fourgod.chen.ctm.utils.GlideLoadEngine;
@@ -39,6 +40,7 @@ import com.zhihu.matisse.engine.impl.GlideEngine;
 import java.io.File;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -46,6 +48,7 @@ import java.util.Locale;
 
 public class PublishActivity extends BaseActivity<PublishPresenter> {
 
+    private boolean isEdit = false;
     private ImageView close;
     private TextView publish;
     private EditText editTitle;
@@ -65,6 +68,7 @@ public class PublishActivity extends BaseActivity<PublishPresenter> {
     private List<String> selected = new ArrayList<>();
     private ImageAdapter imageAdapter;
     private String imageUrls = "";
+    private InfoAllListBean.DataBean bean;
 
 
     @RequiresApi(api = Build.VERSION_CODES.N)
@@ -75,6 +79,10 @@ public class PublishActivity extends BaseActivity<PublishPresenter> {
         Intent intent = getIntent();
         if (intent != null) {
             type = intent.getIntExtra("type", 0);
+            isEdit = intent.getBooleanExtra("isEdit", false);
+            if (isEdit) {
+                bean = ((InfoAllListBean.DataBean) intent.getSerializableExtra("bean"));
+            }
         }
 
         initDialog();
@@ -137,6 +145,9 @@ public class PublishActivity extends BaseActivity<PublishPresenter> {
         });
 
         publish = findViewById(R.id.tv_publish);
+        if (isEdit) {
+            publish.setText("修改");
+        }
         publish.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -148,10 +159,19 @@ public class PublishActivity extends BaseActivity<PublishPresenter> {
                 }
             }
         });
-
         editTitle = findViewById(R.id.edit_title);
         editContent = findViewById(R.id.edit_content);
+
+        if (bean != null) {
+            editTitle.setText(bean.getTitle());
+            editContent.setText(bean.getContent());
+            chooseTime.setText(bean.getEndTime());
+            if (bean.getPicture() != null && !bean.getPicture().equals("")) {
+                selected = Arrays.asList(bean.getPicture().split("\\|"));
+            }
+        }
         chooseCate = findViewById(R.id.ll_cate);
+
         chooseTime.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -218,9 +238,16 @@ public class PublishActivity extends BaseActivity<PublishPresenter> {
         for (CategoryListBean.DataBean.ListBean bean: obj.getData().getList()) {
             cateNameList.add(bean.getName());
         }
+        int p = 0;
+        for (int i = 0; i < cateList.size(); i++) {
+            if (cateList.get(i).getId() == bean.getCategoryId()) {
+                p = i + 1;
+            }
+        }
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
                 R.layout.item_cate, cateNameList);
         cateSpinner.setAdapter(adapter);
+        cateSpinner.setSelection(p);
     }
 
     public void showDialog() {
@@ -242,7 +269,7 @@ public class PublishActivity extends BaseActivity<PublishPresenter> {
 
     public void imageUploadComplete(ImageResultBean bean) {
        for (int i = 0; i < bean.getBeans().size(); i++) {
-           imageUrls = imageUrls + bean.getBeans().get(i).getData();
+           imageUrls = imageUrls + bean.getBeans().get(i).getMessage();
            if (i != bean.getBeans().size() - 1) {
                imageUrls = imageUrls + "|";
            }
@@ -276,9 +303,6 @@ public class PublishActivity extends BaseActivity<PublishPresenter> {
         if (requestCode == 1 && resultCode == RESULT_OK) {
             if (data != null) {
                 List<String> list = Matisse.obtainPathResult(data);
-
-
-
                 for (String path: list) {
                     if (!selected.contains(path)) {
                         selected.add(path);
