@@ -14,7 +14,7 @@ import okhttp3.Request;
  * on 2018/12/17.
  */
 public class NetworkInterface {
-    private static final String SERVER_HOST = "http://192.168.43.196:8085";
+    private static final String SERVER_HOST = "http://66.183.250.236:8085";
 
     public static void getNews(String type, Callback callback) {
         Request request = new Request.Builder().url(SERVER_HOST + type).get().build();
@@ -62,5 +62,23 @@ public class NetworkInterface {
         JsonRequest request = new JsonRequest(SERVER_HOST + "/hotSearch/doSearch",
                 param, callback);
         request.putRequest();
+    }
+
+    public static void addInformation(ArrayMap<String, String> param, Callback callback) {
+        JsonRequest request = new JsonRequest(SERVER_HOST + "/information/add",
+                param, callback);
+        request.postRequest();
+    }
+
+    public static void addInformationImage(ArrayMap<String, String> param, Callback callback) {
+        JsonRequest request = new JsonRequest(SERVER_HOST + "/information/imgUpdate",
+                param,callback);
+        request.postRequest();
+    }
+
+    public static void uploadImage(String path, Callback callback) {
+        FileRequest request = new FileRequest();
+        request.uploadMultiFile(SERVER_HOST + "/information/imgUpdate", path,
+                "file",callback);
     }
 }

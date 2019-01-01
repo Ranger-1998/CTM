@@ -75,6 +75,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter> {
     }
 
     private void login() {
+        loginButton.setClickable(false);
         String password = passwordEdit.getText().toString();
         String userName = userNameEdit.getText().toString();
         if (password.equals("") || userName.equals("")) {
@@ -107,6 +108,7 @@ public class LoginActivity extends BaseActivity<LoginPresenter> {
             LoginActivity.this.startActivity(intent);
             LoginActivity.this.finish();
         } else {
+            loginButton.setClickable(true);
             Toast.makeText(LoginActivity.this, bean.getMessage(),
                     Toast.LENGTH_SHORT).show();
         }

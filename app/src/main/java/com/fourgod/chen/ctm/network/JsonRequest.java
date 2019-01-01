@@ -35,7 +35,8 @@ public class JsonRequest {
     public JsonRequest(String url, ArrayMap<String, String> requestParam, Callback callback) {
         this.mUrl = url;
         this.mRequestParam = requestParam;
-        body = RequestBody.create(JSON, new Gson().toJson(mRequestParam));
+        String gson = new Gson().toJson(mRequestParam);
+        body = RequestBody.create(JSON, gson);
         networkManager = NetworkManager.getInstance();
         token = networkManager.getToken();
         this.callback = callback;
