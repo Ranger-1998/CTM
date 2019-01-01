@@ -14,8 +14,29 @@ import okhttp3.Request;
  * on 2018/12/17.
  */
 public class NetworkInterface {
-    private static final String SERVER_HOST = "http://10.16.53.107:8085";
+    private static final String SERVER_HOST = "http://66.183.250.236:8085";
 
+
+    public static void updateUserInfo(ArrayMap<String, String> param, Callback callback){
+        JsonRequest request = new JsonRequest(SERVER_HOST + "/user/edit",
+                param, callback);
+        request.putRequest();
+    }
+    public static void register(ArrayMap<String, String> param, Callback callback){
+        JsonRequest request = new JsonRequest(SERVER_HOST + "/user/add",
+                param, callback);
+        request.postRequest();
+    }
+    public static void sendCode(ArrayMap<String, String> param, Callback callback){
+        JsonRequest request = new JsonRequest(SERVER_HOST + "/code/sendcode",
+                param, callback);
+        request.postRequest();
+    }
+    public static void checkCode(ArrayMap<String, String> param,Callback callback){
+        JsonRequest request = new JsonRequest(SERVER_HOST + "/code/checkcode",
+                param, callback);
+        request.postRequest();
+    }
     public static void getNews(String type, Callback callback) {
         Request request = new Request.Builder().url(SERVER_HOST + type).get().build();
         OkHttpClient okHttpClient = new OkHttpClient();
@@ -91,5 +112,11 @@ public class NetworkInterface {
     public static void reportInfo(ArrayMap<String, String> param, Callback callback) {
         JsonRequest request = new JsonRequest(SERVER_HOST + "/report/add", param, callback);
         request.postRequest();
+    }
+
+    public static void uploadPortrait(String path,Callback callback){
+        FileRequest request = new FileRequest();
+        request.uploadMultiFile(SERVER_HOST + "/user/imgUpdate", path,
+                "file",callback);
     }
 }

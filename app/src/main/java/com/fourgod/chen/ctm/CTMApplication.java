@@ -1,5 +1,6 @@
 package com.fourgod.chen.ctm;
 
+import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -20,15 +21,18 @@ import com.netease.nimlib.sdk.uinfo.UserInfoProvider;
 import com.netease.nimlib.sdk.uinfo.model.UserInfo;
 import com.netease.nimlib.sdk.util.NIMUtil;
 
+import java.util.LinkedList;
+import java.util.List;
+
 /**
  * Created by laobo on 2018/12/30.
  */
 
 public class CTMApplication extends Application {
-    public static CTMApplication application;
+    private static CTMApplication mApplication;
+    private static List<Activity> activityList = new LinkedList<Activity>();
     @Override
     public void onCreate() {
-        application = this;
         super.onCreate();
         //NIMClient.config(this,loginfo(),options());
         NIMClient.init(this,loginfo(),options());
@@ -36,7 +40,23 @@ public class CTMApplication extends Application {
             // 在主进程中初始化UI组件，判断所属进程方法请参见demo源码。
             initUiKit();
         }
+        mApplication=this;
     }
+    public static CTMApplication getInstance(){
+        return mApplication;
+    }
+    public void addActivity(Activity activity)  {
+        activityList.add(activity);
+    }
+    public void removeActivity(Activity activity){
+        activityList.remove(activity);
+    }
+    public void exitAllActivity(){
+        for(Activity activity:activityList) {
+            activity.finish();
+        }
+    }
+
     private void initUiKit() {
 
         // 初始化

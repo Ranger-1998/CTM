@@ -2,10 +2,15 @@ package com.fourgod.chen.ctm.view.impl.activity;
 
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.content.pm.ProviderInfo;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.util.ArrayMap;
+import android.util.Log;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,6 +24,7 @@ import com.bumptech.glide.request.target.Target;
 import com.contrarywind.listener.OnItemSelectedListener;
 import com.contrarywind.view.WheelView;
 import com.fourgod.chen.ctm.R;
+import com.fourgod.chen.ctm.entity.RegisterBean;
 import com.fourgod.chen.ctm.presenter.impl.EditUserInfPresenter;
 import com.fourgod.chen.ctm.utils.GlideLoadEngine;
 import com.lljjcoder.Interface.OnCityItemClickListener;
@@ -50,6 +56,14 @@ public class EditUserInfActivity extends BaseActivity<EditUserInfPresenter> {
     private TextView mTvHometown;
     private ImageView mIgBack;
     private CircleImageView mCivPortrait;
+    private TextView mSave;
+    private LinearLayout mSaving;
+    private EditText mNickname;
+    private String mSex;
+    private EditText mSignal;
+    private Bundle extras;
+    private String mPortraitUrl;
+    private Intent mIntent;
     @Override
     protected EditUserInfPresenter getPresenter() {
         return new EditUserInfPresenter(this);
@@ -59,8 +73,10 @@ public class EditUserInfActivity extends BaseActivity<EditUserInfPresenter> {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_user_inf);
+        extras=getIntent().getExtras();
         mPicker.init(this);
         initView();
+        setDate();
     }
 
     @Override
@@ -69,6 +85,7 @@ public class EditUserInfActivity extends BaseActivity<EditUserInfPresenter> {
             if (resultCode == RESULT_OK) {
                 String uri = Matisse.obtainPathResult(data).get(0);
                 if (uri != null) {
+                    mPortraitUrl=uri;
                     Glide.with(this)
                             .asBitmap() // some .jpeg files are actually gif
                             .load(uri)
@@ -83,26 +100,60 @@ public class EditUserInfActivity extends BaseActivity<EditUserInfPresenter> {
         }
 
     }
-
+    public void uploadPortraitSuccess(String url){
+        Log.d("Lyon",url);
+        mIntent.putExtra("headImgUrl",url);
+        this.setResult(2,mIntent);
+        Toast.makeText(this,"修改成功",Toast.LENGTH_SHORT).show();
+        EditUserInfActivity.this.finish();
+    }
     private void initView(){
         mWvSex=findViewById(R.id.edit_user_sex);
         mTvBirth=findViewById(R.id.edit_user_birth);
         mTvHometown=findViewById(R.id.edit_user_hometown);
         mIgBack=findViewById(R.id.edit_user_back);
         mCivPortrait=findViewById(R.id.edit_user_portrait);
+        mSave=findViewById(R.id.tv_edit_save);
+        mSaving=findViewById(R.id.ll_edit_saving);
+        mNickname=findViewById(R.id.edit_user_nickname);
+        mSignal=findViewById(R.id.edit_user_signal);
         mWvSex.setCyclic(false);
         mWvSex.setTextSize(14);
         final List<String> mOptionsItems = new ArrayList<>();
         mOptionsItems.add("男");
         mOptionsItems.add("女");
+        mSex="男";
         mWvSex.setAdapter(new ArrayWheelAdapter(mOptionsItems));
         mWvSex.setOnItemSelectedListener(new OnItemSelectedListener() {
             @Override
             public void onItemSelected(int index) {
-                //
+                if(index==0){
+                    mSex="男";
+                }else{
+                    mSex="女";
+                }
             }
         });
-
+        mSave.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mSave.setVisibility(View.GONE);
+                mSaving.setVisibility(View.VISIBLE);
+                if(mNickname.getText().toString().length()<4||mNickname.getText().toString().length()>16){
+                    Toast.makeText(EditUserInfActivity.this,"昵称长度应在4~16个字符之间",Toast.LENGTH_SHORT).show();
+                    mSave.setVisibility(View.VISIBLE);
+                    mSaving.setVisibility(View.GONE);
+                    return;
+                }
+                ArrayMap<String, String> param=new ArrayMap<>();
+                param.put("nickname",mNickname.getText().toString());
+                param.put("sex",mSex);
+                param.put("birthday",mTvBirth.getText().toString());
+                param.put("hometown",mTvHometown.getText().toString());
+                param.put("signature",mSignal.getText().toString());
+                presenter.updateInfo(param);
+            }
+        });
         mIgBack.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -192,6 +243,41 @@ public class EditUserInfActivity extends BaseActivity<EditUserInfPresenter> {
 
             }
         });
+
+
+    }
+    private void setDate(){
+        mNickname.setText(extras.getString("nickname"));
+        mTvBirth.setText(extras.getString("birth"));
+        mTvHometown.setText(extras.getString("hometown"));
+        mSignal.setText(extras.getString("signal"));
+        if(extras.getString("sex").equals("男")){
+            mWvSex.setCurrentItem(0);
+        }else{
+            mWvSex.setCurrentItem(1);
+        }
+        Glide.with(this)
+                .asBitmap() // some .jpeg files are actually gif
+                .load(extras.getString("headImageUrl"))
+                .apply(new RequestOptions() {{
+                    override(Target.SIZE_ORIGINAL);
+                }})
+                .into(mCivPortrait);
+    }
+    public void updateSuccess(RegisterBean bean){
+        mIntent = new Intent();
+        mIntent.putExtra("nickname",bean.getData().getNickname());
+        if(mPortraitUrl!=null) {
+            presenter.uploadPortrait(mPortraitUrl);
+        }else{
+            this.setResult(1,mIntent);
+            Toast.makeText(this,"修改成功",Toast.LENGTH_SHORT).show();
+            EditUserInfActivity.this.finish();
+        }
+    }
+
+    public void updateFail(){
+        Toast.makeText(this,"修改失败",Toast.LENGTH_SHORT).show();
     }
 }
 

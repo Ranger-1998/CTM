@@ -4,15 +4,12 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
-    <android.support.v4.widget.NestedScrollView
+    <fragment
+        android:id="@+id/recent_contacts_fragment"
+        android:name="com.netease.nim.uikit.business.recent.RecentContactsFragment"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <TextView
-            android:id="@+id/f_tv"
-            android:text="@string/text"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-    </android.support.v4.widget.NestedScrollView>
+        android:layout_height="match_parent">
+    </fragment>
 
 
 </LinearLayout>
