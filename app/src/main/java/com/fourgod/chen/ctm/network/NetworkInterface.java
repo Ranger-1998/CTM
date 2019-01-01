@@ -14,7 +14,7 @@ import okhttp3.Request;
  * on 2018/12/17.
  */
 public class NetworkInterface {
-    private static final String SERVER_HOST = "http://66.183.250.236:8085";
+    private static final String SERVER_HOST = "http://192.168.1.111:8085";
 
 
     public static void updateUserInfo(ArrayMap<String, String> param, Callback callback){
@@ -135,5 +135,13 @@ public class NetworkInterface {
         JsonRequest request = new JsonRequest(SERVER_HOST + "/information/setResolved", param,
                 callback);
         request.putRequest();
+    }
+
+    public static void deleteInfo(String id, Callback callback) {
+        ArrayMap<String, String> param = new ArrayMap<>();
+        param.put("id", id);
+        JsonRequest request = new JsonRequest(SERVER_HOST + "/information/del", param,
+                callback);
+        request.deleteRequest();
     }
 }

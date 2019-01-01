@@ -31,7 +31,10 @@ public class MyResAndReqPresenter extends BasePresenter<MyResAndReqFragment,MyRe
             view.initData(bean.getData());
         }else if(msg.what == 1){
             ResolvedBean bean = (ResolvedBean) (msg.obj);
-
+            view.resolvedBean(bean);
+        } else if (msg.what == 2) {
+            ResolvedBean bean = (ResolvedBean) (msg.obj);
+            view.deleteReturn(bean);
         }
     }
 
@@ -52,5 +55,13 @@ public class MyResAndReqPresenter extends BasePresenter<MyResAndReqFragment,MyRe
             param.put("type",model.getType());
             model.getMyInfoList(param);
         }
+    }
+
+    public void solveInfo(String id) {
+        model.resolve(id);
+    }
+
+    public void deleteInfo(String id) {
+        model.deleteInfo(id);
     }
 }

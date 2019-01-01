@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.fourgod.chen.ctm.R;
 import com.fourgod.chen.ctm.entity.InfoAllListBean;
+import com.fourgod.chen.ctm.entity.ResolvedBean;
 import com.fourgod.chen.ctm.model.impl.MyResAndReqModel;
 import com.fourgod.chen.ctm.presenter.impl.MyResAndReqPresenter;
 import com.fourgod.chen.ctm.view.adapter.MyResAndReqRlvAdapter;
@@ -73,7 +74,7 @@ public class MyResAndReqFragment extends BaseFragment<MyResAndReqPresenter> {
         myInfList.addAll(data);
         final Context context = getActivity();
         if(rlvAdapter == null){
-            rlvAdapter = new MyResAndReqRlvAdapter(R.layout.item_my_res_and_req, myInfList,getActivity());
+            rlvAdapter = new MyResAndReqRlvAdapter(R.layout.item_my_res_and_req, myInfList, presenter,getActivity());
             rlvAdapter.setOnItemLongClickListener(new BaseQuickAdapter.OnItemLongClickListener() {
                 @Override
                 public boolean onItemLongClick(BaseQuickAdapter adapter, View view, int position) {
@@ -91,9 +92,22 @@ public class MyResAndReqFragment extends BaseFragment<MyResAndReqPresenter> {
                     return false;
                 }
             });
+
             recyclerView.setAdapter(rlvAdapter);
         }
         rlvAdapter.notifyDataSetChanged();
+    }
+
+    public void deleteReturn(ResolvedBean bean) {
+        if (bean.getCode() == 0) {
+            presenter.loadData();
+        }
+    }
+
+    public void resolvedBean(ResolvedBean bean) {
+        if (bean.getCode() == 0) {
+            presenter.loadData();
+        }
     }
 
 //    public void addData(List<InfoListBean.DataBean.ListBean> data){

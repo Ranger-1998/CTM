@@ -85,12 +85,12 @@ public class MyResAndReqModel extends BaseModel {
         p.put("id",id);
         Callback callback = new Callback() {
             @Override
-            public void onFailure(Call call, IOException e) {
+            public void onFailure(@NonNull Call call, @NonNull IOException e) {
 
             }
 
             @Override
-            public void onResponse(Call call, Response response) throws IOException {
+            public void onResponse(@NonNull Call call, Response response) throws IOException {
                 Gson gson = new Gson();
                 if (response.body() != null) {
                     ResolvedBean bean = gson.fromJson(response.body().string(), ResolvedBean.class);
@@ -100,5 +100,27 @@ public class MyResAndReqModel extends BaseModel {
             }
         };
         NetworkInterface.resolved(p,callback);
+    }
+
+    public void deleteInfo(String id) {
+        Callback callback = new Callback() {
+            @Override
+            public void onFailure(@NonNull Call call, @NonNull IOException e) {
+
+            }
+
+            @Override
+            public void onResponse(@NonNull Call call, @NonNull Response response)
+                    throws IOException {
+                Gson gson = new Gson();
+                if (response.body() != null) {
+                    ResolvedBean bean = gson.fromJson(response.body().string(), ResolvedBean.class);
+                    bean.setWhat(2);
+                    postEvent(bean);
+                }
+            }
+        };
+        NetworkInterface.deleteInfo(id, callback);
+
     }
 }

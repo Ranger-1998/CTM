@@ -34,7 +34,7 @@ public class MyResAndReqRlvAdapter extends BaseQuickAdapter<InfoAllListBean.Data
     }
 
     @Override
-    protected void convert(final BaseViewHolder helper, InfoAllListBean.DataBean item) {
+    protected void convert(final BaseViewHolder helper, final InfoAllListBean.DataBean item) {
         helper.setText(R.id.tv_title, item.getTitle());
         helper.setText(R.id.tv_content, item.getContent());
         helper.setText(R.id.tv_time, "发布于 " + item.getCreateTime());
@@ -48,11 +48,21 @@ public class MyResAndReqRlvAdapter extends BaseQuickAdapter<InfoAllListBean.Data
         }
         if(item.getStatus().equals("1")){
             helper.setBackgroundRes(R.id.btn_solve,R.drawable.shape_btn_solved);
+        } else {
+            helper.setBackgroundRes(R.id.btn_solve,R.drawable.shape_btn_solve);
         }
-        helper.setOnItemClickListener(R.id.btn_solve, new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 
+        helper.getView(R.id.btn_del).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                presenter.deleteInfo(String.valueOf(item.getId()));
+            }
+        });
+
+        helper.getView(R.id.btn_solve).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                presenter.solveInfo(String.valueOf(item.getId()));
             }
         });
     }
