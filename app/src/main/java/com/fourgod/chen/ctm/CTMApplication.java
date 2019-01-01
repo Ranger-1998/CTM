@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.support.multidex.MultiDex;
+import android.util.Log;
 
 import com.fourgod.chen.ctm.R;
 import com.fourgod.chen.ctm.view.impl.activity.SplashActivity;
@@ -61,6 +62,7 @@ public class CTMApplication extends Application {
 
         // 初始化
         NimUIKit.init(this);
+        Log.v("Lao","UiKit init...");
 
         // 可选定制项
         // 注册定位信息提供者类（可选）,如果需要发送地理位置消息，必须提供。

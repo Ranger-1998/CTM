@@ -15,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -28,6 +29,12 @@ import com.fourgod.chen.ctm.entity.InfoListBean;
 import com.fourgod.chen.ctm.entity.ReportBean;
 import com.fourgod.chen.ctm.presenter.impl.InfoDetailPresenter;
 import com.fourgod.chen.ctm.utils.DimenUtils;
+import com.netease.nim.uikit.api.NimUIKit;
+import com.netease.nimlib.sdk.NIMClient;
+import com.netease.nimlib.sdk.RequestCallback;
+import com.netease.nimlib.sdk.friend.FriendService;
+import com.netease.nimlib.sdk.friend.constant.VerifyType;
+import com.netease.nimlib.sdk.friend.model.AddFriendData;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -37,7 +44,7 @@ import java.util.List;
  * Created by laobo on 2018/12/19.
  */
 
-public class InfoDetailActivity extends BaseActivity<InfoDetailPresenter> {
+public class InfoDetailActivity extends BaseActivity<InfoDetailPresenter> implements View.OnClickListener {
     private ImageView backButton;
     private ImageView moreButton;
     private ImageView collectButton;
@@ -50,6 +57,8 @@ public class InfoDetailActivity extends BaseActivity<InfoDetailPresenter> {
     private InfoListBean.DataBean.ListBean bean;
     private List<String> pictureUrls = new ArrayList<>();
     private PopupWindow popupWindow;
+    private FloatingActionButton chatBtn;
+    private LinearLayout addFriendBtn;
 
     @Override
     protected InfoDetailPresenter getPresenter() {
@@ -65,6 +74,7 @@ public class InfoDetailActivity extends BaseActivity<InfoDetailPresenter> {
         }
         setContentView(R.layout.activity_detail);
         initView();
+
     }
 
     private void initView() {
@@ -98,6 +108,11 @@ public class InfoDetailActivity extends BaseActivity<InfoDetailPresenter> {
         publishTime = findViewById(R.id.tv_time);
         infoContent = findViewById(R.id.tv_detail_content);
         infoImages = findViewById(R.id.rl_detail_images);
+        chatBtn = findViewById(R.id.fab_chat);
+        addFriendBtn = findViewById(R.id.btn_add);
+
+        chatBtn.setOnClickListener(this);
+        addFriendBtn.setOnClickListener(this);
 
         if (bean != null) {
             Glide.with(this).load(bean.getUserHeadUrl()).into(userHead);
@@ -123,6 +138,11 @@ public class InfoDetailActivity extends BaseActivity<InfoDetailPresenter> {
                         3));
             }
         }
+
+        if(NIMClient.getService(FriendService.class).isMyFriend(String.valueOf(bean.getUserId()))){
+            addFriendBtn.setBackgroundResource(R.drawable.shape_btn_solved);
+        }
+
     }
 
     private void dealPictureUrls(String urls) {
@@ -170,6 +190,41 @@ public class InfoDetailActivity extends BaseActivity<InfoDetailPresenter> {
 
     public void reportReturn(ReportBean bean) {
 
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()){
+            case R.id.fab_chat:
+                //跳转聊天
+                NimUIKit.startP2PSession(this, String.valueOf(bean.getUserId()));
+                break;
+            case R.id.btn_add:
+                //添加好友
+                NIMClient.getService(FriendService.class)
+                        .addFriend(new AddFriendData(String.valueOf(bean.getUserId()), VerifyType.DIRECT_ADD))
+                        .setCallback(new RequestCallback<Void>() {
+                            @Override
+                            public void onSuccess(Void aVoid) {
+                                Toast.makeText(InfoDetailActivity.this
+                                        ,"添加好友成功！",Toast.LENGTH_SHORT).show();
+                                addFriendBtn.setBackgroundResource(R.drawable.shape_btn_solved);
+                            }
+
+                            @Override
+                            public void onFailed(int i) {
+                                Toast.makeText(InfoDetailActivity.this
+                                        ,"添加好友失败！",Toast.LENGTH_SHORT).show();
+                            }
+
+                            @Override
+                            public void onException(Throwable throwable) {
+                                Toast.makeText(InfoDetailActivity.this
+                                        ,"添加好友失败！",Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                break;
+        }
     }
 
     class DetailImageAdapter extends RecyclerView.Adapter<DetailImageAdapter.DetailImageHolder> {

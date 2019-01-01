@@ -12,9 +12,11 @@ import android.widget.RelativeLayout;
 import com.fourgod.chen.ctm.R;
 import com.fourgod.chen.ctm.network.NetworkManager;
 import com.fourgod.chen.ctm.presenter.impl.SplashPresenter;
+import com.netease.nim.uikit.api.NimUIKit;
 
 public class SplashActivity extends BaseActivity<SplashPresenter> {
     private String token;
+    private String accid;
 
     @Override
     protected SplashPresenter getPresenter() {
@@ -25,7 +27,7 @@ public class SplashActivity extends BaseActivity<SplashPresenter> {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
-        getToken();
+        getTokenAndAccId();
         RelativeLayout relativeLayout = findViewById(R.id.rl_splash);
         AlphaAnimation alphaAnimation = new AlphaAnimation(0.1f, 1.0f);
         alphaAnimation.setDuration(2000);
@@ -44,6 +46,7 @@ public class SplashActivity extends BaseActivity<SplashPresenter> {
                     SplashActivity.this.startActivity(intent);
                 } else {
                     NetworkManager.getInstance().setToken(token);
+                    NimUIKit.setAccount(accid);
                     Intent intent = new Intent(SplashActivity.this,
                             HomeActivity.class);
                     SplashActivity.this.startActivity(intent);
@@ -58,9 +61,10 @@ public class SplashActivity extends BaseActivity<SplashPresenter> {
         });
     }
 
-    private void getToken() {
+    private void getTokenAndAccId() {
         SharedPreferences preferences = getSharedPreferences("token",
                 Context.MODE_PRIVATE);
         token = preferences.getString("token", "");
+        accid = preferences.getString("accid", "");
     }
 }

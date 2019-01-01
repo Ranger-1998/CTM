@@ -1,9 +1,52 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/bar"
+        android:paddingTop="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="@color/colorPrimary">
+        <TextView
+            android:textColor="@color/black2"
+            android:text="@string/bnv_chat"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="22dp"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+    <com.flyco.tablayout.SlidingTabLayout
+        android:id="@+id/slTabLayout"
+        android:layout_width="match_parent"
+        android:background="@color/colorPrimary"
+        app:tabSelectedTextColor="@color/colorAccent"
+        app:tl_indicator_color="@color/colorAccent"
+        app:tl_textSelectColor="@color/colorAccent"
+        app:tl_textUnselectColor="@color/black"
+        app:tl_textsize="14sp"
+        app:tl_indicator_margin_top="2dp"
+        app:tl_tab_space_equal="true"
+        app:tl_divider_width="15dp"
+        android:layout_height="38dp">
+
+    </com.flyco.tablayout.SlidingTabLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/login_car_bg" />
+    <android.support.v4.view.ViewPager
+        android:id="@+id/vp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    </android.support.v4.view.ViewPager>
+
     <fragment
         android:id="@+id/recent_contacts_fragment"
         android:name="com.netease.nim.uikit.business.recent.RecentContactsFragment"

@@ -2,6 +2,7 @@ package com.fourgod.chen.ctm.view.impl.fragment;
 
 import android.content.Context;
 import android.content.Intent;
+import android.media.Image;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -121,6 +122,8 @@ public class ListFragment extends BaseFragment<ListPresenter> implements IBaseVi
                 helper.setText(R.id.item_content, item.getContent());
                 helper.setText(R.id.item_user_name, item.getUserNickName());
                 helper.setText(R.id.item_push_time, item.getCreateTime());
+                Glide.with(ListFragment.this.getActivity()).load(item.getUserHeadUrl())
+                        .into((ImageView)helper.getView(R.id.item_user_head));
                 String[] imgs;
                 if (item.getPicture() != null
                         && (imgs = item.getPicture().split("\\|")).length>0) {
