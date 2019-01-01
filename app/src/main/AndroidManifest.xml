@@ -72,6 +72,7 @@
         <activity android:name=".view.impl.activity.InfoDetailActivity" />
         <activity android:name=".view.impl.activity.PublishActivity"/>
         <activity android:name=".view.impl.activity.HomeActivity"/>
+        <activity android:name=".view.impl.activity.ImageViewActivity"/>
 
 
 

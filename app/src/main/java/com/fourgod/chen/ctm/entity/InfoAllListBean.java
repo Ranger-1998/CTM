@@ -1,6 +1,7 @@
 package com.fourgod.chen.ctm.entity;
 
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
@@ -12,7 +13,7 @@ public class InfoAllListBean extends BaseBean {
     /**
      * code : 0
      * message : OK
-     * data : [{"id":1,"title":"自行车","content":"自行车","status":"0","type":"1","categoryId":3,"userId":10,"createTime":"2018-08-04 12:42:42","updateTime":"2018-12-29 07:32:55"},{"id":5,"title":"任天堂港版SWITCH，9.9成新","content":"今年4月份买的上手不超过10小时，塞尔达实体卡","picture":"https://nmbimg.fastmirror.org/thumb/2018-07-25/5b57d24a7e28f.jpg|https://nmbimg.fastmirror.org/thumb/2018-09-27/5bac5ffd3572c.jpg","status":"0","type":"1","categoryId":1,"userId":10,"createTime":"2018-12-20 08:10:03","updateTime":"2018-12-29 07:30:50"},{"id":7,"title":"台灯","content":"82年的台灯","status":"1","type":"1","categoryId":3,"userId":10,"createTime":"2018-12-20 08:13:47","updateTime":"2018-12-29 08:44:14"}]
+     * data : [{"id":3,"title":"摩托车","content":"82年的摩托车","picture":"https://nmbimg.fastmirror.org/thumb/2018-09-26/5bab612f4f646.png","status":"0","type":"1","categoryId":3,"userId":19,"createTime":"2018-12-20 08:06:46","updateTime":"2019-01-01 08:07:01","endTime":"2018-07-01"}]
      */
 
     private int code;
@@ -43,30 +44,32 @@ public class InfoAllListBean extends BaseBean {
         this.data = data;
     }
 
-    public static class DataBean {
+    public static class DataBean implements Serializable {
         /**
-         * id : 1
-         * title : 自行车
-         * content : 自行车
+         * id : 3
+         * title : 摩托车
+         * content : 82年的摩托车
+         * picture : https://nmbimg.fastmirror.org/thumb/2018-09-26/5bab612f4f646.png
          * status : 0
          * type : 1
          * categoryId : 3
-         * userId : 10
-         * createTime : 2018-08-04 12:42:42
-         * updateTime : 2018-12-29 07:32:55
-         * picture : https://nmbimg.fastmirror.org/thumb/2018-07-25/5b57d24a7e28f.jpg|https://nmbimg.fastmirror.org/thumb/2018-09-27/5bac5ffd3572c.jpg
+         * userId : 19
+         * createTime : 2018-12-20 08:06:46
+         * updateTime : 2019-01-01 08:07:01
+         * endTime : 2018-07-01
          */
 
         private int id;
         private String title;
         private String content;
+        private String picture;
         private String status;
         private String type;
         private int categoryId;
         private int userId;
         private String createTime;
         private String updateTime;
-        private String picture;
+        private String endTime;
 
         public int getId() {
             return id;
@@ -90,6 +93,14 @@ public class InfoAllListBean extends BaseBean {
 
         public void setContent(String content) {
             this.content = content;
+        }
+
+        public String getPicture() {
+            return picture;
+        }
+
+        public void setPicture(String picture) {
+            this.picture = picture;
         }
 
         public String getStatus() {
@@ -140,12 +151,12 @@ public class InfoAllListBean extends BaseBean {
             this.updateTime = updateTime;
         }
 
-        public String getPicture() {
-            return picture;
+        public String getEndTime() {
+            return endTime;
         }
 
-        public void setPicture(String picture) {
-            this.picture = picture;
+        public void setEndTime(String endTime) {
+            this.endTime = endTime;
         }
     }
 }

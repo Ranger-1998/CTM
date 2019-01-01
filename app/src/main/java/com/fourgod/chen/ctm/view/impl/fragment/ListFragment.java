@@ -1,6 +1,7 @@
 package com.fourgod.chen.ctm.view.impl.fragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -25,6 +26,7 @@ import com.fourgod.chen.ctm.entity.InfoListBean;
 import com.fourgod.chen.ctm.presenter.impl.ListPresenter;
 import com.fourgod.chen.ctm.utils.DimenUtils;
 import com.fourgod.chen.ctm.view.i.IBaseView;
+import com.fourgod.chen.ctm.view.impl.activity.InfoDetailActivity;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.scwang.smartrefresh.layout.api.RefreshLayout;
 import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
@@ -146,6 +148,17 @@ public class ListFragment extends BaseFragment<ListPresenter> implements IBaseVi
         images.add(R.mipmap.person_bg);
         mBanner.setLayoutParams(new RecyclerView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,400));
         mBanner.setImages(images);
+        mAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+                if (getActivity() != null) {
+                    Intent intent = new Intent(getActivity(), InfoDetailActivity.class);
+                    intent.putExtra("infoDetail",
+                            ((InfoListBean.DataBean.ListBean) adapter.getData().get(position)));
+                    getActivity().startActivity(intent);
+                }
+            }
+        });
         mAdapter.setHeaderView(mBanner);
         mRecyclerView.setAdapter(mAdapter);
         mBanner.start();

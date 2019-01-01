@@ -52,4 +52,5 @@ public class PublishPresenter extends BasePresenter<PublishActivity, PublishMode
     public void getCateList(ArrayMap<String, String> param) {
         model.getCateList(param);
     }
+
 }

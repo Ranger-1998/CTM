@@ -1,6 +1,9 @@
 package com.fourgod.chen.ctm.view.impl.fragment;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
@@ -9,11 +12,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.fourgod.chen.ctm.R;
 import com.fourgod.chen.ctm.entity.InfoAllListBean;
 import com.fourgod.chen.ctm.model.impl.MyResAndReqModel;
 import com.fourgod.chen.ctm.presenter.impl.MyResAndReqPresenter;
 import com.fourgod.chen.ctm.view.adapter.MyResAndReqRlvAdapter;
+import com.fourgod.chen.ctm.view.impl.activity.PublishActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -67,8 +72,26 @@ public class MyResAndReqFragment extends BaseFragment<MyResAndReqPresenter> {
     public void initData(List<InfoAllListBean.DataBean> data){
         myInfList.clear();
         myInfList.addAll(data);
+        final Context context = getActivity();
         if(rlvAdapter == null){
-            rlvAdapter = new MyResAndReqRlvAdapter(R.layout.item_my_res_and_req,myInfList,getActivity());
+            rlvAdapter = new MyResAndReqRlvAdapter(R.layout.item_my_res_and_req, myInfList,getActivity());
+            rlvAdapter.setOnItemLongClickListener(new BaseQuickAdapter.OnItemLongClickListener() {
+                @Override
+                public boolean onItemLongClick(BaseQuickAdapter adapter, View view, int position) {
+                    if (context != null) {
+                        Vibrator vibrator = (Vibrator)context
+                                .getSystemService(context.VIBRATOR_SERVICE);
+                        vibrator.vibrate(500);
+                        Intent intent = new Intent(context, PublishActivity.class);
+                        intent.putExtra("isEdit", true);
+                        intent.putExtra("bean",
+                                ((InfoAllListBean.DataBean) adapter.getData().get(position)));
+                        intent.putExtra("type", String.valueOf(presenter.getType()));
+                        startActivity(intent);
+                    }
+                    return false;
+                }
+            });
             recyclerView.setAdapter(rlvAdapter);
         }
         rlvAdapter.notifyDataSetChanged();

@@ -25,8 +25,10 @@ import com.netease.nimlib.sdk.util.NIMUtil;
  */
 
 public class CTMApplication extends Application {
+    public static CTMApplication application;
     @Override
     public void onCreate() {
+        application = this;
         super.onCreate();
         //NIMClient.config(this,loginfo(),options());
         NIMClient.init(this,loginfo(),options());

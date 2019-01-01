@@ -1,5 +1,6 @@
 package com.fourgod.chen.ctm.entity;
 
+import java.io.Serializable;
 import java.util.List;
 
 public class InfoListBean extends BaseBean {
@@ -233,7 +234,7 @@ public class InfoListBean extends BaseBean {
             this.navigatepageNums = navigatepageNums;
         }
 
-        public static class ListBean {
+        public static class ListBean implements Serializable {
             /**
              * id : 13
              * title : 数学建模比赛求计算机队友
