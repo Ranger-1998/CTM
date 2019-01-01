@@ -233,10 +233,13 @@ public class MoreWindow extends PopupWindow implements View.OnClickListener {
         switch (v.getId()) {
             case R.id.tv_resource:
                 Intent intent = new Intent(mContext, PublishActivity.class);
+                intent.putExtra("type", 0);
                 mContext.startActivity(intent);
                 break;
             case R.id.tv_need:
-
+                Intent intent1 = new Intent(mContext, PublishActivity.class);
+                intent1.putExtra("type", 1);
+                mContext.startActivity(intent1);
                 break;
         }
 

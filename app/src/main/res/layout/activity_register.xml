@@ -47,8 +47,9 @@
                 android:id="@+id/register_phone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@color/gray"
-                android:textColorHint="@color/gray"
+                android:inputType="phone"
+                android:textColor="@color/black"
+                android:textColorHint="@color/black"
                 android:textSize="12sp"
                 android:hint="@string/register_phone_hint"/>
 
@@ -64,8 +65,8 @@
                 android:id="@+id/register_nickname"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@color/gray"
-                android:textColorHint="@color/colorGray"
+                android:textColor="@color/black"
+                android:textColorHint="@color/black"
                 android:textSize="12sp"
                 android:hint="@string/register_nickname_hint"/>
 
@@ -81,8 +82,9 @@
                 android:id="@+id/register_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@color/gray"
-                android:textColorHint="@color/gray"
+                android:inputType="textPassword"
+                android:textColor="@color/black"
+                android:textColorHint="@color/black"
                 android:textSize="12sp"
                 android:hint="@string/register_password_hint"/>
 
@@ -98,8 +100,9 @@
                 android:id="@+id/register_rpassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textColor="@color/gray"
-                android:textColorHint="@color/gray"
+                android:inputType="textPassword"
+                android:textColor="@color/black"
+                android:textColorHint="@color/black"
                 android:textSize="12sp"
                 android:hint="@string/register_rpassword_hint"/>
             <TextView
@@ -115,15 +118,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <EditText
-                    android:id="@+id/register_node"
+                    android:id="@+id/register_code"
                     android:layout_width="0px"
                     android:layout_height="wrap_content"
                     android:layout_weight="4"
-                    android:textColor="@color/gray"
-                    android:textColorHint="@color/gray"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/black"
                     android:textSize="12sp"
                     android:hint="@string/register_code_hint"/>
                 <Button
+                    android:id="@+id/register_get_code"
                     android:layout_width="0px"
                     android:layout_height="match_parent"
                     android:layout_weight="2"
@@ -145,13 +149,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/white"
-                    android:textSize="12sp"
+                    android:textSize="10sp"
                     android:text="@string/register_node"/>
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/blue"
-                    android:textSize="12sp"
+                    android:textSize="10sp"
                     android:text="@string/register_agreement"/>
             </LinearLayout>
         </LinearLayout>
@@ -163,11 +167,47 @@
         android:layout_height="0dp"
         android:layout_weight="3">
 
-        <ImageView
-            android:id="@+id/register_register"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+        <!--<ImageView-->
+            <!--android:id="@+id/register_register"-->
+            <!--android:layout_width="50dp"-->
+            <!--android:layout_height="50dp"-->
+            <!--android:layout_marginTop="20dp"-->
+            <!--android:src="@drawable/ic_ok_big_green"/>-->
+        <RelativeLayout
             android:layout_marginTop="20dp"
-            android:src="@drawable/ic_ok_big_green"/>
+            android:id="@+id/register_register"
+            android:layout_width="150dp"
+            android:layout_height="45dp"
+            android:background="@drawable/login_bt_shape">
+
+            <TextView
+                android:id="@+id/tv_register"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:text="注册"
+                android:textColor="@color/white"
+                android:textSize="13sp" />
+            <LinearLayout
+                android:id="@+id/ll_register"
+                android:visibility="gone"
+                android:layout_centerInParent="true"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:textSize="13sp"
+                    android:textColor="@color/white"
+                    android:text="注册中"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+                <ProgressBar
+                    android:layout_width="20dp"
+                    android:layout_height="20dp" />
+            </LinearLayout>
+        </RelativeLayout>
     </LinearLayout>
 </LinearLayout>

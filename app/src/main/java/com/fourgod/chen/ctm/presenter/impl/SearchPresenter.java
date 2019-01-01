@@ -24,8 +24,12 @@ public class SearchPresenter extends BasePresenter<SearchActivity, SearchModel> 
         switch (msg.what) {
             case 1:
                 view.getHotListReturn((HotTagBean) msg.obj);
+                break;
             case 2:
                 view.searchReturn((SearchBean) msg.obj);
+                break;
+            default:
+                break;
         }
     }
     public void getHotTags(ArrayMap<String, String> param) {

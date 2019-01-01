@@ -5,6 +5,7 @@ import android.support.annotation.NonNull;
 import android.support.v4.util.ArrayMap;
 
 import com.fourgod.chen.ctm.entity.LoginBean;
+import com.fourgod.chen.ctm.entity.UserInfoBean;
 import com.fourgod.chen.ctm.network.NetworkInterface;
 import com.google.gson.Gson;
 
@@ -42,4 +43,5 @@ public class LoginModel extends BaseModel {
         };
         NetworkInterface.login(param, callback);
     }
+
 }

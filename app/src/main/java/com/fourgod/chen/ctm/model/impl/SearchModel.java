@@ -59,5 +59,6 @@ public class SearchModel extends BaseModel {
                 }
             }
         };
+        NetworkInterface.doSearch(param, callback);
     }
 }
