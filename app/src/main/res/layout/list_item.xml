@@ -77,18 +77,18 @@
             android:textSize="12sp"
             android:gravity="center"/>
         <TextView
-            android:id="@+id/item_push_time"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="8:50"
+            android:visibility="invisible"
             android:textSize="12sp"
             android:gravity="center"/>
         <TextView
+            android:id="@+id/item_push_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="12sp"
-            android:text="110 点击"
+            android:text="8:50"
             />
     </LinearLayout>
 

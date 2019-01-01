@@ -14,7 +14,7 @@ import okhttp3.Request;
  * on 2018/12/17.
  */
 public class NetworkInterface {
-    private static final String SERVER_HOST = "http://192.168.1.111:8085";
+    private static final String SERVER_HOST = "http://192.168.1.101:8085";
 
 
     public static void updateUserInfo(ArrayMap<String, String> param, Callback callback){
@@ -74,7 +74,7 @@ public class NetworkInterface {
     }
 
     public static void getMyCollections(ArrayMap<String, String> param, Callback callback){
-        JsonRequest request = new JsonRequest(SERVER_HOST + "/collection//getMyCollection",
+        JsonRequest request = new JsonRequest(SERVER_HOST + "/collection/getMyCollection",
                 param, callback);
         request.putRequest();
     }

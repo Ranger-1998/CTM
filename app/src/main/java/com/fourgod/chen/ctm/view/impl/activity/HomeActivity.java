@@ -11,22 +11,17 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 
 import com.fourgod.chen.ctm.R;
-import com.fourgod.chen.ctm.entity.LoginBean;
 import com.fourgod.chen.ctm.presenter.impl.BasePresenter;
 import com.fourgod.chen.ctm.view.impl.fragment.BaseFragment;
-import com.fourgod.chen.ctm.view.impl.fragment.ChartFragment;
+import com.fourgod.chen.ctm.view.impl.fragment.ChatFragment;
 import com.fourgod.chen.ctm.view.impl.fragment.PersonFragment;
 import com.fourgod.chen.ctm.view.impl.fragment.ResourcesFragment;
-import com.fourgod.chen.ctm.view.impl.fragment.TestFragment1;
 import com.fourgod.chen.ctm.view.widget.MoreWindow;
 import com.ittianyu.bottomnavigationviewex.BottomNavigationViewEx;
-import com.netease.nim.uikit.business.recent.RecentContactsFragment;
 import com.netease.nimlib.sdk.NIMClient;
 import com.netease.nimlib.sdk.RequestCallback;
 import com.netease.nimlib.sdk.auth.AuthService;
@@ -115,7 +110,7 @@ public class HomeActivity extends BaseActivity {
         bundle.putString("type", "0");
         reqFragment.setArguments(bundle);
 
-        ChartFragment chatFragment = new ChartFragment();
+        ChatFragment chatFragment = new ChatFragment();
 //        RecentContactsFragment chatFragment = new RecentContactsFragment();
 
         BaseFragment personFragment = new PersonFragment();

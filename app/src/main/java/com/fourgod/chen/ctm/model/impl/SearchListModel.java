@@ -38,6 +38,6 @@ public class SearchListModel extends BaseModel{
                 }
             }
         };
-        NetworkInterface.getInfoList(param, callback);
+        NetworkInterface.doSearch(param, callback);
     }
 }

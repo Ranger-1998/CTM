@@ -28,7 +28,7 @@ public class MyResAndReqPresenter extends BasePresenter<MyResAndReqFragment,MyRe
     protected void eventReceive(Message msg) {
         if(msg.what == 0) {
             InfoAllListBean bean = (InfoAllListBean) (msg.obj);
-            view.initData(bean.getData());
+            view.initData(bean.getData(),getType()==model.TYPE_COLLECTION);
         }else if(msg.what == 1){
             ResolvedBean bean = (ResolvedBean) (msg.obj);
             view.resolvedBean(bean);

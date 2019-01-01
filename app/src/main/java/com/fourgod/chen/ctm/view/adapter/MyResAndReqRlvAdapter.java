@@ -26,11 +26,13 @@ import java.util.List;
 public class MyResAndReqRlvAdapter extends BaseQuickAdapter<InfoAllListBean.DataBean,BaseViewHolder> {
     private Context context;
     private MyResAndReqPresenter presenter;
+    private boolean collectFlag;
     public MyResAndReqRlvAdapter(int layoutResId, @Nullable List<InfoAllListBean.DataBean> data
-            ,MyResAndReqPresenter presenter, Context context) {
+            ,MyResAndReqPresenter presenter, Context context, boolean collectFlag) {
         super(layoutResId, data);
         this.context = context;
         this.presenter = presenter;
+        this.collectFlag = collectFlag;
     }
 
     @Override
@@ -45,6 +47,10 @@ public class MyResAndReqRlvAdapter extends BaseQuickAdapter<InfoAllListBean.Data
                     .into((ImageView) helper.getView(R.id.img_pic));
         }else{
             helper.getView(R.id.img_pic).setVisibility(View.GONE);
+        }
+        if(collectFlag){
+            helper.setVisible(R.id.btn_solve,false);
+            helper.setVisible(R.id.btn_del,false);
         }
         if(item.getStatus().equals("1")){
             helper.setBackgroundRes(R.id.btn_solve,R.drawable.shape_btn_solved);

@@ -21,10 +21,18 @@ public class SearchListPresenter extends BasePresenter<SearchListFragment, Searc
 
     @Override
     protected void eventReceive(Message msg) {
-        view.searchReturn((InfoListBean) msg.obj);
+        InfoListBean bean = (InfoListBean)(msg.obj);
+        if(bean.getData().getPageNum()==1)
+            view.showInfoList(bean);
+        else
+            view.addInfmations(bean);
     }
 
-    public void search(ArrayMap<String, String> param) {
+    public void search(String keyWord, String type, int page) {
+        ArrayMap<String,String> param = new ArrayMap<>();
+        param.put("type",type);
+        param.put("searchContent",keyWord);
+        param.put("pageNum",String.valueOf(page));
         model.search(param);
     }
 }

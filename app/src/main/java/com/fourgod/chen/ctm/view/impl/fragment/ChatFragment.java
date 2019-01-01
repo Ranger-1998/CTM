@@ -21,7 +21,7 @@ import java.util.List;
  * Created by laobo on 2018/12/30.
  */
 
-public class ChartFragment extends Fragment {
+public class ChatFragment extends Fragment {
     private SlidingTabLayout tabLayout;
     private List<Fragment> fragments = new ArrayList<>();
     private List<String> titles = new ArrayList<>();
