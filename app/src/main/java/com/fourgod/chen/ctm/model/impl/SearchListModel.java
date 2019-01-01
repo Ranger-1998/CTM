@@ -4,6 +4,7 @@ import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.v4.util.ArrayMap;
 
+import com.fourgod.chen.ctm.entity.InfoListBean;
 import com.fourgod.chen.ctm.entity.SearchBean;
 import com.fourgod.chen.ctm.network.NetworkInterface;
 import com.google.gson.Gson;
@@ -31,12 +32,12 @@ public class SearchListModel extends BaseModel{
                     throws IOException {
                 if (response.body() != null) {
                     Gson gson = new Gson();
-                    SearchBean bean = gson.fromJson(response.body().string(), SearchBean.class);
+                    InfoListBean bean = gson.fromJson(response.body().string(), InfoListBean.class);
                     bean.setWhat(1);
                     postEvent(bean);
                 }
             }
         };
-        NetworkInterface.doSearch(param, callback);
+        NetworkInterface.getInfoList(param, callback);
     }
 }

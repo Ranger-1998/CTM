@@ -170,10 +170,16 @@ public class SearchActivity extends BaseActivity<SearchPresenter> implements ISe
         tagFlowLayout.setAdapter(new TagAdapter<String>(hotList) {
 
             @Override
-            public View getView(FlowLayout parent, int position, String s) {
+            public View getView(FlowLayout parent, int position, final String s) {
                 TextView textView = (TextView) inflater.inflate(R.layout.item_hot_tag,
                         tagFlowLayout, false);
                 textView.setText(s);
+                textView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        showSearchDetail(s);
+                    }
+                });
                 return textView;
             }
         });
@@ -227,7 +233,7 @@ public class SearchActivity extends BaseActivity<SearchPresenter> implements ISe
         }
 
         private void update(int position) {
-            notifyItemRemoved(position);
+            notifyDataSetChanged();
         }
 
         @Override
