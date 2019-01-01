@@ -66,9 +66,11 @@ public class PublishActivity extends BaseActivity<PublishPresenter> {
     private TextView cateMask;
     private ProgressDialog dialog;
     private List<String> selected = new ArrayList<>();
+    private List<String> localSelected = new ArrayList<>();
     private ImageAdapter imageAdapter;
     private String imageUrls = "";
     private InfoAllListBean.DataBean bean;
+    private TextView titleTextView;
 
 
     @RequiresApi(api = Build.VERSION_CODES.N)
@@ -96,6 +98,10 @@ public class PublishActivity extends BaseActivity<PublishPresenter> {
 
     @RequiresApi(api = Build.VERSION_CODES.N)
     private void bindView() {
+        titleTextView = findViewById(R.id.toolbar_title);
+        if (isEdit) {
+            titleTextView.setText("编辑");
+        }
 
         cateNameList.add("选择分类");
         cateSpinner = findViewById(R.id.sp_cate);
@@ -152,8 +158,8 @@ public class PublishActivity extends BaseActivity<PublishPresenter> {
             @Override
             public void onClick(View v) {
                 showDialog();
-                if (selected != null && selected.size() != 0) {
-                    presenter.uploadImage(selected);
+                if (localSelected != null && localSelected.size() != 0) {
+                    presenter.uploadImage(localSelected);
                 } else {
                     doPublish();
                 }
@@ -191,6 +197,9 @@ public class PublishActivity extends BaseActivity<PublishPresenter> {
         imageRecyclerView.setAdapter(imageAdapter);
     }
 
+    /**
+     * 发布信息.
+     */
     private void doPublish() {
         ArrayMap<String, String> param = new ArrayMap<>();
         if (imageUrls != null && !imageUrls.equals("")) {
@@ -270,10 +279,14 @@ public class PublishActivity extends BaseActivity<PublishPresenter> {
     public void imageUploadComplete(ImageResultBean bean) {
        for (int i = 0; i < bean.getBeans().size(); i++) {
            imageUrls = imageUrls + bean.getBeans().get(i).getMessage();
-           if (i != bean.getBeans().size() - 1) {
-               imageUrls = imageUrls + "|";
-           }
+           imageUrls = imageUrls + "|";
        }
+       selected.removeAll(localSelected);
+       for (int i = 0; i < selected.size(); i++) {
+           imageUrls = imageUrls + selected.get(i);
+           imageUrls = imageUrls + "|";
+       }
+       imageUrls = imageUrls.substring(0, imageUrls.length() - 1);
        doPublish();
     }
 
@@ -282,7 +295,7 @@ public class PublishActivity extends BaseActivity<PublishPresenter> {
         boolean isSuccess = true;
         @Override
         public void run() {
-            //延迟两秒更新
+            //延迟1秒更新
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
@@ -306,6 +319,9 @@ public class PublishActivity extends BaseActivity<PublishPresenter> {
                 for (String path: list) {
                     if (!selected.contains(path)) {
                         selected.add(path);
+                    }
+                    if (!localSelected.contains(path)) {
+                        localSelected.add(path);
                     }
                 }
                 imageAdapter.notifyDataSetChanged();

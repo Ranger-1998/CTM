@@ -1,6 +1,8 @@
 package com.fourgod.chen.ctm.entity;
 
 
+import java.io.Serializable;
+
 /**
  * Created by laobo on 2018/12/29.
  */
@@ -41,7 +43,7 @@ public class UserInfoBean extends BaseBean {
         this.data = data;
     }
 
-    public static class DataBean {
+    public static class DataBean implements Serializable {
         /**
          * id : 10
          * username : laoboji
