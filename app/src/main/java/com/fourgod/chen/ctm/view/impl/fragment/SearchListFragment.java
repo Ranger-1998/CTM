@@ -1,5 +1,7 @@
 package com.fourgod.chen.ctm.view.impl.fragment;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -17,109 +19,94 @@ import com.bumptech.glide.Glide;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.fourgod.chen.ctm.R;
+import com.fourgod.chen.ctm.entity.CategoryListBean;
 import com.fourgod.chen.ctm.entity.InfoListBean;
 import com.fourgod.chen.ctm.entity.SearchBean;
+import com.fourgod.chen.ctm.presenter.impl.ListPresenter;
 import com.fourgod.chen.ctm.presenter.impl.SearchListPresenter;
+import com.fourgod.chen.ctm.presenter.impl.SearchPresenter;
+import com.fourgod.chen.ctm.view.impl.activity.InfoDetailActivity;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
+import com.scwang.smartrefresh.layout.api.RefreshLayout;
+import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener;
+import com.scwang.smartrefresh.layout.listener.OnRefreshListener;
+import com.youth.banner.Banner;
+import com.youth.banner.loader.ImageLoader;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class SearchListFragment extends BaseFragment<SearchListPresenter> {
-    private String content;
-    private int type;
-    private View root;
-    private SwipeRefreshLayout refreshLayout;
-    private RecyclerView recyclerView;
-    private ProgressBar progressBar;
-    private BaseQuickAdapter adapter;
-    private List<InfoListBean.DataBean.ListBean> beanList = new ArrayList<>();
-    private int nowPage = 0;
-    private int totalPage = 0;
+    private RecyclerView mRecyclerView;
+    private View mRoot;
+    private List<InfoListBean.DataBean.ListBean> mBeans;
+    private List<String> mImgUrls;
+    private BaseQuickAdapter mAdapter;
+    private SmartRefreshLayout mRefreshLayout;
+    private int CurrentPageNum;
+    private String type;
+    private String keyWord;
 
     @Override
     protected SearchListPresenter getPresenter() {
         return new SearchListPresenter(this);
     }
 
-    public static SearchListFragment newInstance(String content, int type) {
-        SearchListFragment fragment = new SearchListFragment();
-        Bundle bundle = new Bundle();
-        bundle.putString("content", content);
-        bundle.putInt("type", type);
-        fragment.setArguments(bundle);
-        return fragment;
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
+                             @Nullable Bundle savedInstanceState) {
+        super.onCreateView(inflater,container,savedInstanceState);
+        if (mRoot == null) {
+            mRoot = inflater.inflate(R.layout.fragment_search_list, container, false);
+            initView();
+            CurrentPageNum=1;
+            presenter.search(keyWord,type,CurrentPageNum++);
+        }
+        return mRoot;
     }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Bundle bundle = getArguments();
-        if (bundle != null) {
-            type = bundle.getInt("type");
-            content = bundle.getString("content");
-        }
+        type = getArguments().getString("type");
+        keyWord = getArguments().getString("keyWord");
     }
 
-    @Nullable
-    @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
-                             @Nullable Bundle savedInstanceState) {
-        if (root == null) {
-            root = inflater.inflate(R.layout.fragment_search_list,
-                    container, false);
-            initView();
-            ArrayMap<String, String> param = new ArrayMap<>();
-            param.put("title", content);
-            param.put("type",String.valueOf(type));
-            presenter.search(param);
-        }
-
-        return root;
-    }
-
-    private void initView() {
-        refreshLayout = root.findViewById(R.id.refresh);
-        refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+    private void initView(){
+        mRecyclerView = mRoot.findViewById(R.id.list_RecView);
+        mRefreshLayout=mRoot.findViewById(R.id.list_refreshLayout);
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
+        mRefreshLayout.setEnableRefresh(false);
+        //加载更多
+        mRefreshLayout.setOnLoadMoreListener(new OnLoadMoreListener() {
             @Override
-            public void onRefresh() {
-                adapter = null;
-                nowPage = 0;
-                ArrayMap<String, String> param = new ArrayMap<>();
-                param.put("title", content);
-                param.put("type",String.valueOf(type));
-                presenter.search(param);
+            public void onLoadMore(@NonNull RefreshLayout refreshLayout) {
+                presenter.search(keyWord,type,CurrentPageNum++);
+                mAdapter.notifyDataSetChanged();
+                refreshLayout.finishLoadMore();
             }
         });
-        recyclerView = root.findViewById(R.id.rv_search);
-        progressBar = root.findViewById(R.id.search_progress);
     }
 
-    private void loadMore() {
-        nowPage ++;
-        ArrayMap<String, String> param = new ArrayMap<>();
-        param.put("title", content);
-        param.put("type",String.valueOf(type));
-        param.put("pageNum", String.valueOf(nowPage));
-        presenter.search(param);
-    }
-
-
-    public void searchReturn(InfoListBean bean) {
-        if (refreshLayout.isRefreshing()) {
-            refreshLayout.setRefreshing(false);
+    public void showInfoList(InfoListBean bean) {
+        if(mBeans == null){
+            mBeans = new ArrayList<>();
         }
-        if (adapter == null) {
-            totalPage = bean.getData().getPages();
-            beanList = bean.getData().getList();
-            adapter = new BaseQuickAdapter<InfoListBean.DataBean.ListBean, BaseViewHolder>
-                    (R.layout.list_item, beanList) {
+        mBeans.clear();
+        mBeans.addAll(bean.getData().getList());
+        if(mAdapter == null){
+            mAdapter = new BaseQuickAdapter<InfoListBean.DataBean.ListBean, BaseViewHolder>
+                    (R.layout.list_item,mBeans) {
                 @Override
                 protected void convert(BaseViewHolder helper, InfoListBean.DataBean.ListBean item) {
+                    //TODO 绑定数据
                     helper.setText(R.id.item_title, item.getTitle());
                     helper.setText(R.id.item_content, item.getContent());
                     helper.setText(R.id.item_user_name, item.getUserNickName());
                     helper.setText(R.id.item_push_time, item.getCreateTime());
+                    Glide.with(SearchListFragment.this.getActivity()).load(item.getUserHeadUrl())
+                            .into((ImageView)helper.getView(R.id.item_user_head));
                     String[] imgs;
                     if (item.getPicture() != null
                             && (imgs = item.getPicture().split("\\|")).length>0) {
@@ -128,27 +115,29 @@ public class SearchListFragment extends BaseFragment<SearchListPresenter> {
                     }else{
                         helper.getView(R.id.item_pic).setVisibility(View.GONE);
                     }
+
                 }
             };
-            adapter.setOnLoadMoreListener(new BaseQuickAdapter.RequestLoadMoreListener() {
+            mAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
                 @Override
-                public void onLoadMoreRequested() {
-                    if (nowPage < totalPage) {
-                        loadMore();
-                    } else {
-                        adapter.loadMoreEnd(true);
+                public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+                    if (getActivity() != null) {
+                        Intent intent = new Intent(getActivity(), InfoDetailActivity.class);
+                        intent.putExtra("infoDetail",
+                                ((InfoListBean.DataBean.ListBean) adapter.getData().get(position)));
+                        getActivity().startActivity(intent);
                     }
                 }
-            }, recyclerView);
-            recyclerView.setAdapter(adapter);
-            recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-            progressBar.setVisibility(View.GONE);
-            refreshLayout.setVisibility(View.VISIBLE);
-        } else {
-            if (nowPage <= totalPage) {
-                beanList.addAll(bean.getData().getList());
-                adapter.notifyDataSetChanged();
-            }
+            });
+            mRecyclerView.setAdapter(mAdapter);
         }
+        mAdapter.notifyDataSetChanged();
+    }
+    public void addInfmations(InfoListBean bean){
+        mBeans.addAll(bean.getData().getList());
+        if(bean.getData().getPageNum()==bean.getData().getPages()){
+            mRefreshLayout.setEnableLoadMore(false);
+        }
+        mAdapter.notifyDataSetChanged();
     }
 }

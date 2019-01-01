@@ -113,7 +113,7 @@ public class ListFragment extends BaseFragment<ListPresenter> implements IBaseVi
             }
         });
 
-        mAdapter=new BaseQuickAdapter<InfoListBean.DataBean.ListBean, BaseViewHolder>
+        mAdapter = new BaseQuickAdapter<InfoListBean.DataBean.ListBean, BaseViewHolder>
                 (R.layout.list_item,mBeans) {
             @Override
             protected void convert(BaseViewHolder helper, InfoListBean.DataBean.ListBean item) {

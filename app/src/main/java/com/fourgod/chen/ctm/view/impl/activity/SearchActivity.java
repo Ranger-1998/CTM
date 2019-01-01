@@ -19,6 +19,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
@@ -174,13 +175,14 @@ public class SearchActivity extends BaseActivity<SearchPresenter> implements ISe
                 TextView textView = (TextView) inflater.inflate(R.layout.item_hot_tag,
                         tagFlowLayout, false);
                 textView.setText(s);
-                textView.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        showSearchDetail(s);
-                    }
-                });
                 return textView;
+            }
+        });
+        tagFlowLayout.setOnTagClickListener(new TagFlowLayout.OnTagClickListener() {
+            @Override
+            public boolean onTagClick(View view, int position, FlowLayout parent) {
+                showSearchDetail(hotList.get(position));
+                return true;
             }
         });
     }
@@ -258,9 +260,25 @@ public class SearchActivity extends BaseActivity<SearchPresenter> implements ISe
     }
 
     public void showSearchDetail(String content) {
+        if(content.length() == 0){
+            Toast.makeText(this,"搜索内容不能为空！",Toast.LENGTH_SHORT).show();
+            return;
+        }
+        editText.setText(content);
         List<Fragment> fragments = new ArrayList<>();
-        fragments.add(SearchListFragment.newInstance(content, 0));
-        fragments.add(SearchListFragment.newInstance(content, 1));
+        SearchListFragment fragment = new SearchListFragment();
+        Bundle bundle = new Bundle();
+        bundle.putString("type","0");
+        bundle.putString("keyWord",content);
+        fragment.setArguments(bundle);
+        fragments.add(fragment);
+
+        fragment = new SearchListFragment();
+        bundle = new Bundle();
+        bundle.putString("type","1");
+        bundle.putString("keyWord",content);
+        fragment.setArguments(bundle);
+        fragments.add(fragment);
         List<String> titles = Arrays.asList("资源", "需求");
 
         searchRoot.setVisibility(View.GONE);
