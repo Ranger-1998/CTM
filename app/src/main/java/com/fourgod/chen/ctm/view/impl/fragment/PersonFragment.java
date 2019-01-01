@@ -23,6 +23,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
+import com.bumptech.glide.request.target.Target;
 import com.flyco.tablayout.SlidingTabLayout;
 import com.fourgod.chen.ctm.R;
 import com.fourgod.chen.ctm.entity.UserInfoBean;
@@ -157,9 +159,33 @@ public class PersonFragment extends BaseFragment<PersonPresenter> {
         mEdit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(PersonFragment.this.getContext(), EditUserInfActivity.class));
+                Intent intent=new Intent(PersonFragment.this.getContext(), EditUserInfActivity.class)
+                        .putExtra("nickname",myInfo.getNickname())
+                        .putExtra("sex",myInfo.getSex())
+                        .putExtra("birth",myInfo.getBirthday())
+                        .putExtra("hometown",myInfo.getHometown())
+                        .putExtra("signal",myInfo.getSignature())
+                        .putExtra("headImageUrl",myInfo.getHeadImgUrl());
+                startActivityForResult(intent,1);
             }
         });
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode==1&&resultCode==1){
+            nameTv.setText(data.getExtras().getString("nickname"));
+        }else if(requestCode==1&&resultCode==2){
+            nameTv.setText(data.getExtras().getString("nickname"));
+            Glide.with(this)
+                    .asBitmap() // some .jpeg files are actually gif
+                    .load(data.getExtras().getString("headImgUrl"))
+                    .apply(new RequestOptions() {{
+                        override(Target.SIZE_ORIGINAL);
+                    }})
+                    .into(picImg);
+        }
     }
 
     public void showMyInfo(UserInfoBean userInfoBean){

@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
+import com.fourgod.chen.ctm.CTMApplication;
 import com.fourgod.chen.ctm.presenter.impl.BasePresenter;
 import com.fourgod.chen.ctm.view.i.IBaseView;
 
@@ -25,6 +26,7 @@ public abstract class BaseActivity<P extends BasePresenter> extends AppCompatAct
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        CTMApplication.getInstance().addActivity(this);
         setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);  //设置为强制竖屏
         presenter = getPresenter();
     }
@@ -36,6 +38,7 @@ public abstract class BaseActivity<P extends BasePresenter> extends AppCompatAct
             presenter = null;
         }
         super.onDestroy();
+        CTMApplication.getInstance().removeActivity(this);
     }
 
     @Override

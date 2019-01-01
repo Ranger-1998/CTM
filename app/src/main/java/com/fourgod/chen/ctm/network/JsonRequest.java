@@ -1,9 +1,7 @@
 package com.fourgod.chen.ctm.network;
 
 import android.support.v4.util.ArrayMap;
-
 import com.google.gson.Gson;
-
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.MediaType;
@@ -18,7 +16,6 @@ import okhttp3.RequestBody;
  * Created by czt
  * on 2018/12/17.
  */
-
 public class JsonRequest {
 
     private static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
@@ -27,9 +24,7 @@ public class JsonRequest {
     private RequestBody body;
     private String token;
     private Request request;
-
     private Callback callback;
-
     private NetworkManager networkManager;
 
     public JsonRequest(String url, ArrayMap<String, String> requestParam, Callback callback) {

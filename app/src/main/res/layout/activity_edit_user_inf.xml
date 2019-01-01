@@ -41,7 +41,7 @@
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:textColor="@color/black"
-            android:textSize="18sp"
+            android:textSize="16sp"
             android:text="@string/edit_user_inf_portrait"/>
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/edit_user_portrait"
@@ -69,9 +69,10 @@
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:textColor="@color/black"
-            android:textSize="18sp"
+            android:textSize="16sp"
             android:text="@string/edit_user_inf_nickname"/>
         <EditText
+            android:id="@+id/edit_user_nickname"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:background="@null"
@@ -99,11 +100,11 @@
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:textColor="@color/black"
-            android:textSize="18sp"
+            android:textSize="16sp"
             android:text="@string/edit_user_inf_sex"/>
         <com.contrarywind.view.WheelView
             android:id="@+id/edit_user_sex"
-            android:layout_width="100dp"
+            android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_centerVertical="true"
             android:layout_alignParentRight="true"
@@ -127,7 +128,7 @@
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:textColor="@color/black"
-            android:textSize="18sp"
+            android:textSize="16sp"
             android:text="@string/edit_user_inf_birth"/>
         <TextView
             android:id="@+id/edit_user_birth"
@@ -158,7 +159,7 @@
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:textColor="@color/black"
-            android:textSize="18sp"
+            android:textSize="16sp"
             android:text="@string/edit_user_inf_hometown"/>
         <TextView
             android:id="@+id/edit_user_hometown"
@@ -189,9 +190,10 @@
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
             android:textColor="@color/black"
-            android:textSize="18sp"
+            android:textSize="16sp"
             android:text="@string/edit_user_inf_signal"/>
         <EditText
+            android:id="@+id/edit_user_signal"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
             android:background="@null"
@@ -206,13 +208,43 @@
             android:layout_alignParentBottom="true"
             android:background="@color/gray"/>
     </RelativeLayout>
-    <Button
-        android:layout_width="100dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="40dp"
-        android:text="保存"
-        android:textColor="@color/white"
-        android:background="@drawable/login_bt_shape"/>
+    <RelativeLayout
+        android:layout_marginTop="20dp"
+        android:id="@+id/register_register"
+        android:layout_width="150dp"
+        android:layout_height="45dp"
+        android:background="@drawable/login_bt_shape">
+
+        <TextView
+            android:id="@+id/tv_edit_save"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:text="保存"
+            android:textColor="@color/white"
+            android:textSize="13sp" />
+        <LinearLayout
+            android:id="@+id/ll_edit_saving"
+            android:visibility="gone"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <TextView
+                android:textSize="13sp"
+                android:textColor="@color/white"
+                android:text="保存中"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <ProgressBar
+                android:layout_width="20dp"
+                android:layout_height="20dp" />
+        </LinearLayout>
+    </RelativeLayout>
     <View
         android:layout_width="match_parent"
         android:layout_height="0dp"

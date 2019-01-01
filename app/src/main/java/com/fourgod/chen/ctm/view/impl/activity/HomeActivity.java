@@ -32,7 +32,7 @@ import java.util.List;
  * Created by laobo on 2018/12/18.
  */
 
-public class HomeActivity extends AppCompatActivity {
+public class HomeActivity extends BaseActivity {
     private BottomNavigationViewEx bnve;
     private ViewPager viewPager;
     private List<Fragment> fragments = new ArrayList<>();
@@ -47,6 +47,11 @@ public class HomeActivity extends AppCompatActivity {
         initView();
         initData();
         initEvent();
+    }
+
+    @Override
+    protected BasePresenter getPresenter() {
+        return null;
     }
 
     private void initView() {
