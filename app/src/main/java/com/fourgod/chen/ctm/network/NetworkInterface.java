@@ -73,6 +73,11 @@ public class NetworkInterface {
         request.putRequest();
     }
 
+    public static void getMyCollections(ArrayMap<String, String> param, Callback callback){
+        JsonRequest request = new JsonRequest(SERVER_HOST + "/collection/getMyCollection",
+                param, callback);
+        request.putRequest();
+    }
     public static void getUserInfo(ArrayMap<String, String> param, Callback callback) {
         JsonRequest request = new JsonRequest(SERVER_HOST + "/user/get",
                 param, callback);

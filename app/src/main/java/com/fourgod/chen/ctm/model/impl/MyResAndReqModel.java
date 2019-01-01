@@ -25,7 +25,8 @@ public class MyResAndReqModel extends BaseModel {
     //需求
     public static final String TYPE_REQUIREMENT = "0";
 
-
+    //收藏
+    public static final String TYPE_COLLECTION = "2";
     private String mType;
     public MyResAndReqModel(Handler handler) {
         super(handler);
@@ -56,5 +57,25 @@ public class MyResAndReqModel extends BaseModel {
             }
         };
         NetworkInterface.getMyInfoList(param, callback);
+    }
+
+    public void getMyCollections(ArrayMap<String,String> p){
+        Callback callback = new Callback() {
+            @Override
+            public void onFailure(@NonNull Call call, @NonNull IOException e) {
+
+            }
+
+            @Override
+            public void onResponse(@NonNull Call call, Response response) throws IOException {
+                Gson gson = new Gson();
+                if (response.body() != null) {
+                    InfoAllListBean bean = gson.fromJson(response.body().string(), InfoAllListBean.class);
+                    bean.setWhat(0);
+                    postEvent(bean);
+                }
+            }
+        };
+        NetworkInterface.getMyCollections(p,callback);
     }
 }

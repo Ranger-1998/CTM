@@ -78,6 +78,7 @@
             android:background="@null"
             android:layout_centerVertical="true"
             android:layout_alignParentRight="true"
+            android:singleLine="true"
             android:textSize="14sp"
             android:gravity="right"
             android:hint="@string/register_nickname_hint"/>
@@ -199,6 +200,7 @@
             android:background="@null"
             android:layout_centerVertical="true"
             android:layout_alignParentRight="true"
+            android:singleLine="true"
             android:textSize="14sp"
             android:gravity="right"
             android:hint="@string/edit_user_inf_signal_hint"/>
