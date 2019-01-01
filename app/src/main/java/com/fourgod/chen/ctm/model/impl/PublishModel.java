@@ -101,4 +101,25 @@ public class PublishModel extends BaseModel {
         };
         NetworkInterface.getCategoryList(param, callback);
     }
+
+    public void updateInfo(ArrayMap<String,String> param) {
+        Callback callback = new Callback() {
+            @Override
+            public void onFailure(@NonNull Call call, @NonNull IOException e) {
+
+            }
+
+            @Override
+            public void onResponse(@NonNull Call call, @NonNull Response response)
+                    throws IOException {
+                if (response.body() != null) {
+                    Gson gson = new Gson();
+                    PushBean bean = gson.fromJson(response.body().string(), PushBean.class);
+                    bean.setWhat(4);
+                    postEvent(bean);
+                }
+            }
+        };
+        NetworkInterface.updateInfo(param, callback);
+    }
 }
