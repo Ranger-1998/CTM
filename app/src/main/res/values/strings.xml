@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">ctm</string>
+    <string name="app_name">来找我</string>
     <string name="login_account_hint">账号</string>
     <string name="login_password_hint">密码</string>
     <string name="login_login">登录</string>
@@ -25,7 +25,7 @@
     <string name="hot">热门搜索</string>
     <string name="all_cate">全部分类</string>
 
-    <string name="bnv_res">找资源</string>
+    <string name="bnv_res">资源</string>
     <string name="bnv_req">需求</string>
     <string name="bnv_chat">聊天</string>
     <string name="bnv_person">我</string>

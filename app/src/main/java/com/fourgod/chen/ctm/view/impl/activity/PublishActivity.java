@@ -29,6 +29,7 @@ import com.fourgod.chen.ctm.entity.CategoryListBean;
 import com.fourgod.chen.ctm.entity.ImageResultBean;
 import com.fourgod.chen.ctm.entity.InfoAllListBean;
 import com.fourgod.chen.ctm.entity.PushBean;
+import com.fourgod.chen.ctm.network.NetworkInterface;
 import com.fourgod.chen.ctm.presenter.impl.PublishPresenter;
 import com.fourgod.chen.ctm.utils.GlideLoadEngine;
 import com.fourgod.chen.ctm.view.widget.CustomDatePicker;
@@ -278,16 +279,22 @@ public class PublishActivity extends BaseActivity<PublishPresenter> {
 
     public void imageUploadComplete(ImageResultBean bean) {
        for (int i = 0; i < bean.getBeans().size(); i++) {
-           imageUrls = imageUrls + bean.getBeans().get(i).getMessage();
+           imageUrls = imageUrls + dealUrl(bean.getBeans().get(i).getMessage());
            imageUrls = imageUrls + "|";
        }
        selected.removeAll(localSelected);
        for (int i = 0; i < selected.size(); i++) {
-           imageUrls = imageUrls + selected.get(i);
+           imageUrls = imageUrls + dealUrl(selected.get(i));
            imageUrls = imageUrls + "|";
        }
        imageUrls = imageUrls.substring(0, imageUrls.length() - 1);
        doPublish();
+    }
+
+    private String dealUrl(String url) {
+        url = url.substring(url.lastIndexOf("/"), url.length());
+        url = NetworkInterface.SERVER_HOST + "/pictures/" + url;
+        return url;
     }
 
 
