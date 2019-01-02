@@ -77,7 +77,7 @@ public class ResourcesFragment extends BaseFragment<ResourcesPresenter> implemen
         });
         mSlidingTabLayout = mRoot.findViewById(R.id.resources_tab);
         mViewPager = mRoot.findViewById(R.id.resources_vp);
-        mViewPager.setOffscreenPageLimit(2);
+        //mViewPager.setOffscreenPageLimit(2);
         mFragments=new ArrayList<>();
         mTitles=new ArrayList<>();
         for(int i=0;i<mBeans.size();i++){

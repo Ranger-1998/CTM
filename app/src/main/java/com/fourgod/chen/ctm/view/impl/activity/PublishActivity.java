@@ -212,7 +212,7 @@ public class PublishActivity extends BaseActivity<PublishPresenter> {
             param.put("categoryId", String.valueOf(categoryId));
         }
         param.put("content", editContent.getText().toString());
-        if (!chooseTime.getText().equals("") || !chooseTime.getText().equals("选择失效时间")) {
+        if (!chooseTime.getText().equals("") && !chooseTime.getText().equals("选择失效时间")) {
             param.put("endTime", chooseTime.getText().toString());
         }
 

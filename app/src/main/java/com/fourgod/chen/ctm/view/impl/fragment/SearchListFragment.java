@@ -129,7 +129,9 @@ public class SearchListFragment extends BaseFragment<SearchListPresenter> {
                     }
                 }
             });
-            mRecyclerView.setAdapter(mAdapter);
+            //mRecyclerView.setAdapter(mAdapter);
+            mAdapter.bindToRecyclerView(mRecyclerView);
+            mAdapter.setEmptyView(R.layout.empty);
         }
         mAdapter.notifyDataSetChanged();
     }

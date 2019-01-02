@@ -119,8 +119,9 @@ public class MyResAndReqFragment extends BaseFragment<MyResAndReqPresenter> {
                     }
                 }
             });
-
-            recyclerView.setAdapter(rlvAdapter);
+            //recyclerView.setAdapter(rlvAdapter);
+            rlvAdapter.bindToRecyclerView(recyclerView);
+            rlvAdapter.setEmptyView(R.layout.empty);
         }
         rlvAdapter.notifyDataSetChanged();
     }

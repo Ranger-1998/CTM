@@ -95,7 +95,7 @@ public class ListFragment extends BaseFragment<ListPresenter> implements IBaseVi
         mRefreshLayout.setOnRefreshListener(new OnRefreshListener() {
             @Override
             public void onRefresh(RefreshLayout refreshlayout) {
-                CurrentPageNum=1;
+                CurrentPageNum = 1;
                 mRefreshLayout.setEnableLoadMore(true);
                 mParams.put("pageNum",String.valueOf(CurrentPageNum++));
                 presenter.getInfoList(mParams);
@@ -163,13 +163,20 @@ public class ListFragment extends BaseFragment<ListPresenter> implements IBaseVi
             }
         });
         mAdapter.setHeaderView(mBanner);
-        mRecyclerView.setAdapter(mAdapter);
+        //mRecyclerView.setAdapter(mAdapter);
+        mAdapter.bindToRecyclerView(mRecyclerView);
+        mAdapter.setEmptyView(R.layout.empty);
         mBanner.start();
     }
 
     public void showInfoList(InfoListBean bean) {
-        mBeans = bean.getData().getList();
+        if(mBeans == null){
+            mBeans = new ArrayList<>();
+        }
+        mBeans.clear();
+        mBeans.addAll(bean.getData().getList());
         initView();
+        mAdapter.notifyDataSetChanged();
     }
     public void addInfmations(InfoListBean bean){
         mBeans.addAll(bean.getData().getList());
