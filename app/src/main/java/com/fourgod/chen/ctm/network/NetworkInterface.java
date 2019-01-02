@@ -144,4 +144,10 @@ public class NetworkInterface {
                 callback);
         request.deleteRequest();
     }
+
+    public static void changePassword(ArrayMap<String,String> param, Callback callback) {
+        JsonRequest request = new JsonRequest(SERVER_HOST + "/user/editPassword", param,
+                callback);
+        request.putRequest();
+    }
 }

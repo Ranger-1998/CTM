@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.fourgod.chen.ctm.CTMApplication;
@@ -20,6 +21,7 @@ import com.fourgod.chen.ctm.presenter.impl.SetPresenter;
 public class SetActivity extends BaseActivity<SetPresenter> {
     private ImageView mBack;
     private TextView mLogout;
+    private RelativeLayout changePass;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,6 +34,16 @@ public class SetActivity extends BaseActivity<SetPresenter> {
         return new SetPresenter(this);
     }
     private void initView(){
+        changePass = findViewById(R.id.change_pass);
+        changePass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(SetActivity.this,
+                        ChangePasswordActivity.class);
+                SetActivity.this.startActivity(intent);
+            }
+        });
+
         mBack=findViewById(R.id.set_back);
         mLogout=findViewById(R.id.set_logout);
         mLogout.setOnClickListener(new View.OnClickListener() {
@@ -42,7 +54,7 @@ public class SetActivity extends BaseActivity<SetPresenter> {
                 SharedPreferences.Editor editor = preferences.edit();
                 editor.remove("token");
                 editor.clear();
-                editor.commit();
+                editor.apply();
                 CTMApplication.getInstance().exitAllActivity();
                 startActivity(new Intent(SetActivity.this,LoginActivity.class));
             }
